@@ -35,7 +35,10 @@
     <CompilerDefines />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\T_JsonDocumentString.TcDUT">
+    <Compile Include="DUTs\E_SnappyVerificationState.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\T_VerifyContent.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\Param_TcHaxx_Snappy.TcGVL">

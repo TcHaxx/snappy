@@ -31,7 +31,7 @@ END_VAR
 
 VAR_INST
 	stTestData	: ST_AmsAddr;
-	sJsonDoc 	: T_JsonDocumentString;
+	sJsonDoc 	: T_VerifyContent;
 END_VAR
 
 VAR CONSTANT

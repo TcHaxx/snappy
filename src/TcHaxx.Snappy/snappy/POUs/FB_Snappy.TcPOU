@@ -52,7 +52,8 @@ END_VAR
 
 
 VAR_INST
-	sJDoc	: T_JsonDocumentString;
+	sJDoc	: T_VerifyContent;
+	eState	: E_SnappyVerificationState;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
@@ -62,11 +63,22 @@ IF NOT itfConfig.bIsConfigured THEN
 	RETURN;
 END_IF
 
-hr := itfConfig.itfSerializer.Serialize(anyArg, sJDoc);
-IF FAILED(hr) THEN
-	Verify := hr;
-	RETURN;
-END_IF]]></ST>
+CASE eState OF
+	
+	E_SnappyVerificationState.eIdle:
+	hr := itfConfig.itfSerializer.Serialize(anyArg, sJDoc);
+	IF FAILED(hr) THEN
+		Verify := hr;
+		RETURN;
+	ELSE
+		eState := E_SnappyVerificationState.eSend;
+	END_IF
+	E_SnappyVerificationState.eSend:
+		
+	E_SnappyVerificationState.ePending:
+	E_SnappyVerificationState.eDone:	
+
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_Snappy">
@@ -87,11 +99,17 @@ END_IF]]></ST>
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="23" Count="1" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="37" Count="3" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="31" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

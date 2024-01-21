@@ -9,7 +9,7 @@ VAR_INPUT
 	anyArg	: ANY;
 END_VAR
 VAR_IN_OUT
-	sJsonDocument	: T_JsonDocumentString;
+	sJsonDocument	: T_VerifyContent;
 END_VAR]]></Declaration>
     </Method>
   </Itf>

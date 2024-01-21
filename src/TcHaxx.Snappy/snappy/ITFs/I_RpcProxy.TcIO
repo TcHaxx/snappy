@@ -5,7 +5,7 @@
 ]]></Declaration>
     <Method Name="METH" Id="{11e40880-5fa3-4b04-ac89-634a6cfbe115}">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD INTERNAL METH : BOOL
+METHOD INTERNAL Verify : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
