@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_SnappySetupConfigTestFrameWork" Id="{7d911619-4bba-4a11-8679-3e81ddc87c9b}">
+    <Declaration><![CDATA[INTERFACE I_SnappySetupConfigTestFrameWork
+]]></Declaration>
+    <Method Name="UseTestFramework" Id="{bb5fa30c-d772-4a55-9831-d8b435dda75b}">
+      <Declaration><![CDATA[METHOD UseTestFramework : I_SnappySetupConfigBuild
+VAR_INPUT
+	itfTestFramework	: I_TestFrameWorkAdapter;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

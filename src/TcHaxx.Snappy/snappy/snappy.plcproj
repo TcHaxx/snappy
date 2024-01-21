@@ -38,15 +38,35 @@
     <Compile Include="DUTs\T_JsonDocumentString.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\GCL_TcHaxx_Snappy.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
     <Compile Include="GVLs\Param_TcHaxx_Snappy.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="ITFs\I_RpcProxy.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ITFs\I_Serializer.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappyConfig.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappySetup.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappySetupConfigSerializer.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappySetupConfigBuild.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappySetupConfigTestFrameWork.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappySetupDefaultsOrRpc.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\I_SnappyVerify.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ITFs\I_TestFrameWorkAdapter.TcIO">
@@ -64,7 +84,13 @@
     <Compile Include="POUs\FB_Snappy.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\internal\FB_SnappyConfig.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\RPC\FB_RpcProxy.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Serializer\FB_JsonSerializer.TcPOU">
@@ -76,14 +102,20 @@
     <Compile Include="TESTs\Serializer\FB_JsonSerializer_Tests.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TESTs\snappy\FB_Snappy_Tests.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="ITFs" />
     <Folder Include="POUs\Adapter" />
+    <Folder Include="POUs\internal" />
+    <Folder Include="POUs\RPC" />
     <Folder Include="POUs\Serializer" />
     <Folder Include="TESTs" />
+    <Folder Include="TESTs\snappy" />
     <Folder Include="TESTs\Serializer" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />

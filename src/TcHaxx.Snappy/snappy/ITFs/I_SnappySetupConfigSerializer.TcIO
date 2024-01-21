@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_SnappySetupConfigSerializer" Id="{edd9672f-1e06-4a2e-b72e-ed58d685e531}">
+    <Declaration><![CDATA[INTERFACE I_SnappySetupConfigSerializer
+]]></Declaration>
+    <Method Name="UseSerializer" Id="{d78d7c7d-a03a-481b-9a0c-f9fc721210f4}">
+      <Declaration><![CDATA[METHOD UseSerializer : I_SnappySetupConfigTestFrameWork
+VAR_INPUT
+	itfSerializer	: I_Serializer;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

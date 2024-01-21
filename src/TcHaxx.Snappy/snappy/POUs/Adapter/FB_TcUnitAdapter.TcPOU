@@ -12,8 +12,52 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="Finished" Id="{f682cc78-91f1-4263-b7ba-e8a5a6dfa507}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Finished : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Pending" Id="{4bb95120-e649-462e-88c4-626a3991f28a}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Pending : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Skipped" Id="{f6890610-b38f-4cf9-b0f0-7302728f1af3}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Skipped : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Start" Id="{3219339f-d5e8-4f84-a0dc-a2ce3e5a3259}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Start : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_TcUnitAdapter">
       <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TcUnitAdapter.Finished">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TcUnitAdapter.Pending">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TcUnitAdapter.Skipped">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TcUnitAdapter.Start">
+      <LineId Id="4" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

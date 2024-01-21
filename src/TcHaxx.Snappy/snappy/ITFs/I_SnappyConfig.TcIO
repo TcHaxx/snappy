@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_SnappyConfig" Id="{63677510-8b39-4b00-b887-d436bf424311}">
+    <Declaration><![CDATA[INTERFACE I_SnappyConfig EXTENDS I_SnappySetup, I_SnappySetupConfigBuild
+]]></Declaration>
+    <Property Name="bIsConfigured" Id="{a8912a0c-d11f-4856-9e0a-01170623bfed}">
+      <Declaration><![CDATA[PROPERTY bIsConfigured : BOOL]]></Declaration>
+      <Get Name="Get" Id="{216dd96f-3194-44d6-af01-f658a880d89f}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="itfRpcProxy" Id="{5d200fb7-94a2-4950-bf6e-ee9a81561722}">
+      <Declaration><![CDATA[PROPERTY itfRpcProxy : I_RpcProxy]]></Declaration>
+      <Get Name="Get" Id="{201a5c86-084a-448b-b263-0b4e24458780}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="itfSerializer" Id="{07aa9712-80a0-4c37-81ec-37706ac84604}">
+      <Declaration><![CDATA[PROPERTY itfSerializer : I_Serializer]]></Declaration>
+      <Get Name="Get" Id="{582174c1-76e4-4007-ac8d-c8fe94a1d98c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="itfTestFramework" Id="{7b58d27c-744f-433e-ad46-703bd8964946}">
+      <Declaration><![CDATA[PROPERTY itfTestFramework : I_TestFrameWorkAdapter]]></Declaration>
+      <Get Name="Get" Id="{0f00a5bf-b31a-41f3-ab26-3663829eccaa}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

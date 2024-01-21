@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_SnappySetupDefaultsOrRpc" Id="{fb50fff0-a471-4ada-a732-1db0d4ca1261}">
+    <Declaration><![CDATA[INTERFACE I_SnappySetupDefaultsOrRpc
+]]></Declaration>
+    <Method Name="UseDefaults" Id="{cfd5f940-2d41-4f19-ab6f-fcbd0edd34e0}">
+      <Declaration><![CDATA[METHOD UseDefaults : I_SnappySetupConfigBuild
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="UseRpcProxy" Id="{f22ce6f3-1b8c-4781-b95d-49cbf5611232}">
+      <Declaration><![CDATA[METHOD UseRpcProxy : I_SnappySetupConfigSerializer
+VAR_INPUT
+	itfRpcProxy	: I_RpcProxy;
+END_VAR]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -2,36 +2,96 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Snappy" Id="{fab0c229-8c37-418d-9cd2-a63405d9a539}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
-FUNCTION_BLOCK FINAL FB_Snappy
+FUNCTION_BLOCK FINAL FB_Snappy IMPLEMENTS I_SnappySetup, I_SnappySetupConfigBuild, I_SnappyVerify
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
+
 VAR
-	
-	itfISerializer		: I_Serializer := GCL_TcHaxx_Snappy.cDefaultJsonSerializer;
-END_VAR
-]]></Declaration>
+//	{attribute 'hide'}
+	fbConfig	: FB_SnappyConfig;
+	itfConfig	: I_SnappyConfig := fbConfig; 
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="FB_init" Id="{4cb2ac37-dde9-44ad-953b-fb6cd1ecf35f}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
+    <Folder Name="ITFs" Id="{f11ae277-eee9-4f23-b5ea-8337294c20e3}" />
+    <Method Name="Build" Id="{695770de-f3f3-4ad9-9233-3e949aed9190}" FolderPath="ITFs\">
+      <Declaration><![CDATA[METHOD Build : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Build := itfConfig.Build();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Configure" Id="{aed1d2aa-f88b-4f94-ab82-85cd02d987ed}" FolderPath="ITFs\">
+      <Declaration><![CDATA[METHOD Configure : I_SnappySetupDefaultsOrRpc
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Configure := THIS^.itfConfig.Configure();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Dummy" Id="{400bafd3-c02f-4ead-8b37-804ad1393bbc}">
+      <Declaration><![CDATA[METHOD INTERNAL Dummy : Hresult
 VAR_INPUT
-	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	itfSerializer	: I_Serializer;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Method Name="Verify" Id="{ab7f32c4-6140-4125-99c7-1a8cd2d6bf2a}" FolderPath="ITFs\">
+      <Declaration><![CDATA[METHOD Verify : HRESULT
+VAR_INPUT
+	anyArg	: ANY;
+END_VAR
+
+VAR
+	hr 		: HRESULT;
+END_VAR
+
+
+VAR_INST
+	sJDoc	: T_JsonDocumentString;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+IF NOT itfConfig.bIsConfigured THEN
+	Verify := Tc2_system.E_HRESULTAdsErr.NOTREADY;
+	RETURN;
+END_IF
+
+hr := itfConfig.itfSerializer.Serialize(anyArg, sJDoc);
+IF FAILED(hr) THEN
+	Verify := hr;
+	RETURN;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_Snappy">
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="FB_Snappy.FB_init">
-      <LineId Id="7" Count="0" />
+    <LineIds Name="FB_Snappy.Build">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Snappy.Configure">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Snappy.Dummy">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Snappy.Verify">
+      <LineId Id="7" Count="1" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

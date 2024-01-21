@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_RpcProxy" Id="{f9e7075c-2104-427f-9a7e-5e84f1a64890}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK INTERNAL FB_RpcProxy IMPLEMENTS I_RpcProxy
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="METH" Id="{ad02dbe6-5d9c-4571-9d60-2862019962e9}">
+      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
+{warning 'add method implementation '}
+METHOD METH : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_RpcProxy">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_RpcProxy.METH">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

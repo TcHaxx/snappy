@@ -5,7 +5,8 @@
 PROGRAM INTERNAL PRG_UnitTests
 VAR
 {IF defined (UNIT_TEST)}	
-	fbJsonSerializerTests : FB_JsonSerializer_Tests;
+	fbJsonSerializerTests 	: FB_JsonSerializer_Tests;
+	fbSnappyTests			: FB_Snappy_Tests;
 {END_IF}
 END_VAR
 ]]></Declaration>

@@ -1,5 +1,37 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.53" TcProjectVariant="LIB">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{142ADFE1-9DE6-4C65-88D1-3B0EAEEE116E}" Namespace="TcHaxx" PersistentType="true">ST_Snappy_TestDatatype</Name>
+			<BitSize>640</BitSize>
+			<SubItem>
+				<Name>SubItem1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SubItem2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000049}">DATE</Type>
+				<ArrayInfo>
+					<LBound>0</LBound>
+					<Elements>16</Elements>
+				</ArrayInfo>
+				<BitSize>512</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SubItem3</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>576</BitOffs>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{966064AD-2F5A-44F2-A2A1-E888969CC1C3}"/>
+				<Hide GUID="{2EF9670D-AD13-4B66-A255-A810414C1842}"/>
+			</Hides>
+		</DataType>
+	</DataTypes>
 	<Project ProjectGUID="{33EAC63E-19FA-4E75-A4EB-E8C86BCF4658}" TargetNetId="41.143.68.207.1.1" Target64Bit="true" ShowHideConfigurations="#x7">
 		<System>
 			<Tasks>
@@ -49,7 +81,7 @@
 						<Defines></Defines>
 					</Variant>
 				</ProjectVariant>
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{E4153436-C587-8F28-58C6-40CA108939CD}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{061934AF-CFDF-3F93-68C7-03C90434D663}">
 					<Name>snappy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_SnappyVerify" Id="{7c2c6182-0b25-4b12-8e3e-a5d4788a1cc2}">
+    <Declaration><![CDATA[INTERFACE I_SnappyVerify
+]]></Declaration>
+    <Method Name="Verify" Id="{609ab44f-90dd-4019-a39e-31ae681b76a2}">
+      <Declaration><![CDATA[METHOD Verify : HRESULT
+VAR_INPUT
+	anyArg	: ANY;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

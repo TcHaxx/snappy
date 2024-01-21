@@ -41,7 +41,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[TEST('ShouldSerializeToJsonSuccessfully');
 
 // Arrange
-stTestData.port := 123;
+stTestData.port := 1234;
 stTEstData.netId[0]:= 16#1;
 stTEstData.netId[1]:= 16#2;
 stTEstData.netId[2]:= 16#3;

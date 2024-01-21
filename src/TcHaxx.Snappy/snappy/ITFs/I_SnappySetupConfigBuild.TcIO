@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_SnappySetupConfigBuild" Id="{54ff1816-587c-4adf-8108-05ae72a52104}">
+    <Declaration><![CDATA[INTERFACE I_SnappySetupConfigBuild
+]]></Declaration>
+    <Method Name="Build" Id="{3eefaa5b-d67b-489f-9887-46326278cddd}">
+      <Declaration><![CDATA[METHOD Build : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

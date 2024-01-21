@@ -3,5 +3,29 @@
   <Itf Name="I_TestFrameWorkAdapter" Id="{8a43fa44-08f3-4a84-bcbd-9c0d3161876d}">
     <Declaration><![CDATA[INTERFACE I_TestFrameWorkAdapter
 ]]></Declaration>
+    <Method Name="Finished" Id="{0d81a89c-f982-45c1-8cc8-0bd37df9a54d}">
+      <Declaration><![CDATA[METHOD Finished : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Pending" Id="{0605e5fe-f714-4903-a46e-9d3f2be6b923}">
+      <Declaration><![CDATA[METHOD Pending : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Skipped" Id="{d36bb25c-f62c-494a-8b7d-0fad5a6a133b}">
+      <Declaration><![CDATA[METHOD Skipped : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Start" Id="{a566114d-6494-444d-840e-76fb7799721a}">
+      <Declaration><![CDATA[METHOD Start : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>
