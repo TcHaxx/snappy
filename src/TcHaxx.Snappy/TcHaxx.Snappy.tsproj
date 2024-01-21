@@ -1,26 +1,91 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.53">
-	<Project ProjectGUID="{33EAC63E-19FA-4E75-A4EB-E8C86BCF4658}" Target64Bit="true" ShowHideConfigurations="#x6">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.53" TcProjectVariant="LIB">
+	<Project ProjectGUID="{33EAC63E-19FA-4E75-A4EB-E8C86BCF4658}" TargetNetId="41.143.68.207.1.1" Target64Bit="true" ShowHideConfigurations="#x7">
 		<System>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
+					<ProjectVariant PvUseDisable="true" PvUseParameter="true">
+						<Variant>
+							<Name>LIB</Name>
+							<Disable>0</Disable>
+							<Parameters Priority="20" CycleTime="100000"/>
+						</Variant>
+						<Variant>
+							<Name>UNIT_TEST</Name>
+							<Disable>1</Disable>
+							<Parameters Priority="20" CycleTime="100000"/>
+						</Variant>
+					</ProjectVariant>
+				</Task>
+				<Task Id="4" Disabled="true" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
+					<Name>PlcTaskUnitTest</Name>
+					<ProjectVariant PvUseDisable="true" PvUseParameter="true">
+						<Variant>
+							<Name>LIB</Name>
+							<Disable>1</Disable>
+							<Parameters Priority="1" CycleTime="100000"/>
+						</Variant>
+						<Variant>
+							<Name>UNIT_TEST</Name>
+							<Disable>0</Disable>
+							<Parameters Priority="1" CycleTime="100000"/>
+						</Variant>
+					</ProjectVariant>
 				</Task>
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{A888BB16-E4EA-40CD-ABDE-EC95D73B8395}" Name="snappy" PrjFilePath="snappy\snappy.plcproj" TmcFilePath="snappy\snappy.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+			<Project GUID="{A888BB16-E4EA-40CD-ABDE-EC95D73B8395}" Name="snappy" PrjFilePath="snappy\snappy.plcproj" TmcFilePath="snappy\snappy.tmc" EnableImplicitDefines="true" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<ProjectVariant PvUseDisable="true" PvUseDefine="true">
+					<Variant>
+						<Name>LIB</Name>
+						<Disable>0</Disable>
+						<Defines/>
+					</Variant>
+					<Variant>
+						<Name>UNIT_TEST</Name>
+						<Disable>0</Disable>
+						<Defines></Defines>
+					</Variant>
+				</ProjectVariant>
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{E4153436-C587-8F28-58C6-40CA108939CD}">
 					<Name>snappy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
 						<Context>
+							<Id>0</Id>
+							<Name>PlcTaskUnitTest</Name>
+							<ManualConfig>
+								<OTCID>#x02010040</OTCID>
+							</ManualConfig>
+							<Priority>1</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+						<Context>
 							<Id>1</Id>
-							<Name>Default</Name>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
 						</Context>
 					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="1" OTCID="#x08502001"/>
+						<TaskPouOid Prio="20" OTCID="#x08502002"/>
+					</TaskPouOids>
 				</Instance>
 			</Project>
 		</Plc>
+		<Variants SpecificLocalBootFolder="true">
+			<Variant Save="true">
+				<Name>LIB</Name>
+			</Variant>
+			<Variant>
+				<Name>UNIT_TEST</Name>
+			</Variant>
+		</Variants>
 	</Project>
 </TcSmProject>
