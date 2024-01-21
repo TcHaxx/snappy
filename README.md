@@ -1,2 +1,4 @@
 # snappy
-A Snapshot Testing framework for TwinCAT 3
+A *upcoming* Snapshot Testing framework for TwinCAT 3.
+
+> 🚧 WIP
