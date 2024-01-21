@@ -52,8 +52,9 @@ END_VAR
 
 
 VAR_INST
-	sJDoc	: T_VerifyContent;
-	eState	: E_SnappyVerificationState;
+	sJDoc		: T_VerifyContent;
+	eState		: E_SnappyVerificationState;
+	stResult	: ST_VerificationResult;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
@@ -74,11 +75,24 @@ CASE eState OF
 		eState := E_SnappyVerificationState.eSend;
 	END_IF
 	E_SnappyVerificationState.eSend:
-		
+	{warning 'TODO: Implement step E_SnappyVerificationState.eSend'}
+		;
 	E_SnappyVerificationState.ePending:
-	E_SnappyVerificationState.eDone:	
+	{warning 'TODO: Implement step E_SnappyVerificationState.ePending'}
+		hr := itfConfig.itfRpcProxy.GetVerificationResult(stResult => stResult);
+		IF SUCCEEDED(hr) THEN
+			;
+			eState := E_SnappyVerificationState.eDone;
+		END_IF
+	
+	E_SnappyVerificationState.eDone:
+	{warning 'TODO: Implement step E_SnappyVerificationState.eDone'}
+		hr := stResult.hr;	
 
-END_CASE]]></ST>
+END_CASE
+
+
+Verify := hr;]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_Snappy">
@@ -106,10 +120,21 @@ END_CASE]]></ST>
       <LineId Id="42" Count="1" />
       <LineId Id="36" Count="0" />
       <LineId Id="41" Count="0" />
+      <LineId Id="56" Count="0" />
       <LineId Id="44" Count="0" />
-      <LineId Id="34" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="45" Count="2" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="51" Count="0" />
       <LineId Id="32" Count="0" />
       <LineId Id="31" Count="0" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="52" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

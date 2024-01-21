@@ -12,10 +12,32 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="METH" Id="{ad02dbe6-5d9c-4571-9d60-2862019962e9}">
+    <Method Name="GetVerificationResult" Id="{a7278404-bd08-4a34-9891-a82b07ef5350}">
+      <Declaration><![CDATA[METHOD GetVerificationResult : HRESULT
+VAR_OUTPUT
+	stResult : ST_VerificationResult;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[{warning 'TODO: GetVerificationResult'}
+GetVerificationResult := S_PENDING;
+
+stResult.hr := S_PENDING;
+stResult.sDiff := '';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="VerificationResult" Id="{6862954e-aec4-42cf-8a72-62981629b29a}">
       <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-{warning 'add method implementation '}
-METHOD METH : BOOL
+METHOD VerificationResult : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Verify" Id="{1f2ed438-c0f1-406f-9917-7be1f3353347}">
+      <Declaration><![CDATA[METHOD Verify : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -24,8 +46,18 @@ METHOD METH : BOOL
     <LineIds Name="FB_RpcProxy">
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="FB_RpcProxy.METH">
-      <LineId Id="5" Count="0" />
+    <LineIds Name="FB_RpcProxy.GetVerificationResult">
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_RpcProxy.VerificationResult">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_RpcProxy.Verify">
+      <LineId Id="4" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

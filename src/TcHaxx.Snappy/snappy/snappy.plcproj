@@ -38,6 +38,9 @@
     <Compile Include="DUTs\E_SnappyVerificationState.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_VerificationResult.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\T_VerifyContent.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +127,10 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="rplc">
+      <DefaultResolution>rplc, * (tchaxx)</DefaultResolution>
+      <Namespace>TcHaxx</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -150,6 +157,11 @@
     <None Include="snappy.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderResolution Include="rplc">
+      <Resolution>rplc, * (tchaxx)</Resolution>
+    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
