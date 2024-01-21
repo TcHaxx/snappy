@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Serializer" Id="{73355309-3f85-459c-acba-6d5c99a77725}">
+    <Declaration><![CDATA[INTERFACE I_Serializer
+]]></Declaration>
+    <Method Name="Serialize" Id="{54315dda-706c-44e0-b44e-f8f81fc5f914}">
+      <Declaration><![CDATA[METHOD Serialize : HRESULT
+VAR_INPUT
+	anyArg	: ANY;
+END_VAR
+VAR_IN_OUT
+	sJsonDocument	: T_JsonDocumentString;
+END_VAR]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

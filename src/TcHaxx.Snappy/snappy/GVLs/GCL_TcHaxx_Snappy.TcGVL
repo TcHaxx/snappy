@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GCL_TcHaxx_Snappy" Id="{a982a54f-9ae7-4df4-8c8b-74a437aedf10}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'no-analysis'}
+{attribute 'global_init_slot' := '49992'}
+VAR_GLOBAL CONSTANT	
+	cDefaultJsonSerializer		: FB_JsonSerializer;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

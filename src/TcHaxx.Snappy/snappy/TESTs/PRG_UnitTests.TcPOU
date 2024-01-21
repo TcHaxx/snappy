@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PRG_UnitTests" Id="{2224facc-781a-4d9f-985f-4e92aac79dd6}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'analysis' := '-33'}
+PROGRAM INTERNAL PRG_UnitTests
+VAR
+{IF defined (UNIT_TEST)}	
+	fbJsonSerializerTests : FB_JsonSerializer_Tests;
+{END_IF}
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[{IF defined (UNIT_TEST)}
+
+TcUnit.RUN();
+
+{END_IF}]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_UnitTests">
+      <LineId Id="7" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

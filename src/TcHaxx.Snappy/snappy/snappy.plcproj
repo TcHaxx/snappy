@@ -32,6 +32,7 @@
     </SelectedLibraryCategories>
     <Author>densogiaichned</Author>
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
+    <CompilerDefines />
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="PlcTask.TcTTO">

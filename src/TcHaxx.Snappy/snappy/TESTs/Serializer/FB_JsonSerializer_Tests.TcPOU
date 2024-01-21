@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_JsonSerializer_Tests" Id="{0a619aa8-a86a-447f-8e15-cfc9510088d9}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'reflection'}
+FUNCTION_BLOCK INTERNAL FINAL FB_JsonSerializer_Tests EXTENDS TcUnit.FB_TestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+	sTestName			: T_MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TEST(sTestName);
+
+ShouldSerializeToJsonSuccessfully();
+
+TEST_FINISHED_NAMED(sTestName);]]></ST>
+    </Implementation>
+    <Method Name="ShouldSerializeToJsonSuccessfully" Id="{8089af78-107d-4bde-817d-eaf237955835}">
+      <Declaration><![CDATA[METHOD PRIVATE ShouldSerializeToJsonSuccessfully
+VAR_INPUT
+END_VAR
+VAR_INST
+	fbSUT	: FB_JsonSerializer;
+	hr		: HRESULT;	
+END_VAR
+
+VAR_INST
+	stTestData	: ST_AmsAddr;
+	sJsonDoc 	: T_JsonDocumentString;
+END_VAR
+
+VAR CONSTANT
+	cExpectedJson	: STRING := '{"netId":[1,2,3,4,5,6],"port":1234}';
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ShouldSerializeToJsonSuccessfully');
+
+// Arrange
+stTestData.port := 123;
+stTEstData.netId[0]:= 16#1;
+stTEstData.netId[1]:= 16#2;
+stTEstData.netId[2]:= 16#3;
+stTEstData.netId[3]:= 16#4;
+stTEstData.netId[4]:= 16#5;
+stTEstData.netId[5]:= 16#6;
+// Act
+hr := fbSUT.Serialize(anyArg:= stTestData, sJsonDocument:= sJsonDoc);
+// Assert
+AssertEquals_DINT(Expected:= S_OK,
+					Actual:= hr,
+					Message:= 'Expected HRESULT=S_OK');
+AssertEquals_STRING(Expected:= cExpectedJson,
+					Actual:= sJsonDoc,
+					Message:= 'Expected JSON document $'{"netId":[1,2,3,4,5,6],"port":1234}$'');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_JsonSerializer_Tests">
+      <LineId Id="33" Count="0" />
+      <LineId Id="35" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_JsonSerializer_Tests.ShouldSerializeToJsonSuccessfully">
+      <LineId Id="14" Count="3" />
+      <LineId Id="26" Count="5" />
+      <LineId Id="18" Count="6" />
+      <LineId Id="47" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

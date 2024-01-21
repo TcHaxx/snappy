@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Param_TcHaxx_Snappy" Id="{9fb7b88a-4b4f-41ab-b59b-8ee6e4c3fd80}" ParameterList="True">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'no-analysis'}
+VAR_GLOBAL CONSTANT
+	cMaxSizeJsonDocument	: UDINT (16#FF..16#8000) := 16#1000;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

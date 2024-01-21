@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_JsonSerializer" Id="{403a942c-72df-482c-961a-a83189084480}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
+FUNCTION_BLOCK PUBLIC FINAL FB_JsonSerializer IMPLEMENTS I_Serializer
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	sDataTypeName 	: STRING;
+	fbJsonWriter   	: FB_JsonSaxWriter;
+	fbJsonDataType 	: FB_JsonReadWriteDataType;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Serialize" Id="{1260652b-a648-4fb5-8278-46f89cef46e3}">
+      <Declaration><![CDATA[METHOD Serialize : HRESULT
+VAR_INPUT
+	anyArg	: ANY;
+END_VAR
+VAR_IN_OUT
+	sJsonDocument	: T_JsonDocumentString;
+END_VAR
+VAR
+	hr : HRESULT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+IF anyArg.diSize <= 0 OR anyArg.pValue = NULL THEN
+	// should never happen...
+	Serialize := Tc2_System.E_HRESULTAdsErr.INVALIDPARM;
+	RETURN;
+END_IF
+
+fbJsonWriter.ResetDocument();
+sDataTypeName := fbJsonDataType.GetDatatypeNameByAddress(nData:= TO_UDINT(anyArg.diSize), pData:= anyArg.pValue, hrErrorCode=> hr);
+IF FAILED(hr) THEN
+	Serialize := hr;
+	RETURN;
+END_IF
+fbJsonDataType.AddJsonValueFromSymbol(fbJsonWriter, sDataTypeName , TO_UDINT(anyArg.diSize), anyArg.pValue, hrErrorCode=> hr);
+IF FAILED(hr) THEN
+	Serialize := hr;
+	RETURN;
+END_IF
+fbJsonWriter.CopyDocument(sJsonDocument, SIZEOF(sJsonDocument) - 1, hrErrorCode=> hr);
+IF FAILED(hr) THEN
+	Serialize := hr;
+	RETURN;
+END_IF
+
+IF sJsonDocument = 'null' AND_THEN SUCCEEDED(hr) THEN
+	hr := S_FALSE;
+END_IF
+
+Serialize := hr;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_JsonSerializer">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_JsonSerializer.Serialize">
+      <LineId Id="25" Count="1" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="47" Count="2" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="30" Count="2" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
