@@ -9,7 +9,8 @@ TYPE E_SnappyVerificationState :
 	eIdle := 0,
 	eSend,
 	ePending,
-	eDone
+	eDone,
+	eError := -1
 );
 END_TYPE
 ]]></Declaration>
@@ -35,6 +36,11 @@ END_TYPE
             <o>
               <v n="TextID">"eDone"</v>
               <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"eError"</v>
+              <v n="TextDefault">"-1"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

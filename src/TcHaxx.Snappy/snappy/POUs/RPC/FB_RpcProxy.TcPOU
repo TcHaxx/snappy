@@ -1,63 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_RpcProxy" Id="{f9e7075c-2104-427f-9a7e-5e84f1a64890}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK INTERNAL FB_RpcProxy IMPLEMENTS I_RpcProxy
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
+FUNCTION_BLOCK INTERNAL FB_RpcProxy IMPLEMENTS I_RpcProxy
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	fbRpcSnappyVerify		: FB_RPC_Dynamic;
+	sAmsNetID				: T_AmsNetID 			:= Param_TcHaxx_Snappy.cSnappyVerifyAmsNetID;
+	nAmsPort				: T_AmsPort				:= Param_TcHaxx_Snappy.cSnappyVerifyPort;
+	sInstancePathLocalField	: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifyInstancePath;
+	sSymbolLocalField		: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifySymbol;
+	bIsConfiguredField		: BOOL					:= FALSE;
+	stVerificationResult	: ST_VerificationResult;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Property Name="bIsConfigured" Id="{66d99f6c-2f7b-4335-8601-3cb01d592de5}">
+      <Declaration><![CDATA[PROPERTY bIsConfigured : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{b1f9bb6c-7f5e-474a-9938-247984a86174}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bIsConfigured := bIsConfiguredField; ]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="GetVerificationResult" Id="{a7278404-bd08-4a34-9891-a82b07ef5350}">
       <Declaration><![CDATA[METHOD GetVerificationResult : HRESULT
 VAR_OUTPUT
 	stResult : ST_VerificationResult;
 END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[{warning 'TODO: GetVerificationResult'}
-GetVerificationResult := S_PENDING;
 
-stResult.hr := S_PENDING;
-stResult.sDiff := '';]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="VerificationResult" Id="{6862954e-aec4-42cf-8a72-62981629b29a}">
-      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD VerificationResult : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
+VAR
+	stAdsStatus	: TcHaxx.ST_AdsStatus;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[GetVerificationResult := S_PENDING;
+
+stAdsStatus := THIS^.fbRpcSnappyVerify.Invoke();
+
+IF NOT stAdsStatus.bBusy AND NOT stAdsStatus.bError THEN
+	GetVerificationResult := S_OK;
+	stResult := stVerificationResult;
+	RETURN;
+ELSIF stAdsStatus.bError THEN
+	GetVerificationResult := TO_DINT(stAdsStatus.nError);
+	RETURN;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Verify" Id="{1f2ed438-c0f1-406f-9917-7be1f3353347}">
       <Declaration><![CDATA[METHOD Verify : HRESULT
-]]></Declaration>
+VAR_INPUT CONSTANT
+	sToVerify	: REFERENCE TO T_VerifyContent;
+END_VAR
+VAR
+	hr			: HRESULT;
+	stAdsStatus	: TcHaxx.ST_AdsStatus;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[IF NOT bIsConfiguredField THEN
+	hr := fbRpcSnappyVerify.Configure()
+			.WithAmsNetId(sAmsNetId:= THIS^.sAmsNetID)
+			.WithAmsPort(nAmsPort:= THIS^.nAmsPort)
+			.WithSymbolPath(sInstancePath:= THIS^.sInstancePathLocalField, sSymbol:= THIS^.sSymbolLocalField)
+			.Build();
+	bIsConfiguredField := SUCCEEDED(hr);
+END_IF;
+
+IF NOT bIsConfigured THEN
+	Verify := E_HRESULTAdsErr.NOTINIT;
+	RETURN;
+END_IF
+
+stAdsStatus := fbRpcSnappyVerify.VarInput(anyArg:= sToVerify).ReturnValue(anyRetVal:= stVerificationResult).Invoke();
+IF stAdsStatus.bError THEN
+	Verify := TO_DINT(stAdsStatus.nError);
+	RETURN;
+END_IF
+
+Verify := S_PENDING;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_RpcProxy">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_RpcProxy.GetVerificationResult">
-      <LineId Id="9" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="12" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_RpcProxy.VerificationResult">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_RpcProxy.Verify">
-      <LineId Id="4" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

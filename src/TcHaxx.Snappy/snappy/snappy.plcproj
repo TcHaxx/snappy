@@ -41,6 +41,9 @@
     <Compile Include="DUTs\ST_VerificationResult.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\T_SnappyVerifyPort.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\T_VerifyContent.TcDUT">
       <SubType>Code</SubType>
     </Compile>

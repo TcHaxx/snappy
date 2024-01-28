@@ -3,8 +3,13 @@
   <GVL Name="Param_TcHaxx_Snappy" Id="{9fb7b88a-4b4f-41ab-b59b-8ee6e4c3fd80}" ParameterList="True">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'no-analysis'}
+{attribute 'global_init_slot' := '49992'}
 VAR_GLOBAL CONSTANT
-	cMaxSizeJsonDocument	: UDINT (16#FF..16#8000) := 16#1000;
+	cMaxSizeJsonDocument		: UDINT (16#FF..16#8000) 	:= 16#1000;
+	cSnappyVerifyAmsNetID		: T_AmsNetID				:= TcHaxx.GCL.cLocalAmsNetId;	
+	cSnappyVerifyPort			: T_SnappyVerifyPort		:= 6969;
+	cSnappyVerifyInstancePath 	: STRING					:= 'TcHaxx.Snappy.VerifyService';
+	cSnappyVerifySymbol 		: STRING					:= 'Verify';	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

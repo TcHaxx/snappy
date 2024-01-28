@@ -3,6 +3,12 @@
   <Itf Name="I_RpcProxy" Id="{3c923e29-1b12-4fb6-918d-7d40a223d3a1}">
     <Declaration><![CDATA[INTERFACE I_RpcProxy
 ]]></Declaration>
+    <Property Name="bIsConfigured" Id="{6b71f334-0487-4b78-b6c4-19f75fda71e2}">
+      <Declaration><![CDATA[PROPERTY bIsConfigured : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b19647cb-c647-46f6-a26a-f86ef22837c5}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="GetVerificationResult" Id="{8c21d341-bad1-455d-9cad-76e4aed1c398}">
       <Declaration><![CDATA[METHOD GetVerificationResult : HRESULT
 
@@ -11,17 +17,10 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="VerificationResult" Id="{41f38f1b-c410-49bb-8404-723a94438552}">
-      <Declaration><![CDATA[{attribute 'TcRpcEnable'}
-METHOD VerificationResult : HRESULT
-VAR_INPUT
-
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="Verify" Id="{11e40880-5fa3-4b04-ac89-634a6cfbe115}">
-      <Declaration><![CDATA[METHOD INTERNAL Verify : HRESULT
-VAR_INPUT
+      <Declaration><![CDATA[METHOD Verify : HRESULT
+VAR_INPUT CONSTANT
+	sToVerify	: REFERENCE TO T_VerifyContent;
 END_VAR
 ]]></Declaration>
     </Method>

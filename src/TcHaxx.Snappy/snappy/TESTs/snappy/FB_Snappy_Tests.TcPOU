@@ -48,21 +48,14 @@ TEST_FINISHED();]]></ST>
 VAR_INST
 	fbSUT		: FB_Snappy;
 	hr			: HRESULT;	
-	stTestDT 	: ST_Snappy_TestDatatype;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
 TEST('ShuldInitializeDefaultsSuccessfully');
 
 // Arrange
-hr := fbSUT.Configure().UseDefaults().Build();
-
-stTestDt.SubItem1 := 654;
-stTestDt.SubItem2[1] := D#2024-01-01;
-stTestDt.SubItem3 := 666.777;
-
 // Act
-hr := fbSUT.Verify(stTestDT);
+hr := fbSUT.Configure().UseDefaults().Build();
 
 // Assert
 AssertEquals_DINT(Expected:= S_OK,
@@ -72,33 +65,5 @@ AssertEquals_DINT(Expected:= S_OK,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Snappy_Tests">
-      <LineId Id="16" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Snappy_Tests.Shouldxxx">
-      <LineId Id="9" Count="3" />
-      <LineId Id="19" Count="2" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="22" Count="3" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Snappy_Tests.ShuldInitializeDefaultsSuccessfully">
-      <LineId Id="9" Count="3" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="37" Count="1" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="22" Count="3" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
