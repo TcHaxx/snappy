@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 17.8.34330.188
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI", "src\TcHaxx.Snappy.CLI\TcHaxx.Snappy.CLI\TcHaxx.Snappy.CLI.csproj", "{8736B039-28FB-40F3-AF4B-1289F9FDC529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.Tests", "tests\TcHaxx.Snappy.Tests\TcHaxx.Snappy.Tests.csproj", "{5A9B0E60-748B-4DCD-91C6-3BA8FC4B79E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI.Tests", "tests\TcHaxx.Snappy.Tests\TcHaxx.Snappy.CLI.Tests.csproj", "{5A9B0E60-748B-4DCD-91C6-3BA8FC4B79E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.TcADS", "src\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj", "{AAC80C14-E919-4349-AE75-652E58263353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5A9B0E60-748B-4DCD-91C6-3BA8FC4B79E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A9B0E60-748B-4DCD-91C6-3BA8FC4B79E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A9B0E60-748B-4DCD-91C6-3BA8FC4B79E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC80C14-E919-4349-AE75-652E58263353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC80C14-E919-4349-AE75-652E58263353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC80C14-E919-4349-AE75-652E58263353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC80C14-E919-4349-AE75-652E58263353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

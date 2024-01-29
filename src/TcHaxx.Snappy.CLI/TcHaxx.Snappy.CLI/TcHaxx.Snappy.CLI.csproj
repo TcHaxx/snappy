@@ -2,9 +2,36 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
+    <LangVersion>Latest</LangVersion>
+    <RepositoryUrl>https://github.com/TcHaxx/snappy</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>profinetdcp; pnio-cm; twincat; tf6270; sharppcap</PackageTags>
+    <PackageReadmeFile>..\..\..\README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/TcHaxx/snappy</PackageProjectUrl>
+    <Description>A Snapshot Testing framework for TwinCAT 3</Description>
+    <Copyright>Copyright (c) 2024 densogiaichned</Copyright>
+    <Title>TwinCAT Snapshot Testing framework</Title>
+    <Version>0.0.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    <PackageReference Include="Verify" Version="23.0.1" />
+  </ItemGroup>
 
 </Project>
