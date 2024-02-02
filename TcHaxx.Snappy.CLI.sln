@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI", "src\Tc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI.Tests", "tests\TcHaxx.Snappy.Tests\TcHaxx.Snappy.CLI.Tests.csproj", "{5A9B0E60-748B-4DCD-91C6-3BA8FC4B79E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.TcADS", "src\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj", "{AAC80C14-E919-4349-AE75-652E58263353}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.TcADS", "src\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj", "{AAC80C14-E919-4349-AE75-652E58263353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
