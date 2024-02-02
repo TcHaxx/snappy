@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TcHaxx.Snappy.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -l Debug"
+    }
+  }
+}

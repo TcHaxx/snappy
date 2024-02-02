@@ -1,11 +1,51 @@
-﻿// See https://aka.ms/new-console-template for more information
-using CommandLine;
-using System.Reflection;
+﻿using CommandLine;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Core;
 using TcHaxx.Snappy.CLI;
+using TcHaxx.Snappy.CLI.Commands;
+using TcHaxx.Snappy.CLI.Logging;
+using TcHaxx.Snappy.TcADS;
 
+try
+{
+    using var host = BuildHost(args);
 
-return await Parser.Default.ParseArguments<InstallOptions, VerfiyOptions>(args)
-  .MapResult(
-     async (InstallOptions opts) => await CommandInstall.RunAndReturnExitCode(opts),
-     async (VerfiyOptions opts) => await CommandVerify.RunAndReturnExitCode(opts),
-    errs => Task.FromResult(1));
+    var logger = host.Services.GetService<ILogger>();
+
+    return await Parser.Default.ParseArguments<InstallOptions, VerifyOptions>(args)
+      .MapResult(
+        async (InstallOptions options) => await host.Services.GetService<ICommandInstall>()!.RunAndReturnExitCode(options),
+        async (VerifyOptions options) => await host.Services.GetService<ICommandVerify>()!.RunAndReturnExitCode(options),
+        errs => Task.FromResult((int)ExitCodes.E_CLIOPTIONS)
+        ); ;
+}
+catch (Exception ex)
+{
+    Console.Error.WriteLine("❌ Unhandled exception!");
+    Console.Error.WriteLine(ex.Message);
+    Console.Error.WriteLine(ex.StackTrace);
+    return (int)ExitCodes.E_EXCEPTION;
+}
+
+static IHost BuildHost(string[] args)
+{
+    var baseOptions = Parser.Default.ParseArguments<BaseOptions>(args);
+
+    var logLevelSwitch = new LoggingLevelSwitch(baseOptions.Value.LogEventLevel);
+    var host = new HostBuilder()
+        .ConfigureDefaults(args)
+        .ConfigureServices(services => services
+                .AddSingleton(serviceProvider => MicrosoftILoggerAdapter.FromSerilog(serviceProvider))
+                .AddSingleton<ICommandInstall, CommandInstall>()
+                .AddSingleton<ICommandVerify, CommandVerify>()
+                .AddSingleton<ISymbolicServerFactory, SymbolicServerFactory>())
+        .UseSerilog((hostingContext, services, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .MinimumLevel.ControlledBy(logLevelSwitch))
+        .Build();
+    return host;
+}
