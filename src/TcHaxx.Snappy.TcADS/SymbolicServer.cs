@@ -25,23 +25,24 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
 
     protected override AdsErrorCode OnGetValue(ISymbol symbol, out object? value)
     {
-        throw new NotImplementedException();
+        value = null;
+        return AdsErrorCode.DeviceServiceNotSupported;
     }
 
     protected override AdsErrorCode OnReadRawValue(ISymbol symbol, Span<byte> span)
     {
-        span.Fill(0xff);
-        return AdsErrorCode.NoError;
+        return AdsErrorCode.DeviceServiceNotSupported;
     }
 
     protected override AdsErrorCode OnSetValue(ISymbol symbol, object value, out bool valueChanged)
     {
-        throw new NotImplementedException();
+        valueChanged = false;
+        return AdsErrorCode.DeviceServiceNotSupported;
     }
 
     protected override AdsErrorCode OnWriteRawValue(ISymbol symbol, ReadOnlySpan<byte> span)
     {
-        throw new NotImplementedException();
+        return AdsErrorCode.DeviceServiceNotSupported;
     }
 
     /// <summary>
@@ -55,6 +56,7 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
 
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
     {
+        // TODO: Wire up things
         return base.OnRpcInvoke(structInstance, method, values, out returnValue);
     }
 }
