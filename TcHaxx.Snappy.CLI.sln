@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI.Installer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.Common", "src\TcHaxx.Snappy.Common\TcHaxx.Snappy.Common.csproj", "{E544FDBB-BA02-4661-9BCB-C5791613964D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.Verifier", "src\TcHaxx.Snappy.Verifier\TcHaxx.Snappy.Verifier.csproj", "{A364EF16-430E-4DC5-80D7-31B7C57AE641}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{E544FDBB-BA02-4661-9BCB-C5791613964D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E544FDBB-BA02-4661-9BCB-C5791613964D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E544FDBB-BA02-4661-9BCB-C5791613964D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,11 +45,11 @@
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
-    <PackageReference Include="Verify" Version="23.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj" />
+    <ProjectReference Include="..\TcHaxx.Snappy.Verifier\TcHaxx.Snappy.Verifier.csproj" />
   </ItemGroup>
 
 </Project>
