@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.TcADS", "src\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj", "{AAC80C14-E919-4349-AE75-652E58263353}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{9A6AE3E0-A679-453E-A11A-9DEC17B6B948}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
