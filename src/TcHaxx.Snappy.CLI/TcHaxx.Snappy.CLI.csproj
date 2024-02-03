@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/TcHaxx/snappy</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>snapshot-testing; unit-test; twincat</PackageTags>
-    <PackageReadmeFile>..\..\..\README.md</PackageReadmeFile>
+    <PackageReadmeFile>..\..\README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/TcHaxx/snappy</PackageProjectUrl>
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
     <Copyright>Copyright (c) 2024 densogiaichned</Copyright>
@@ -20,6 +20,8 @@
     <FileVersion>$(Version)</FileVersion>
     <PackAsTool>True</PackAsTool>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>densogiaichned</Authors>
+    <Company>TcHaxx</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
@@ -31,7 +33,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\LICENSE">
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -47,7 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj" />
+    <ProjectReference Include="..\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj" />
   </ItemGroup>
 
 </Project>
