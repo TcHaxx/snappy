@@ -1,4 +1,4 @@
-﻿namespace TcHaxx.Snappy.TcADS;
+﻿namespace TcHaxx.Snappy.TcADS.Options;
 
 public interface ITcAdsOptions
 {
