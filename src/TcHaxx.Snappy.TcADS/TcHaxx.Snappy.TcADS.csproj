@@ -10,4 +10,8 @@
     <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="6.1.154" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TcHaxx.Snappy.Common\TcHaxx.Snappy.Common.csproj" />
+  </ItemGroup>
+
 </Project>
