@@ -6,6 +6,7 @@ using Serilog.Core;
 using TcHaxx.Snappy.CLI;
 using TcHaxx.Snappy.CLI.Commands;
 using TcHaxx.Snappy.CLI.Logging;
+using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.TcADS;
 
 try
@@ -40,6 +41,7 @@ static IHost BuildHost(string[] args)
                 .AddSingleton(serviceProvider => MicrosoftILoggerAdapter.FromSerilog(serviceProvider))
                 .AddSingleton<ICommandInstall, CommandInstall>()
                 .AddSingleton<ICommandVerify, CommandVerify>()
+                .AddSingleton<IRpcMethodDescriptor, RpcMethodDescriptor>()
                 .AddSingleton<ISymbolicServerFactory, SymbolicServerFactory>())
         .UseSerilog((hostingContext, services, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)

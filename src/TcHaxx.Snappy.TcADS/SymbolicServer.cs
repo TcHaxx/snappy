@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Text;
+using Microsoft.Extensions.Logging;
+using TcHaxx.Snappy.Common.Verify;
 using TwinCAT.Ads;
 using TwinCAT.Ads.Server;
 using TwinCAT.TypeSystem;
@@ -57,6 +59,10 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
     {
         // TODO: Wire up things
-        return base.OnRpcInvoke(structInstance, method, values, out returnValue);
+        // FIXME: String return type is not handled properly
+        returnValue = new VerificationResult { HResult = 1, Diff = "thats a diff" };
+        return AdsErrorCode.NoError;
+
+        //return base.OnRpcInvoke(structInstance, method, values, out returnValue);
     }
 }

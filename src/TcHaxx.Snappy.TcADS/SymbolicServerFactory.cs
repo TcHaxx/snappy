@@ -1,18 +1,21 @@
 ﻿using Microsoft.Extensions.Logging;
+using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.TcADS.Symbols;
 
 namespace TcHaxx.Snappy.TcADS;
 
 public class SymbolicServerFactory : ISymbolicServerFactory
 {
+    private readonly IRpcMethodDescriptor _RpcMethodDescriptor;
     private readonly ILogger? _Logger;
 
-    public SymbolicServerFactory(ILogger? logger)
+    public SymbolicServerFactory(IRpcMethodDescriptor rpcMethodDescriptor, ILogger? logger)
     {
-        this._Logger = logger;
+        _RpcMethodDescriptor = rpcMethodDescriptor;
+        _Logger = logger;
     }
     public ISymbolicServer CreateSymbolicServer(ushort port, string portName)
     {
-        return new SymbolicServer(port, portName, new SymbolFactory(new RpcMethodProvider(_Logger), _Logger), _Logger);
+        return new SymbolicServer(port, portName, new SymbolFactory(_RpcMethodDescriptor, _Logger), _Logger);
     }
 }
