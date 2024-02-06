@@ -58,10 +58,12 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
 
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
     {
-        // TODO: Wire up things
-        returnValue = new VerificationResult { HResult = 1, Diff = "thats a diff" };
-        return AdsErrorCode.NoError;
-
-        //return base.OnRpcInvoke(structInstance, method, values, out returnValue);
+        var iDataType = structInstance.DataType;
+        if (iDataType is null)
+        {
+            returnValue = null;
+            return AdsErrorCode.DeviceInvalidContext;
+        }
+        return _SymbolFactory.InvokeRpcMethod(iDataType, values, out returnValue);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Core;
@@ -7,7 +8,9 @@ using TcHaxx.Snappy.CLI;
 using TcHaxx.Snappy.CLI.Commands;
 using TcHaxx.Snappy.CLI.Logging;
 using TcHaxx.Snappy.Common.RPC;
+using TcHaxx.Snappy.Common.Verify;
 using TcHaxx.Snappy.TcADS;
+using TcHaxx.Snappy.Verifier;
 
 try
 {
@@ -42,7 +45,9 @@ static IHost BuildHost(string[] args)
                 .AddSingleton<ICommandInstall, CommandInstall>()
                 .AddSingleton<ICommandVerify, CommandVerify>()
                 .AddSingleton<IRpcMethodDescriptor, RpcMethodDescriptor>()
-                .AddSingleton<ISymbolicServerFactory, SymbolicServerFactory>())
+                .AddTransient<IVerifyMethod, VerifyImpl>()
+                .AddTransient<IVerifyMethod, VerifyImpl2>()
+        .AddSingleton<ISymbolicServerFactory, SymbolicServerFactory>())
         .UseSerilog((hostingContext, services, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)
                 .Enrich.FromLogContext()

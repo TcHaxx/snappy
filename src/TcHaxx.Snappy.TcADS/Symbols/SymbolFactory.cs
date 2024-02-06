@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using TcHaxx.Snappy.Common;
 using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.Common.RPC.Attributes;
+using TcHaxx.Snappy.Common.Verify;
+using TwinCAT.Ads;
 using TwinCAT.Ads.Server.TypeSystem;
 using TwinCAT.Ads.TypeSystem;
 using TwinCAT.TypeSystem;
@@ -18,7 +20,7 @@ internal class SymbolFactory : ISymbolFactory
     private readonly IRpcMethodDescriptor _RpcMethodDescriptor;
     private readonly ILogger? _Logger;
 
-    private Dictionary<ParameterInfo, IDataType> _MappedDataTypes = new Dictionary<ParameterInfo, IDataType>();
+    private Dictionary<IDataType, IVerifyMethod> _MappedStructTypeToRpcMethod = new();
 
     internal SymbolFactory(IRpcMethodDescriptor rpcMethodDescriptor, ILogger? logger)
     {
@@ -33,35 +35,58 @@ internal class SymbolFactory : ISymbolFactory
             return;
         }
 
-        var rpcMethodDescription = _RpcMethodDescriptor.GetRpcMethodDescription();
-        if (rpcMethodDescription is null)
+        uint idxGrp = 0x80000001;
+        uint idxOffset = 0x10000000;
+        foreach (var rpcMethodDescription in _RpcMethodDescriptor.GetRpcMethodDescription())
         {
-            throw new ArgumentNullException(nameof(rpcMethodDescription));
+            var paramsKvp = GetMethodParameter(rpcMethodDescription.Parameters);
+            AddToServerSymbolFactory(serverSymbolFactory, paramsKvp);
+
+            var retValKvp = GetMethodReturnValue(rpcMethodDescription.ReturnValue);
+            AddToServerSymbolFactory(serverSymbolFactory, new[] { retValKvp });
+
+            var fullName = rpcMethodDescription.Method.ReflectedType?.FullName ?? rpcMethodDescription.Method.Name;
+            DataArea dataArea = new DataArea($"DATA::{fullName}", idxGrp, idxOffset++, 0x10000);
+
+            serverSymbolFactory.AddDataArea(dataArea);
+
+            var rpc = BuildRpcMethod(rpcMethodDescription.Method, paramsKvp, retValKvp);
+
+            StructType dtStructRpc = new StructType($"STRUCT::{fullName}");
+            dtStructRpc.AddMethod(rpc);
+            serverSymbolFactory.AddType(dtStructRpc);
+            serverSymbolFactory.AddSymbol(fullName, dtStructRpc, dataArea);
+
+            _MappedStructTypeToRpcMethod.Add(dtStructRpc, rpcMethodDescription.RpcInvocableMethod);
         }
-
-
-        var paramsKvp = GetMethodParameter(rpcMethodDescription.Parameters);
-        AddToServerSymbolFactory(serverSymbolFactory, paramsKvp);
-
-        var retValKvp = GetMethodReturnValue(rpcMethodDescription.ReturnValue);
-        AddToServerSymbolFactory(serverSymbolFactory, new[] { retValKvp });
-
-
-        DataArea general = new DataArea("General", 0x01, 0x1000, 0x1000);
-
-        serverSymbolFactory.AddDataArea(general);
-
-        var rpc = BuildRpcMethod(rpcMethodDescription.Name, paramsKvp, retValKvp);
-
-        StructType dtStructRpc = new StructType("MYRPCSTRUCT");
-        dtStructRpc.AddMethod(rpc);
-        serverSymbolFactory.AddType(dtStructRpc);
-        serverSymbolFactory.AddSymbol("huhu.hallo", dtStructRpc, general);
     }
 
-    private RpcMethod BuildRpcMethod(string name, IEnumerable<KeyValuePair<ParameterInfo, IDataType>> paramsKvp, KeyValuePair<ParameterInfo, IDataType> retValKvp)
+    public AdsErrorCode InvokeRpcMethod(IDataType mappedType, object[] values, out object? returnValue)
     {
-        var rpc = new RpcMethod(name);
+        returnValue = null;
+        if (!_MappedStructTypeToRpcMethod.ContainsKey(mappedType))
+        {
+            return AdsErrorCode.DeviceServiceNotSupported;
+        }
+
+        var rpcMethodToInvoke = _MappedStructTypeToRpcMethod[mappedType];
+
+        if (values.Length != rpcMethodToInvoke.GetType().GetMethod(nameof(IVerifyMethod.Verify))!.GetParameters().Length)
+        {
+            return AdsErrorCode.DeviceInvalidParam;
+        }
+
+        // FIXME: This is ugly...
+        //        Find a better solution, e.g. reflection.
+        returnValue = rpcMethodToInvoke.Verify((string)values[0], (string)values[1], (string)values[2]);
+
+        return AdsErrorCode.NoError;
+    }
+
+    private RpcMethod BuildRpcMethod(MethodInfo methodInfo, IEnumerable<KeyValuePair<ParameterInfo, IDataType>> paramsKvp, KeyValuePair<ParameterInfo, IDataType> retValKvp)
+    {
+        var nameOrAlias = methodInfo.GetCustomAttribute<AliasAttribute>()?.AliasName ?? methodInfo.Name;
+        var rpc = new RpcMethod(nameOrAlias);
         foreach (var (k, v) in paramsKvp)
         {
             rpc.AddParameter(k.Name ?? "unknown", v, k.IsOut ? MethodParamFlags.Out : MethodParamFlags.In);

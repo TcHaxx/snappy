@@ -1,16 +1,19 @@
-﻿using Serilog;
-using System.Reflection;
+﻿using System.Reflection;
+using Serilog;
+using TcHaxx.Snappy.Common.Verify;
 using TcHaxx.Snappy.TcADS;
 
 namespace TcHaxx.Snappy.CLI.Commands;
 
 internal class CommandVerify : ICommandVerify
 {
+    private readonly IEnumerable<IVerifyMethod> verifyMethods;
     private readonly ISymbolicServerFactory symbolicServerFactory;
     private readonly ILogger? _Logger;
 
-    public CommandVerify(ISymbolicServerFactory symbolicServerFactory, ILogger? logger)
+    public CommandVerify(IEnumerable<IVerifyMethod> verifyMethods, ISymbolicServerFactory symbolicServerFactory, ILogger? logger)
     {
+        this.verifyMethods = verifyMethods;
         this.symbolicServerFactory = symbolicServerFactory ?? throw new ArgumentNullException(nameof(symbolicServerFactory));
         _Logger = logger;
     }
@@ -22,24 +25,6 @@ internal class CommandVerify : ICommandVerify
 
         var adsRetVal = await symbolicServer.ConnectServerAndWaitAsync(new CancellationToken());
 
-        // https://github.com/orgs/VerifyTests/discussions/598
-        // https://github.com/orgs/VerifyTests/discussions/611
-        try
-        {
-
-            var settings = new VerifySettings();
-            settings.UseDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!);
-            var iv = new InnerVerifier(Assembly.GetExecutingAssembly().Location, settings, "the type", "the method", null, new PathInfo());
-            var result = await iv.Verify("huhu");
-
-            Console.WriteLine(result);
-        }
-        catch (Exception ex)
-        {
-            _Logger?.Fatal(ex, "Exception: {ExceptionMessage}", ex.Message);
-            return (int)ExitCodes.E_EXCEPTION;
-        }
-        await Task.Delay(1000);
         return 0;
     }
 }
