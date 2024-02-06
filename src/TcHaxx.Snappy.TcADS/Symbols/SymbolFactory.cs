@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using TcHaxx.Snappy.Common;
@@ -86,7 +87,7 @@ internal class SymbolFactory : ISymbolFactory
 
         foreach (var field in returnValue.ParameterType.GetFields())
         {
-            var stringAttribute = field.GetCustomAttribute<StringAttribute>();
+            var stringAttribute = field.GetCustomAttribute<MarshalAsAttribute>();
             if (stringAttribute is not null && field.FieldType == typeof(string))
             {
                 var stringType = ToStringType(field);
@@ -144,7 +145,7 @@ internal class SymbolFactory : ISymbolFactory
     }
     private StringType ToStringType(FieldInfo stringField)
     {
-        var stringAttribute = stringField.GetCustomAttribute<StringAttribute>();
+        var stringAttribute = stringField.GetCustomAttribute<MarshalAsAttribute>();
         if (stringAttribute is null)
         {
             _Logger?.LogWarning("No attribute for parameter {StringParameter} specified! Using default length {DefaultStringLength} and encoding {Encoding}",
@@ -152,7 +153,7 @@ internal class SymbolFactory : ISymbolFactory
             return new StringType(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH, Common.Constants.DEFAULT_STRING_ENCODING);
         }
 
-        var stringType = new StringType((int)stringAttribute.Length, stringAttribute.GetEncoding());
+        var stringType = new StringType(stringAttribute.SizeConst, Encoding.UTF8);
         return stringType;
     }
 }

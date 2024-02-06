@@ -59,7 +59,6 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
     {
         // TODO: Wire up things
-        // FIXME: String return type is not handled properly
         returnValue = new VerificationResult { HResult = 1, Diff = "thats a diff" };
         return AdsErrorCode.NoError;
 

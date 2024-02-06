@@ -9,7 +9,7 @@ namespace TcHaxx.Snappy.Common.RPC.Attributes
     /// <summary>
     /// Defines the expected max string length and encoding.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Parameter)]
     public class StringAttribute : Attribute
     {
         public uint Length;
