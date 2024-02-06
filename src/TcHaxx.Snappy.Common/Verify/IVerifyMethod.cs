@@ -1,5 +1,4 @@
-﻿using System.Text;
-using TcHaxx.Snappy.Common.RPC.Attributes;
+﻿using TcHaxx.Snappy.Common.RPC.Attributes;
 
 namespace TcHaxx.Snappy.Common.Verify;
 

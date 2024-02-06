@@ -1,7 +1,6 @@
-﻿namespace TcHaxx.Snappy.CLI.Installer
-{
-    public class Class1
-    {
+﻿namespace TcHaxx.Snappy.CLI.Installer;
 
-    }
+public class Class1
+{
+
 }

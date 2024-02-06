@@ -1,6 +1,4 @@
-﻿using System.Text;
-using Microsoft.Extensions.Logging;
-using TcHaxx.Snappy.Common.Verify;
+﻿using Microsoft.Extensions.Logging;
 using TwinCAT.Ads;
 using TwinCAT.Ads.Server;
 using TwinCAT.TypeSystem;

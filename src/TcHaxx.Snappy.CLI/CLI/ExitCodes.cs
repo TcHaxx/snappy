@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TcHaxx.Snappy.CLI;
+﻿namespace TcHaxx.Snappy.CLI;
 
 /// <summary>
 /// Exit codes for this application.

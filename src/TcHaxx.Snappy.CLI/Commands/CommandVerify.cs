@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Serilog;
+﻿using Serilog;
 using TcHaxx.Snappy.Common.Verify;
 using TcHaxx.Snappy.TcADS;
 
