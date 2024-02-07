@@ -7,7 +7,7 @@
 VAR_GLOBAL CONSTANT
 	cMaxSizeJsonDocument		: UDINT (16#FF..16#8000) 	:= 16#1000;
 	cSnappyVerifyAmsNetID		: T_AmsNetID				:= TcHaxx.GCL.cLocalAmsNetId;	
-	cSnappyVerifyPort			: T_SnappyVerifyPort		:= 6969;
+	cSnappyVerifyPort			: T_SnappyVerifyPort		:= 25000;
 	cSnappyVerifyInstancePath 	: STRING					:= 'TcHaxx.Snappy.VerifyService';
 	cSnappyVerifySymbol 		: STRING					:= 'Verify';	
 END_VAR]]></Declaration>

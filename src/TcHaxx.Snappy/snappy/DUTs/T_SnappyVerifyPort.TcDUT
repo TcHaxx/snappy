@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="T_SnappyVerifyPort" Id="{ad23866f-ec03-4546-9c4d-8b82ab63f61d}">
-    <Declaration><![CDATA[TYPE T_SnappyVerifyPort : UINT (2000..7999); END_TYPE
+    <Declaration><![CDATA[TYPE T_SnappyVerifyPort : UINT (25000..25999); END_TYPE
 ]]></Declaration>
   </DUT>
 </TcPlcObject>
