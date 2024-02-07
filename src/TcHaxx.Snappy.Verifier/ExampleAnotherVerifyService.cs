@@ -6,29 +6,30 @@ using TcHaxx.Snappy.Common.Verify;
 
 namespace TcHaxx.Snappy.Verifier;
 
-public class VerifyImpl : IVerifyMethod
+public class ExampleAnotherVerifyService : IVerifyMethod
 {
     private readonly ILogger _Logger;
 
-    public VerifyImpl(IRpcMethodDescriptor rpcMethodDescriptor, ILogger logger)
+    public ExampleAnotherVerifyService(IRpcMethodDescriptor rpcMethodDescriptor, ILogger logger)
     {
         rpcMethodDescriptor.Register(this);
         _Logger = logger;
     }
 
-    public VerificationResult Verify([String(80)] string testSuiteName, [String(80)] string testName, [String(16384)] string jsonToVerify)
+    [Alias("AliasVerifyAttributeNeededHere!")]
+    public VerificationResult Verify([String(80)] string testSuiteName, [String(80)] string testName, [String(4096)] string jsonToVerify)
     {
 
         // https://github.com/orgs/VerifyTests/discussions/598
         // https://github.com/orgs/VerifyTests/discussions/611
         try
         {
-
             // TODO: See if global VerifySettings should be used.
             //       Or, if a client (TcHaxx.Snappy) sets/configures these settings on the fly.
             var settings = new VerifySettings();
             settings.UseDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!);
             settings.DisableRequireUniquePrefix();
+            settings.UseDiffPlex(VerifyTests.DiffPlex.OutputType.Full);
             var iv = new InnerVerifier(Assembly.GetExecutingAssembly().Location, settings, testSuiteName, testName, null, new PathInfo());
             var result = iv.VerifyJson(jsonToVerify).Result;
 
@@ -37,7 +38,7 @@ public class VerifyImpl : IVerifyMethod
         catch (Exception ex)
         {
             _Logger?.Fatal(ex, "Exception: {ExceptionMessage}", ex.Message);
-            return new VerificationResult { Diff = ex.InnerException?.Message ?? ex.Message, HResult = ex.HResult };
+            return new VerificationResult { Diff = /*ex.InnerException?.Message ??*/ ex.Message, HResult = ex.HResult };
         }
 
     }
