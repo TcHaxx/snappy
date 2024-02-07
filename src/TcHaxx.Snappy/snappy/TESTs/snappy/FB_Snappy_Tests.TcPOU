@@ -16,10 +16,32 @@ END_VAR
     <Implementation>
       <ST><![CDATA[TEST(sTestName);
 
-ShuldInitializeDefaultsSuccessfully();
+ShouldInitializeDefaultsSuccessfully();
 
 TEST_FINISHED_NAMED(sTestName);]]></ST>
     </Implementation>
+    <Method Name="ShouldInitializeDefaultsSuccessfully" Id="{b0bee8e3-0ce4-4d03-b00a-9672e47157fa}">
+      <Declaration><![CDATA[METHOD PRIVATE ShouldInitializeDefaultsSuccessfully
+VAR_INST
+	fbSUT		: FB_Snappy;
+	hr			: HRESULT;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+TEST('ShuldInitializeDefaultsSuccessfully');
+
+// Arrange
+// Act
+hr := fbSUT.Configure().UseDefaults().Build();
+
+// Assert
+AssertEquals_DINT(Expected:= S_OK,
+					Actual:= hr,
+					Message:= 'Expected HRESULT=S_OK');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Shouldxxx" Id="{2ed23d4e-8e1b-49bf-ad1c-93e42dfcde7b}">
       <Declaration><![CDATA[METHOD PRIVATE Shouldxxx
 VAR_INST
@@ -43,19 +65,20 @@ AssertEquals_DINT(Expected:= S_OK,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ShuldInitializeDefaultsSuccessfully" Id="{b0bee8e3-0ce4-4d03-b00a-9672e47157fa}">
-      <Declaration><![CDATA[METHOD PRIVATE ShuldInitializeDefaultsSuccessfully
+    <Method Name="Shouldxxx_1" Id="{49b98e88-4fac-44d0-98a2-96d3abd41e98}">
+      <Declaration><![CDATA[METHOD PRIVATE Shouldxxx_1
 VAR_INST
-	fbSUT		: FB_Snappy;
-	hr			: HRESULT;	
+	fbSUT	: FB_Snappy;
+	hr		: HRESULT;	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-TEST('ShuldInitializeDefaultsSuccessfully');
+TEST('Shouldxxx');
 
 // Arrange
+
 // Act
-hr := fbSUT.Configure().UseDefaults().Build();
+hr := fbSUT.Dummy();
 
 // Assert
 AssertEquals_DINT(Expected:= S_OK,
