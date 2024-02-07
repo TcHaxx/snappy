@@ -9,7 +9,8 @@ VAR_GLOBAL CONSTANT
 	cSnappyVerifyAmsNetID		: T_AmsNetID				:= TcHaxx.GCL.cLocalAmsNetId;	
 	cSnappyVerifyPort			: T_SnappyVerifyPort		:= 25000;
 	cSnappyVerifyInstancePath 	: STRING					:= 'TcHaxx.Snappy.VerifyService';
-	cSnappyVerifySymbol 		: STRING					:= 'Verify';	
+	cSnappyVerifySymbol 		: STRING					:= 'Verify';
+	cSnappyVerificationResultLength : UDINT(16#80..16#4000) := 16#400;	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
