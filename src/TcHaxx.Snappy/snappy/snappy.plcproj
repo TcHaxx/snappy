@@ -133,6 +133,12 @@
     <PlaceholderReference Include="rplc">
       <DefaultResolution>rplc, * (tchaxx)</DefaultResolution>
       <Namespace>TcHaxx</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM_ARGS" xmlns="">
+          <Key>CMAXARGSBUFFER</Key>
+          <Value>65535</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
