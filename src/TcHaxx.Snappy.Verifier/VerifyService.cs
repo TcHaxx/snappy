@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Serilog;
+using TcHaxx.Snappy.Common;
 using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.Common.RPC.Attributes;
 using TcHaxx.Snappy.Common.Verify;
@@ -16,7 +17,10 @@ public class VerifyService : IVerifyMethod
         _Logger = logger;
     }
 
-    public VerificationResult Verify([String(80)] string testSuiteName, [String(80)] string testName, [String(16384)] string jsonToVerify)
+    public VerificationResult Verify(
+        [String(Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testSuiteName,
+        [String(Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testName,
+        [String(Constants.DEFAULT_JSON_PARAMETER_LENGTH)] string jsonToVerify)
     {
 
         // https://github.com/orgs/VerifyTests/discussions/598
