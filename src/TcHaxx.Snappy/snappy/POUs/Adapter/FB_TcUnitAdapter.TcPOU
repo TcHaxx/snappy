@@ -1,63 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_TcUnitAdapter" Id="{9a3e8679-ffe2-40a8-b498-cb88fd65cd9f}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FINAL FB_TcUnitAdapter IMPLEMENTS I_TestFrameWorkAdapter
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
+FUNCTION_BLOCK PUBLIC FINAL FB_TcUnitAdapter IMPLEMENTS I_TestFrameWorkAdapter
 VAR
+	fbVerify : FB_Snappy;
+	eStep : (INIT, VERIFYING, GET_RESULT, FINISHED) := INIT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Finished" Id="{f682cc78-91f1-4263-b7ba-e8a5a6dfa507}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Finished : HRESULT
+    <Property Name="sTestName" Id="{41f90fb1-f99e-48f8-ac93-773cef804bd1}">
+      <Declaration><![CDATA[PROPERTY sTestName : REFERENCE TO T_MaxString
+]]></Declaration>
+      <Get Name="Get" Id="{991bd039-c0a6-42b0-88dc-c080ece7ad5f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[sTestName REF= GVL_TcUnit.CurrentTestNameBeingCalled;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="sTestSuiteName" Id="{121e7dc6-f84b-4ea6-bc0f-fdcd5cae0dcc}">
+      <Declaration><![CDATA[PROPERTY sTestSuiteName : REFERENCE TO T_MaxString
+]]></Declaration>
+      <Get Name="Get" Id="{9529d8ca-ea0b-4332-bbe6-758860146803}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[sTestSuiteName REF= GVL_TcUnit.CurrentTestSuiteBeingCalled^.InstancePath;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Verify" Id="{814f1f18-1621-4841-9501-0e71bbfe79a4}">
+      <Declaration><![CDATA[METHOD Verify : HRESULT
+VAR_INPUT
+	anyArg	: ANY;
+END_VAR
+
+VAR	
+	hr : HRESULT;
+	pTestSuite : POINTER TO FB_TestSuite;
+END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[pTestSuite := GVL_TcUnit.CurrentTestSuiteBeingCalled;
+
+IF pTestSuite = NULL THEN
+	Verify := Tc2_System.E_HRESULTAdsErr.INVALIDCONTEXT;
+	RETURN;
+END_IF
+
+CASE eStep OF
+
+	INIT:		
+		hr := fbVerify.Configure().UseDefaults().Build();
+		IF SUCCEEDED(hr) THEN
+			eStep := VERIFYING;
+			hr := S_PENDING;
+		ELSE
+			pTestSuite^.AssertEquals_DINT(Expected:= S_OK,
+								Actual:= hr,
+								Message:= 'Configuration failed');			
+			eStep := FINISHED;
+		END_IF
+
+	VERIFYING:
+		hr := fbVerify.Verify(anyArg:= anyArg);
+		IF SUCCEEDED_AND_NOT_PENDING(hr)THEN
+			eStep := GET_RESULT;
+			hr := S_PENDING;
+		ELSIF FAILED(hr) THEN
+			pTestSuite^.AssertEquals_DINT(Expected:= S_OK,
+							Actual:= hr,
+							Message:= 'One or more errors occured');
+			eStep := FINISHED;
+		END_IF
+	GET_RESULT:
+		hr := fbVerify.stVerificationResult.hr;
+		IF FAILED(hr) THEN
+				pTestSuite^.AssertEquals_DINT(Expected:= S_OK,
+								Actual:= hr,
+								Message:= 'Verify result: Not equal');
+		END_IF;
+		eStep := FINISHED;
+	FINISHED:
+		eStep := INIT;
+END_CASE
+
+Verify := hr;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Pending" Id="{4bb95120-e649-462e-88c4-626a3991f28a}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Pending : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Skipped" Id="{f6890610-b38f-4cf9-b0f0-7302728f1af3}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Skipped : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Start" Id="{3219339f-d5e8-4f84-a0dc-a2ce3e5a3259}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Start : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <LineIds Name="FB_TcUnitAdapter">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TcUnitAdapter.Finished">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TcUnitAdapter.Pending">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TcUnitAdapter.Skipped">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TcUnitAdapter.Start">
-      <LineId Id="4" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

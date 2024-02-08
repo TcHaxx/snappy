@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_SnappyConfig" Id="{8454dc2d-fe9a-4b10-b1c8-cd836dfcc8b6}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
-FUNCTION_BLOCK INTERNAL FINAL FB_SnappyConfig IMPLEMENTS I_SnappyConfig, I_SnappySetupDefaultsOrRpc, I_SnappySetupConfigSerializer, I_SnappySetupConfigTestFrameWork
+FUNCTION_BLOCK INTERNAL FINAL FB_SnappyConfig IMPLEMENTS I_SnappyConfig, I_SnappySetupDefaultsOrRpc, I_SnappySetupConfigSerializer
 VAR
 	eConfigState		: (NOT_CONFIGURED, IS_CONFIGURED) := NOT_CONFIGURED;
 END_VAR
@@ -10,13 +10,11 @@ END_VAR
 VAR
 	itfSerializerField		: I_Serializer 	:= NULL;
 	itfRpcProxyField		: I_RpcProxy	:= NULL;
-	itfTestFrameworkField	: I_TestFrameWorkAdapter := NULL;
 END_VAR
 
 VAR
 	fbJsonSerializer	: FB_JsonSerializer;
 	fbRpcProxy			: FB_RpcProxy;
-	fbTcUnit			: FB_TcUnitAdapter;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -44,11 +42,6 @@ IF itfRpcProxyField = NULL THEN
 END_IF
 
 IF itfSerializerField = NULL THEN
-	Build := Tc2_System.E_HRESULTAdsErr.INVALIDPARM;
-	RETURN;
-END_IF
-
-IF itfTestFrameworkField = NULL THEN
 	Build := Tc2_System.E_HRESULTAdsErr.INVALIDPARM;
 	RETURN;
 END_IF
@@ -90,18 +83,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="itfTestFramework" Id="{a5052365-a905-49e5-989b-8ebf09aaaecc}">
-      <Declaration><![CDATA[PROPERTY itfTestFramework : I_TestFrameWorkAdapter
-]]></Declaration>
-      <Get Name="Get" Id="{0b9ab2d2-63f6-4034-b331-4a078cd43f70}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[itfTestFramework := itfTestFrameworkField;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Method Name="UseDefaults" Id="{475c0225-38e9-42f2-aa74-344f1b08102b}">
       <Declaration><![CDATA[METHOD UseDefaults : I_SnappySetupConfigBuild
 ]]></Declaration>
@@ -114,7 +95,6 @@ END_IF
 
 THIS^.itfSerializerField 	:= fbJsonSerializer;
 THIS^.itfRpcProxyField 		:= fbRpcProxy;
-THIS^.itfTestFrameworkField	:= fbTcUnit;
 ]]></ST>
       </Implementation>
     </Method>
@@ -135,7 +115,7 @@ THIS^.itfRpcProxyField := itfRpcProxy;]]></ST>
       </Implementation>
     </Method>
     <Method Name="UseSerializer" Id="{d56172b6-f5cc-4d8d-a7f8-5ecf06e07962}">
-      <Declaration><![CDATA[METHOD UseSerializer : I_SnappySetupConfigTestFrameWork
+      <Declaration><![CDATA[METHOD UseSerializer : I_SnappySetupConfigBuild
 VAR_INPUT
 	itfSerializer	: I_Serializer;
 END_VAR
@@ -150,60 +130,5 @@ END_IF
 THIS^.itfSerializerField := itfSerializer;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="UseTestFramework" Id="{da6daf73-1895-44cf-9705-cf2717dcf78e}">
-      <Declaration><![CDATA[METHOD UseTestFramework : I_SnappySetupConfigBuild
-VAR_INPUT
-	itfTestFramework	: I_TestFrameWorkAdapter;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[UseTestFramework := THIS^;
-
-IF bIsConfigured THEN
-	RETURN;
-END_IF
-
-THIS^.itfTestFrameworkField := itfTestFramework;]]></ST>
-      </Implementation>
-    </Method>
-    <LineIds Name="FB_SnappyConfig">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.bIsConfigured.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.Build">
-      <LineId Id="5" Count="15" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.Configure">
-      <LineId Id="5" Count="2" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.itfRpcProxy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.itfSerializer.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.itfTestFramework.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.UseDefaults">
-      <LineId Id="5" Count="8" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.UseRpcProxy">
-      <LineId Id="8" Count="5" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.UseSerializer">
-      <LineId Id="8" Count="5" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SnappyConfig.UseTestFramework">
-      <LineId Id="8" Count="5" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

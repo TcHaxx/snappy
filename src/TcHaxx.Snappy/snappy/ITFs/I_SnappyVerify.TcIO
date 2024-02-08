@@ -3,6 +3,12 @@
   <Itf Name="I_SnappyVerify" Id="{7c2c6182-0b25-4b12-8e3e-a5d4788a1cc2}">
     <Declaration><![CDATA[INTERFACE I_SnappyVerify
 ]]></Declaration>
+    <Property Name="stVerificationResult" Id="{821698e1-b21e-4444-ae08-c86776e1021b}">
+      <Declaration><![CDATA[PROPERTY stVerificationResult : REFERENCE TO ST_VerificationResult]]></Declaration>
+      <Get Name="Get" Id="{6a2c1ceb-be10-47f7-b7b9-9b9684158924}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Verify" Id="{609ab44f-90dd-4019-a39e-31ae681b76a2}">
       <Declaration><![CDATA[METHOD Verify : HRESULT
 VAR_INPUT

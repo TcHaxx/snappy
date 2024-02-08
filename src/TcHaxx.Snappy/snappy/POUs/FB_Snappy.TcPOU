@@ -10,8 +10,9 @@ END_VAR
 
 VAR
 //	{attribute 'hide'}
-	fbConfig	: FB_SnappyConfig;
-	itfConfig	: I_SnappyConfig := fbConfig; 
+	fbConfig					: FB_SnappyConfig;
+	itfConfig					: I_SnappyConfig := fbConfig; 
+	stVerificationResultField 	: ST_VerificationResult;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -31,15 +32,18 @@ END_VAR]]></Declaration>
         <ST><![CDATA[Configure := THIS^.itfConfig.Configure();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Dummy" Id="{400bafd3-c02f-4ead-8b37-804ad1393bbc}">
-      <Declaration><![CDATA[METHOD INTERNAL Dummy : Hresult
-VAR_INPUT
+    <Property Name="stVerificationResult" Id="{8ef910c8-b6d4-4ea6-ae03-8960790a65f6}">
+      <Declaration><![CDATA[PROPERTY stVerificationResult : REFERENCE TO ST_VerificationResult
+]]></Declaration>
+      <Get Name="Get" Id="{6789235d-1324-4469-ba04-c14014178dff}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[stVerificationResult REF= THIS^.stVerificationResultField;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Verify" Id="{ab7f32c4-6140-4125-99c7-1a8cd2d6bf2a}" FolderPath="ITFs\">
       <Declaration><![CDATA[METHOD Verify : HRESULT
 VAR_INPUT
@@ -54,7 +58,6 @@ END_VAR
 VAR_INST
 	sJDoc			: T_VerifyContent;
 	eState			: E_SnappyVerificationState;
-	stResult		: ST_VerificationResult;
 	hrLastErrorCode : HRESULT;
 END_VAR]]></Declaration>
       <Implementation>
@@ -86,16 +89,15 @@ CASE eState OF
 		END_IF
 		
 	E_SnappyVerificationState.ePending:
-		hr := itfConfig.itfRpcProxy.GetVerificationResult(stResult => stResult);
-		IF SUCCEEDED(hr) THEN
+		hr := itfConfig.itfRpcProxy.GetVerificationResult(stResult => stVerificationResultField);
+		hrLastErrorCode := hr;
+		IF SUCCEEDED_AND_NOT_PENDING(hr) THEN
 			eState := E_SnappyVerificationState.eDone;
 		ELSIF FAILED(hr) THEN
-			hrLastErrorCode := hr;
 			eState := E_SnappyVerificationState.eError;
 		END_IF
 
 	E_SnappyVerificationState.eDone:
-		hrLastErrorCode := stResult.hr;
 		eState := E_SnappyVerificationState.eIdle;
 
 	E_SnappyVerificationState.eError:

@@ -5,12 +5,14 @@
 {attribute 'no-analysis'}
 {attribute 'global_init_slot' := '49992'}
 VAR_GLOBAL CONSTANT
-	cMaxSizeJsonDocument		: UDINT (16#FF..16#8000) 	:= 16#1000;
-	cSnappyVerifyAmsNetID		: T_AmsNetID				:= TcHaxx.GCL.cLocalAmsNetId;	
-	cSnappyVerifyPort			: T_SnappyVerifyPort		:= 25000;
-	cSnappyVerifyInstancePath 	: STRING					:= 'TcHaxx.Snappy.VerifyService';
-	cSnappyVerifySymbol 		: STRING					:= 'Verify';
-	cSnappyVerificationResultLength : UDINT(16#80..16#4000) := 16#400;	
+	cMaxSizeJsonDocument		: UDINT (16#FF..16#8000) 		:= 16#4000;
+	cSnappyVerifyAmsNetID		: T_AmsNetID					:= TcHaxx.GCL.cLocalAmsNetId;	
+	cSnappyVerifyPort			: T_SnappyVerifyPort			:= 25000;
+	cSnappyVerifyInstancePath 	: STRING						:= 'TcHaxx.Snappy.Verifier.VerifyService';
+	cSnappyVerifySymbol 		: STRING						:= 'Verify';
+	cSnappyVerificationResultLength : UDINT(16#80..16#4000) 	:= 16#400;	
+	cSnappyVerificationTestSuiteLength : UDINT(16#80..16#400) 	:= 16#100;
+	cSnappyVerificationTestNameLength : UDINT(16#80..16#400) 	:= 16#100;			
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

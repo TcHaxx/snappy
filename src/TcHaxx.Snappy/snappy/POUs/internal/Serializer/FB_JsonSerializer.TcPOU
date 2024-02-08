@@ -59,31 +59,5 @@ END_IF
 Serialize := hr;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_JsonSerializer">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_JsonSerializer.Serialize">
-      <LineId Id="25" Count="1" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="21" Count="1" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="43" Count="2" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="47" Count="2" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="30" Count="2" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="37" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

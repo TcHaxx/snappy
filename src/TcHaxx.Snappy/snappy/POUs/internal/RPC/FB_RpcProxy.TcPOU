@@ -9,7 +9,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	fbRpcSnappyVerify		: FB_RPC_Dynamic;
-	sAmsNetID				: T_AmsNetID 			:= Param_TcHaxx_Snappy.cSnappyVerifyAmsNetID;
+	sAmsNetID				: T_AmsNetID 			:= '10.1.44.157.1.1';//Param_TcHaxx_Snappy.cSnappyVerifyAmsNetID;
 	nAmsPort				: T_AmsPort				:= Param_TcHaxx_Snappy.cSnappyVerifyPort;
 	sInstancePathLocalField	: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifyInstancePath;
 	sSymbolLocalField		: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifySymbol;
@@ -52,6 +52,9 @@ IF NOT stAdsStatus.bBusy AND NOT stAdsStatus.bError THEN
 	RETURN;
 ELSIF stAdsStatus.bError THEN
 	GetVerificationResult := TO_DINT(stAdsStatus.nError);
+	IF GetVerificationResult > 0 THEN
+		GetVerificationResult := TO_DINT(TO_UDINT(GetVerificationResult) OR 16#98110000);
+	END_IF
 	RETURN;
 END_IF
 ]]></ST>
@@ -65,6 +68,10 @@ END_VAR
 VAR
 	hr			: HRESULT;
 	stAdsStatus	: TcHaxx.ST_AdsStatus;
+	
+	
+	sTestSuiteName : STRING(Param_TcHaxx_Snappy.cSnappyVerificationTestSuiteLength) := 'ATestSuiteName';
+	sTestName : STRING(Param_TcHaxx_Snappy.cSnappyVerificationTestNameLength) := 'ATestName';
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT bIsConfiguredField THEN
@@ -81,7 +88,11 @@ IF NOT bIsConfigured THEN
 	RETURN;
 END_IF
 
-stAdsStatus := fbRpcSnappyVerify.VarInput(anyArg:= sToVerify).ReturnValue(anyRetVal:= stVerificationResult).Invoke();
+stAdsStatus := fbRpcSnappyVerify.VarInput(anyArg:= sTestSuiteName)
+								.VarInput(anyArg:= sTestName)
+							 	.VarInput(anyArg:= sToVerify)
+								.ReturnValue(anyRetVal:= stVerificationResult)
+								.Invoke();
 IF stAdsStatus.bError THEN
 	Verify := TO_DINT(stAdsStatus.nError);
 	RETURN;

@@ -4,7 +4,7 @@
     <Declaration><![CDATA[INTERFACE I_SnappySetupConfigSerializer
 ]]></Declaration>
     <Method Name="UseSerializer" Id="{d78d7c7d-a03a-481b-9a0c-f9fc721210f4}">
-      <Declaration><![CDATA[METHOD UseSerializer : I_SnappySetupConfigTestFrameWork
+      <Declaration><![CDATA[METHOD UseSerializer : I_SnappySetupConfigBuild
 VAR_INPUT
 	itfSerializer	: I_Serializer;
 END_VAR

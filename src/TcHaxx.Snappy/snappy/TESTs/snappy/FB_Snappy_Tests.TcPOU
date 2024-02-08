@@ -17,9 +17,30 @@ END_VAR
       <ST><![CDATA[TEST(sTestName);
 
 ShouldInitializeDefaultsSuccessfully();
-
+Debug();
 TEST_FINISHED_NAMED(sTestName);]]></ST>
     </Implementation>
+    <Method Name="Debug" Id="{e1697c70-17fa-4f58-ac00-58cd8276447b}">
+      <Declaration><![CDATA[METHOD PRIVATE Debug
+VAR_INST
+	
+	hr		: HRESULT;		
+	fbAdapter : FB_TcUnitAdapter;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+TEST('Test some stuff');
+
+// ARRANGE
+
+// ACT and ASSERT
+hr := fbAdapter.Verify(anyArg:= _AppInfo);
+
+IF NOT PENDING(hr) THEN
+	TEST_FINISHED_NAMED('Test some stuff');
+END_IF;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ShouldInitializeDefaultsSuccessfully" Id="{b0bee8e3-0ce4-4d03-b00a-9672e47157fa}">
       <Declaration><![CDATA[METHOD PRIVATE ShouldInitializeDefaultsSuccessfully
 VAR_INST
@@ -45,7 +66,6 @@ TEST_FINISHED();]]></ST>
     <Method Name="Shouldxxx" Id="{2ed23d4e-8e1b-49bf-ad1c-93e42dfcde7b}">
       <Declaration><![CDATA[METHOD PRIVATE Shouldxxx
 VAR_INST
-	fbSUT	: FB_Snappy;
 	hr		: HRESULT;	
 END_VAR]]></Declaration>
       <Implementation>
@@ -55,30 +75,6 @@ TEST('Shouldxxx');
 // Arrange
 
 // Act
-hr := fbSUT.Dummy();
-
-// Assert
-AssertEquals_DINT(Expected:= S_OK,
-					Actual:= hr,
-					Message:= 'Expected HRESULT=S_OK');
-
-TEST_FINISHED();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Shouldxxx_1" Id="{49b98e88-4fac-44d0-98a2-96d3abd41e98}">
-      <Declaration><![CDATA[METHOD PRIVATE Shouldxxx_1
-VAR_INST
-	fbSUT	: FB_Snappy;
-	hr		: HRESULT;	
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-TEST('Shouldxxx');
-
-// Arrange
-
-// Act
-hr := fbSUT.Dummy();
 
 // Assert
 AssertEquals_DINT(Expected:= S_OK,
