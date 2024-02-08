@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="SUCCEEDED_AND_NOT_PENDING" Id="{4a3707aa-19c7-47a8-892b-1feb62226184}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION SUCCEEDED_AND_NOT_PENDING : BOOL
+VAR_INPUT
+	hr 	: DINT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUCCEEDED_AND_NOT_PENDING := hr >= 0 AND hr <> S_PENDING;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

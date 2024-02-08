@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PENDING" Id="{f539ec3a-bf13-4734-98a5-7ce796e4036d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION PENDING : BOOL
+VAR_INPUT
+	hr 	: DINT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PENDING := hr = S_PENDING;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
