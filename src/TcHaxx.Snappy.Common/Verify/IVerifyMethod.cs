@@ -4,5 +4,8 @@ namespace TcHaxx.Snappy.Common.Verify;
 
 public interface IVerifyMethod
 {
-    public VerificationResult Verify([String(80)] string testSuiteName, [String(80)] string testName, [String(16384)] string jsonToVerify);
+    public VerificationResult Verify(
+        [String(Constants.DEFAULT_TEST_NAMES_LENGTH)] string testSuiteName,
+        [String(Constants.DEFAULT_TEST_NAMES_LENGTH)] string testName,
+        [String(16384)] string jsonToVerify);
 }

@@ -21,8 +21,8 @@ public class VerifyService : IVerifyService
     public IVerifierOptions Options { get; set; }
 
     public VerificationResult Verify(
-        [String(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testSuiteName,
-        [String(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testName,
+        [String(Common.Constants.DEFAULT_TEST_NAMES_LENGTH)] string testSuiteName,
+        [String(Common.Constants.DEFAULT_TEST_NAMES_LENGTH)] string testName,
         [String(Common.Constants.DEFAULT_JSON_PARAMETER_LENGTH)] string jsonToVerify)
     {
 
