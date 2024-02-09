@@ -123,9 +123,6 @@
     <Compile Include="TESTs\snappy\FB_Snappy_Tests.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TESTs\snappy\FB_TcTest.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
