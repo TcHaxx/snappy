@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_SnappyConfig" Id="{8454dc2d-fe9a-4b10-b1c8-cd836dfcc8b6}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
-FUNCTION_BLOCK INTERNAL FINAL FB_SnappyConfig IMPLEMENTS I_SnappyConfig, I_SnappySetupDefaultsOrRpc, I_SnappySetupConfigSerializer
+FUNCTION_BLOCK INTERNAL FINAL FB_SnappyConfig IMPLEMENTS I_SnappyConfig, I_SnappySetupDefaultsOrRpc, I_SnappySetupConfigSerializer, I_SnappySetupConfigTestFrameWork
 VAR
 	eConfigState		: (NOT_CONFIGURED, IS_CONFIGURED) := NOT_CONFIGURED;
 END_VAR
@@ -10,11 +10,13 @@ END_VAR
 VAR
 	itfSerializerField		: I_Serializer 	:= NULL;
 	itfRpcProxyField		: I_RpcProxy	:= NULL;
+	itfTestFrameworkField	: I_TestFrameWorkAdapter := NULL;
 END_VAR
 
 VAR
 	fbJsonSerializer	: FB_JsonSerializer;
 	fbRpcProxy			: FB_RpcProxy;
+	fbTestNamesProvider : FB_TestSuiteNameProvider;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -83,8 +85,20 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="itfTestFramework" Id="{7daedeaf-667f-4d0a-b8cb-681b5beb3c1d}">
+      <Declaration><![CDATA[PROPERTY itfTestFramework : I_TestFrameWorkAdapter
+]]></Declaration>
+      <Get Name="Get" Id="{2fba5b04-907d-440b-8997-53f107df31bf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[itfTestFramework := itfTestFrameworkField;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="UseDefaults" Id="{475c0225-38e9-42f2-aa74-344f1b08102b}">
-      <Declaration><![CDATA[METHOD UseDefaults : I_SnappySetupConfigBuild
+      <Declaration><![CDATA[METHOD UseDefaults : I_SnappySetupConfigTestFrameWork
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[UseDefaults := THIS^;
@@ -128,6 +142,39 @@ IF bIsConfigured THEN
 END_IF
 
 THIS^.itfSerializerField := itfSerializer;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="UseTestFramework" Id="{943d3ed1-56e7-4e73-9ea4-64127c6fbebd}">
+      <Declaration><![CDATA[METHOD UseTestFramework : I_SnappySetupConfigBuild
+VAR_INPUT
+	itfTestFramework	: I_TestFrameWorkAdapter;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[UseTestFramework := THIS^;
+
+IF bIsConfigured THEN
+	RETURN;
+END_IF
+
+THIS^.itfTestFrameworkField := itfTestFramework;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WithoutTestFramework" Id="{32f351cd-9643-4f84-95fb-5a9c2326d54d}">
+      <Declaration><![CDATA[METHOD WithoutTestFramework : I_SnappySetupConfigBuild
+VAR_INPUT CONSTANT
+	sTestSuiteName 	: T_MaxString;
+	sTestName		: T_MaxString;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[WithoutTestFramework := THIS^;
+
+THIS^.fbTestNamesProvider.SetTestNames(sTestSuiteName, sTestName);
+THIS^.itfTestFrameworkField := THIS^.fbTestNamesProvider;
+
+IF bIsConfigured THEN
+	RETURN;
+END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>

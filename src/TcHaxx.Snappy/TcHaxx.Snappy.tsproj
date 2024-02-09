@@ -81,7 +81,7 @@
 						<Defines></Defines>
 					</Variant>
 				</ProjectVariant>
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{4F7A9B7E-0A19-1A8B-8A0F-CE523942E308}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{A568AF18-15CD-2AA0-082F-0ED3F6C8FAF3}">
 					<Name>snappy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

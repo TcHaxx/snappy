@@ -21,5 +21,11 @@
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="itfTestFramework" Id="{6cf81d96-7267-4fbd-89a0-99fce29166e8}">
+      <Declaration><![CDATA[PROPERTY itfTestFramework : I_TestFrameWorkAdapter]]></Declaration>
+      <Get Name="Get" Id="{c1c48e0d-f791-42e3-85c7-a8bee555e35b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
   </Itf>
 </TcPlcObject>

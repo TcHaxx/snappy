@@ -12,6 +12,8 @@ VAR
 //	{attribute 'hide'}
 	fbConfig					: FB_SnappyConfig;
 	itfConfig					: I_SnappyConfig := fbConfig; 
+	fbTestSuiteNameProvider		: FB_TestSuiteNameProvider;
+	itfTestFrameWork			: I_TestFrameWorkAdapter := fbTestSuiteNameProvider;
 	stVerificationResultField 	: ST_VerificationResult;
 END_VAR]]></Declaration>
     <Implementation>
@@ -22,7 +24,15 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD Build : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Build := itfConfig.Build();]]></ST>
+        <ST><![CDATA[Build := itfConfig.Build();
+
+IF FAILED(Build) THEN
+	RETURN;
+END_IF
+
+IF THIS^.itfConfig.itfTestFramework <> NULL THEN
+	THIS^.itfTestFrameWork := THIS^.itfConfig.itfTestFramework;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Configure" Id="{aed1d2aa-f88b-4f94-ab82-85cd02d987ed}" FolderPath="ITFs\">
@@ -70,6 +80,7 @@ END_IF
 CASE eState OF
 	
 	E_SnappyVerificationState.eIdle:
+	itfConfig.itfRpcProxy.itfTestFrameWorkAdapter := THIS^.itfConfig.itfTestFramework;
 	hr := itfConfig.itfSerializer.Serialize(anyArg:= anyArg, sJsonDocument:= sJDoc);
 	IF FAILED(hr) THEN
 		hrLastErrorCode := hr;
@@ -79,7 +90,7 @@ CASE eState OF
 		eState := E_SnappyVerificationState.eSend;
 	END_IF
 
-	E_SnappyVerificationState.eSend:
+	E_SnappyVerificationState.eSend:		
 		hr := itfConfig.itfRpcProxy.Verify(sToVerify:= sJDoc);
 		IF SUCCEEDED(hr) THEN
 			eState := E_SnappyVerificationState.ePending;

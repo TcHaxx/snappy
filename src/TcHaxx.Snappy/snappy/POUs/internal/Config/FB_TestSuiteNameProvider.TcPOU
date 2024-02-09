@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_TestSuiteNameProvider" Id="{1618468c-8e9f-47a1-883e-b9b76a908690}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
+FUNCTION_BLOCK INTERNAL FINAL FB_TestSuiteNameProvider IMPLEMENTS I_TestFrameWorkAdapter
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	sTestSuiteNameField 	: T_MaxString;
+	sTestNameField			: T_MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="SetTestNames" Id="{59071bf7-e632-4d90-9a60-a1aa486f91f4}">
+      <Declaration><![CDATA[METHOD INTERNAL SetTestNames
+VAR_INPUT CONSTANT
+	sTestSuiteName 	: REFERENCE TO T_MaxString;
+	sTestName		: REFERENCE TO T_MaxString;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+sTestSuiteNameField := sTestSuiteName;
+sTestNameField := sTestName;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="sTestName" Id="{f298cfe5-47f2-41ea-8807-db37151db457}">
+      <Declaration><![CDATA[PROPERTY sTestName : REFERENCE TO Tc2_System.T_MaxString
+]]></Declaration>
+      <Get Name="Get" Id="{aa8f7eee-3227-412c-a6da-09e65606d4d5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[sTestName REF= sTestNameField;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="sTestSuiteName" Id="{33a02c3b-8305-4a26-abb4-e397c7f1ca76}">
+      <Declaration><![CDATA[PROPERTY sTestSuiteName : REFERENCE TO Tc2_System.T_MaxString
+]]></Declaration>
+      <Get Name="Get" Id="{27aa5c98-63ed-4fa9-9d95-d2d0db9665c8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[sTestSuiteName REF= sTestSuiteNameField;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Verify" Id="{38caa7fa-54bf-48d1-9737-a24c040eb1de}">
+      <Declaration><![CDATA[METHOD Verify : HRESULT
+VAR_INPUT
+	{attribute 'analysis' := '-33'}
+	anyArg	: __SYSTEM.AnyType;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Verify := Tc2_System.E_HRESULTAdsErr.ACCESSDENIED;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -17,6 +17,15 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="itfTestFrameWorkAdapter" Id="{3cc412ee-5500-45a0-813f-576cd1d9ffe3}">
+      <Declaration><![CDATA[PROPERTY itfTestFrameWorkAdapter :  I_TestFrameWorkAdapter]]></Declaration>
+      <Get Name="Get" Id="{02bd8883-b639-4619-b8d8-ab745a2fcaa2}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{3a99c542-237f-4bcf-ba74-d6665c8c0976}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
     <Method Name="Verify" Id="{11e40880-5fa3-4b04-ac89-634a6cfbe115}">
       <Declaration><![CDATA[METHOD Verify : HRESULT
 VAR_INPUT CONSTANT

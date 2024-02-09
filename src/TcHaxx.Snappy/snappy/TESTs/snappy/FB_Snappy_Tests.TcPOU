@@ -53,14 +53,17 @@ TEST('ShuldInitializeDefaultsSuccessfully');
 
 // Arrange
 // Act
-hr := fbSUT.Configure().UseDefaults().Build();
+hr := fbSUT.Configure().UseDefaults().WithoutTestFramework(sTestSuiteName:='MyTestSuite', sTestName:='MyTestName').Build();
 
 // Assert
-AssertEquals_DINT(Expected:= S_OK,
-					Actual:= hr,
-					Message:= 'Expected HRESULT=S_OK');
 
-TEST_FINISHED();]]></ST>
+AssertEquals_DINT(Expected:= S_OK,
+				Actual:= hr,
+				Message:= 'Expected HRESULT=S_OK');
+
+
+TEST_FINISHED();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Shouldxxx" Id="{2ed23d4e-8e1b-49bf-ad1c-93e42dfcde7b}">

@@ -110,6 +110,9 @@
     <Compile Include="POUs\internal\Config\FB_SnappyConfig.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\internal\Config\FB_TestSuiteNameProvider.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\internal\RPC\FB_RpcProxy.TcPOU">
       <SubType>Code</SubType>
     </Compile>

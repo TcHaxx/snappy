@@ -15,6 +15,7 @@ VAR
 	sSymbolLocalField		: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifySymbol;
 	bIsConfiguredField		: BOOL					:= FALSE;
 	stVerificationResult	: ST_VerificationResult;
+	itfTestFrameWorkField	: I_TestFrameWorkAdapter;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -60,10 +61,30 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="itfTestFrameWorkAdapter" Id="{6a7e0fc7-c801-46b8-b597-9bc5cb4f77dd}">
+      <Declaration><![CDATA[PROPERTY itfTestFrameWorkAdapter : I_TestFrameWorkAdapter
+]]></Declaration>
+      <Get Name="Get" Id="{1244a42b-57f8-4833-930f-e5d7db6210d1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[itfTestFrameWorkAdapter := THIS^.itfTestFrameWorkField;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{8a513147-2384-409b-9700-08b643e3efa9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[THIS^.itfTestFrameWorkField := itfTestFrameWorkAdapter;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="Verify" Id="{1f2ed438-c0f1-406f-9917-7be1f3353347}">
       <Declaration><![CDATA[METHOD Verify : HRESULT
 VAR_INPUT CONSTANT
-	sToVerify	: REFERENCE TO T_VerifyContent;
+	sToVerify			: REFERENCE TO T_VerifyContent;
 END_VAR
 VAR
 	hr			: HRESULT;
@@ -86,6 +107,11 @@ END_IF;
 IF NOT bIsConfigured THEN
 	Verify := E_HRESULTAdsErr.NOTINIT;
 	RETURN;
+END_IF
+
+IF itfTestFrameWorkField <> NULL THEN
+	sTestSuiteName 	:= itfTestFrameWorkField.sTestSuiteName;
+	sTestName 		:= itfTestFrameWorkField.sTestName;
 END_IF
 
 stAdsStatus := fbRpcSnappyVerify.VarInput(anyArg:= sTestSuiteName)

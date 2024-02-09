@@ -58,7 +58,7 @@ END_IF
 CASE eStep OF
 
 	INIT:		
-		hr := fbVerify.Configure().UseDefaults().Build();
+		hr := fbVerify.Configure().UseDefaults().UseTestFramework(THIS^).Build();
 		IF SUCCEEDED(hr) THEN
 			eStep := VERIFYING;
 			hr := S_PENDING;
@@ -74,20 +74,26 @@ CASE eStep OF
 		IF SUCCEEDED_AND_NOT_PENDING(hr)THEN
 			eStep := GET_RESULT;
 			hr := S_PENDING;
+		ELSIF FAILED(hr) AND hr = E_HESULT_AdsErr.ERR_TARGETPORTNOTFOUND THEN
+			pTestSuite^.AssertEquals_DINT(Expected:= S_OK,
+							Actual:= hr,
+							Message:= 'Targetport not found! Make sure, TcHaxx.Snappy.CLI is running, and a ADS route has been established.');
 		ELSIF FAILED(hr) THEN
 			pTestSuite^.AssertEquals_DINT(Expected:= S_OK,
 							Actual:= hr,
 							Message:= 'One or more errors occured');
 			eStep := FINISHED;
 		END_IF
+
 	GET_RESULT:
 		hr := fbVerify.stVerificationResult.hr;
 		IF FAILED(hr) THEN
 				pTestSuite^.AssertEquals_DINT(Expected:= S_OK,
 								Actual:= hr,
-								Message:= 'Verify result: Not equal');
+								Message:= fbVerify.stVerificationResult.sDiff);
 		END_IF;
 		eStep := FINISHED;
+
 	FINISHED:
 		eStep := INIT;
 END_CASE

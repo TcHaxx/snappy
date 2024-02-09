@@ -10,5 +10,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="WithoutTestFramework" Id="{32f9c252-96d3-4a1a-8e3e-d93d2be176b4}">
+      <Declaration><![CDATA[METHOD WithoutTestFramework : I_SnappySetupConfigBuild
+VAR_INPUT CONSTANT
+	sTestSuiteName 	: T_MaxString;
+	sTestName		: T_MaxString;
+END_VAR]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>

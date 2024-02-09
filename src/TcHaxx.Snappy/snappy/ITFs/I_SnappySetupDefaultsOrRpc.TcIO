@@ -4,7 +4,7 @@
     <Declaration><![CDATA[INTERFACE I_SnappySetupDefaultsOrRpc
 ]]></Declaration>
     <Method Name="UseDefaults" Id="{cfd5f940-2d41-4f19-ab6f-fcbd0edd34e0}">
-      <Declaration><![CDATA[METHOD UseDefaults : I_SnappySetupConfigBuild
+      <Declaration><![CDATA[METHOD UseDefaults : I_SnappySetupConfigTestFrameWork
 VAR_INPUT
 END_VAR
 ]]></Declaration>
