@@ -1,13 +1,13 @@
 ﻿using System.Reflection;
 using Serilog;
-using TcHaxx.Snappy.Common;
 using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.Common.RPC.Attributes;
 using TcHaxx.Snappy.Common.Verify;
+using TcHaxx.Snappy.Verifier.Options;
 
 namespace TcHaxx.Snappy.Verifier;
 
-public class VerifyService : IVerifyMethod
+public class VerifyService : IVerifyService
 {
     private readonly ILogger _Logger;
 
@@ -15,12 +15,15 @@ public class VerifyService : IVerifyMethod
     {
         rpcMethodDescriptor.Register(this);
         _Logger = logger;
+        Options = new DefaultOptions();
     }
 
+    public IVerifierOptions Options { get; set; }
+
     public VerificationResult Verify(
-        [String(Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testSuiteName,
-        [String(Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testName,
-        [String(Constants.DEFAULT_JSON_PARAMETER_LENGTH)] string jsonToVerify)
+        [String(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testSuiteName,
+        [String(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH)] string testName,
+        [String(Common.Constants.DEFAULT_JSON_PARAMETER_LENGTH)] string jsonToVerify)
     {
 
         // https://github.com/orgs/VerifyTests/discussions/598
@@ -30,7 +33,11 @@ public class VerifyService : IVerifyMethod
             // TODO: See if global VerifySettings should be used.
             //       Or, if a client (TcHaxx.Snappy) sets/configures these settings on the fly.
             var settings = new VerifySettings();
-            settings.UseDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!);
+
+            var directory = Path.IsPathRooted(Options.VerifyDirectory) ? Options.VerifyDirectory
+                : Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, Options.VerifyDirectory);
+
+            settings.UseDirectory(directory);
             settings.DisableRequireUniquePrefix();
             settings.UseDiffPlex(VerifyTests.DiffPlex.OutputType.Compact);
             var iv = new InnerVerifier(Assembly.GetExecutingAssembly().Location, settings, testSuiteName, testName, null, new PathInfo());

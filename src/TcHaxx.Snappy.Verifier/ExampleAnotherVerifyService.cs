@@ -3,10 +3,11 @@ using Serilog;
 using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.Common.RPC.Attributes;
 using TcHaxx.Snappy.Common.Verify;
+using TcHaxx.Snappy.Verifier.Options;
 
 namespace TcHaxx.Snappy.Verifier;
 
-public class ExampleAnotherVerifyService : IVerifyMethod
+public class ExampleAnotherVerifyService : IVerifyService
 {
     private readonly ILogger _Logger;
 
@@ -15,6 +16,8 @@ public class ExampleAnotherVerifyService : IVerifyMethod
         rpcMethodDescriptor.Register(this);
         _Logger = logger;
     }
+
+    public IVerifierOptions Options { get; set; } = new DefaultOptions();
 
     [Alias("AliasVerifyAttributeNeededHere!")]
     public VerificationResult Verify([String(80)] string testSuiteName, [String(80)] string testName, [String(4096)] string jsonToVerify)
