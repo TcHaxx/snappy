@@ -36,6 +36,9 @@
     <DefaultNamespace>tchaxx</DefaultNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\E_HESULT_AdsErr.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\E_SnappyVerificationState.TcTLEO">
       <SubType>Code</SubType>
     </Compile>

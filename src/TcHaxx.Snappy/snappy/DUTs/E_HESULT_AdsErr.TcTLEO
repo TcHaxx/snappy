@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <EnumerationTextList Name="E_HESULT_AdsErr" Id="{b04bf851-5b9e-4948-a5dc-53f5178e2761}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_HESULT_AdsErr :
+(
+	ERR_INTERNAL 				:= UDINT_TO_DINT((16#98110000 + 16#1)),		// Internal error.
+	ERR_TARGETPORTNOTFOUND 		:= UDINT_TO_DINT((16#98110000 + 16#6)),		// Target port not found – ADS server is not started or is not reachable.
+	ERR_TARGETMACHINENOTFOUND 	:= UDINT_TO_DINT((16#98110000 + 16#7)),		// Target computer not found – AMS route was not found. 
+	ERR_PORTNOTCONNECTED		:= UDINT_TO_DINT((16#98110000 + 16#D)),		// Port not connected.
+	ERR_INVALIDAMSLENGTH		:= UDINT_TO_DINT((16#98110000 + 16#E)),		// Invalid AMS length.
+	ERR_INVALIDAMSNETID			:= UDINT_TO_DINT((16#98110000 + 16#F))		// Invalid AMS Net ID.
+) DINT;
+END_TYPE
+]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"16#98110000 + 16#F"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{3306a6d3-a656-4513-b3ed-05d4365b23cd}</v>
+          <v n="GuidReInit">{616938a1-7839-4503-a4bc-9bd5d4e7b0a8}</v>
+          <v n="GuidExitX">{8691cbbb-bec4-4b94-a925-3ececd0086b7}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>
