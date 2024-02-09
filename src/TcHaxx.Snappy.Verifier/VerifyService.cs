@@ -49,8 +49,8 @@ public class VerifyService : IVerifyService
         {
             _Logger?.Fatal(ex, "Exception: {ExceptionMessage}", ex.Message);
 
-            // TODO: Reduce verbose diff output, further.
-            return new VerificationResult { Diff = ex.InnerException?.Message ?? ex.Message, HResult = ex.HResult };
+            var diff = ex.InnerException?.Message ?? ex.Message;
+            return Options.CompactDiff ? new VerificationResult { Diff = diff, HResult = ex.HResult }.ToCompactDiff() : new VerificationResult { Diff = diff, HResult = ex.HResult };
         }
 
     }
