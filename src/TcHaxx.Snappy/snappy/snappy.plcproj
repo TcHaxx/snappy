@@ -32,7 +32,8 @@
     </SelectedLibraryCategories>
     <Author>densogiaichned</Author>
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
-    <CompilerDefines />
+    <CompilerDefines>TCUNIT</CompilerDefines>
+    <DefaultNamespace>tchaxx</DefaultNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_SnappyVerificationState.TcTLEO">
@@ -89,6 +90,7 @@
     </Compile>
     <Compile Include="POUs\Adapter\FB_TcUnitAdapter.TcPOU">
       <SubType>Code</SubType>
+      <CompilerDefines>TCUNIT</CompilerDefines>
     </Compile>
     <Compile Include="POUs\FB_Snappy.TcPOU">
       <SubType>Code</SubType>
@@ -169,7 +171,7 @@
     </PlaceholderReference>
     <PlaceholderReference Include="TcUnit">
       <DefaultResolution>TcUnit, * (www.tcunit.org)</DefaultResolution>
-      <Condition>UNIT_TEST</Condition>
+      <Condition>TCUNIT</Condition>
       <Namespace>TcUnit</Namespace>
     </PlaceholderReference>
   </ItemGroup>
