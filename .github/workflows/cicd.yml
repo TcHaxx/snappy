@@ -31,7 +31,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore ${{ env.solution }}
       - name: Build
-        run: dotnet build --no-restore -c Release ${{ env.solution }}
+        run: dotnet build -c Release --no-restore ${{ env.solution }}
       - name: Test
         if: success()
-        run: dotnet test --no-build --verbosity normal ${{ env.solution }}
+        run: dotnet test -c Release --no-build --verbosity normal ${{ env.solution }}
