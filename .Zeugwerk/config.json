@@ -1,0 +1,36 @@
+{
+  "fileversion": 1,
+  "solution": "TcHaxx.Snappy.sln",
+  "projects": [
+    {
+      "name": "snappy",
+      "plcs": [
+        {
+          "version": "0.0.1.0",
+          "name": "snappy",
+          "type": "Library",
+          "packages": [
+            {
+              "version": "0.3.0.0",
+              "name": "rplc",
+              "distributor-name": "tchaxx"
+            },
+            {
+              "version": "1.3.0.0",
+              "name": "TcUnit",
+              "distributor-name": "www.tcunit.org"
+            }
+          ],
+          "references": {
+            "*": [
+              "Tc2_Standard=*",
+              "Tc2_System=*",
+              "Tc3_JsonXml=*",
+              "Tc3_Module=*"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

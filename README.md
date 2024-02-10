@@ -1,3 +1,5 @@
+[![CI/CD](https://github.com/TcHaxx/snappy/actions/workflows/cicd.yml/badge.svg)](https://github.com/TcHaxx/snappy/actions/workflows/cicd.yml)
+---
 # snappy
 A *upcoming* Snapshot Testing framework for TwinCAT 3.
 
