@@ -15,7 +15,7 @@ on:
 
 jobs:
   ci-tchaxx-snappy-cli:
-    name: CI TcHaxx.Snappy.CLI
+    name: CI - TcHaxx.Snappy.CLI
     runs-on: ubuntu-latest
     env:
       solution: ./TcHaxx.Snappy.CLI.sln
