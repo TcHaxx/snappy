@@ -13,15 +13,18 @@ on:
 
   workflow_dispatch:
 
+env:
+  dotnet_versions: |
+                    6.0.x
+                    8.0.x
+
 jobs:
   ci-tchaxx-snappy-cli:
     name: CI - TcHaxx.Snappy.CLI
     runs-on: ubuntu-latest
     env:
       solution: ./TcHaxx.Snappy.CLI.sln
-      dotnet_versions: |
-                        6.0.x
-                        8.0.x
+
     steps:
       - uses: actions/checkout@v4
       - name: Setup dotnet
@@ -39,7 +42,7 @@ jobs:
   ci-tchaxx-snappy-tc:
     name: CI - TcHaxx.Snappy
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
       - name: Build TcHaxx.Snappy
@@ -54,3 +57,28 @@ jobs:
             path: |
               **/*.compiled-library
               **/*.library
+  
+  cd-tchaxx-snappy-cli:
+    needs: ci-tchaxx-snappy-cli
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    name: CD - TcHaxx.Snappy.CLI
+    runs-on: ubuntu-latest
+    env:
+      solution: ./TcHaxx.Snappy.CLI.sln
+      csproj: ./src/TcHaxx.Snappy.CLI/TcHaxx.Snappy.CLI.csproj
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.dotnet_versions }}
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.solution }}
+      - name: Build
+        run: dotnet build -c Release --no-restore ${{ env.solution }}
+      - name: Publish on version change
+        id: publish_nuget
+        uses: alirezanet/publish-nuget@v3.1.0
+        with:
+          PROJECT_FILE_PATH: ${{ env.csproj }}
+          NUGET_KEY: ${{ secrets.TCHAXX_NUGET_API_KEY }}
