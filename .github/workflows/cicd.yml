@@ -29,7 +29,7 @@ jobs:
         with:
           dotnet-version: ${{env.dotnet_versions}}
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ${{ env.solution }}
       - name: Build
         run: dotnet build --no-restore -c Release ${{ env.solution }}
       - name: Test
