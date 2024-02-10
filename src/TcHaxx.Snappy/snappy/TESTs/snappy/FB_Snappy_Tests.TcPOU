@@ -17,7 +17,7 @@ END_VAR
       <ST><![CDATA[TEST(sTestName);
 
 ShouldInitializeDefaultsSuccessfully();
-Debug();
+//Debug();
 TEST_FINISHED_NAMED(sTestName);]]></ST>
     </Implementation>
     <Method Name="Debug" Id="{e1697c70-17fa-4f58-ac00-58cd8276447b}">

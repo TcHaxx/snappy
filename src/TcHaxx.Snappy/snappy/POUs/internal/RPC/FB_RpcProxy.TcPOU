@@ -9,7 +9,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	fbRpcSnappyVerify		: FB_RPC_Dynamic;
-	sAmsNetID				: T_AmsNetID 			:= '10.1.44.157.1.1';//Param_TcHaxx_Snappy.cSnappyVerifyAmsNetID;
+	sAmsNetID				: T_AmsNetID 			:= Param_TcHaxx_Snappy.cSnappyVerifyAmsNetID;
 	nAmsPort				: T_AmsPort				:= Param_TcHaxx_Snappy.cSnappyVerifyPort;
 	sInstancePathLocalField	: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifyInstancePath;
 	sSymbolLocalField		: STRING				:= Param_TcHaxx_Snappy.cSnappyVerifySymbol;
