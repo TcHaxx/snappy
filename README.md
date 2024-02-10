@@ -37,7 +37,7 @@ dotnet tool uninstall -g TcHaxx.Snappy.CLI
 ``` 
 
 ### snappy.library
-Download latest releases, either `snappy.libary` and/or `snappy.compiled-library` and [install](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_plc_intro/4218300427.html).
+Download latest [releases](https://github.com/TcHaxx/snappy/releases), either `snappy.libary` and/or `snappy.compiled-library` and [install](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_plc_intro/4218300427.html).
 
 ## Usage
 Before any tests are being run, `TcHaxx.Snappy.CLI` hast to be started, prior.
