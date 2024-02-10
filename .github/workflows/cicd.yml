@@ -1,0 +1,34 @@
+name: CI/CD
+on:
+  push:
+    branches:
+        - main
+    paths:
+      - 'src/**'
+
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+jobs:
+  ci-tchaxx-snappy-cli:
+    name: CI TcHaxx.Snappy.CLI
+    runs-on: ubuntu-latest
+    env:
+      solution: .\TcHaxx.Snappy.CLI.sln
+      dotnet_versions: |
+                        6.0.x
+                        8.0.x
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{env.dotnet_versions}}
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release ${{ env.solution }}
+      - name: Test
+        if: success()
+        run: dotnet test --no-build --verbosity normal ${{ env.solution }}
