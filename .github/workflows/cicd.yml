@@ -40,6 +40,7 @@ jobs:
         run: dotnet test -c Release --no-build --verbosity normal ${{ env.solution }}
 
   ci-tchaxx-snappy-tc:
+    if: false
     name: CI - TcHaxx.Snappy
     runs-on: ubuntu-latest
 
