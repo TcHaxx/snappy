@@ -11,7 +11,7 @@ on:
     paths:
       - 'src/**'
 
-  wokflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   ci-tchaxx-snappy-cli:
