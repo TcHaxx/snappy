@@ -1,4 +1,5 @@
 [![CI/CD](https://github.com/TcHaxx/snappy/actions/workflows/cicd.yml/badge.svg)](https://github.com/TcHaxx/snappy/actions/workflows/cicd.yml)
+[![NuGet version (TcHaxx.Snappy.CLI)](https://img.shields.io/nuget/v/TcHaxx.Snappy.CLI.svg)](https://www.nuget.org/packages/TcHaxx.Snappy.CLI/)
 ---
 # snappy
 A *upcoming* Snapshot Testing framework for TwinCAT 3.
