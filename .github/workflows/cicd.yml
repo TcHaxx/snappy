@@ -18,7 +18,7 @@ jobs:
     name: CI TcHaxx.Snappy.CLI
     runs-on: ubuntu-latest
     env:
-      solution: .\TcHaxx.Snappy.CLI.sln
+      solution: ./TcHaxx.Snappy.CLI.sln
       dotnet_versions: |
                         6.0.x
                         8.0.x
