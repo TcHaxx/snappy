@@ -64,6 +64,8 @@ jobs:
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     name: CD - TcHaxx.Snappy.CLI
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       solution: ./TcHaxx.Snappy.CLI.sln
       csproj: ./src/TcHaxx.Snappy.CLI/TcHaxx.Snappy.CLI.csproj
