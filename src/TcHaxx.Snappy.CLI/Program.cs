@@ -34,7 +34,15 @@ catch (Exception ex)
 
 static IHost BuildHost(string[] args)
 {
-    var baseOptions = Parser.Default.ParseArguments<BaseOptions>(args);
+    var baseOptionsParser = new Parser(with =>
+    {
+        with.EnableDashDash = true;
+        with.AutoHelp = true;
+        with.AutoVersion = true;
+        with.CaseInsensitiveEnumValues = true;
+        with.IgnoreUnknownArguments = true;
+    });
+    var baseOptions = baseOptionsParser.ParseArguments<BaseOptions>(args);
 
     var logLevelSwitch = new LoggingLevelSwitch(baseOptions.Value.LogEventLevel);
     var host = new HostBuilder()

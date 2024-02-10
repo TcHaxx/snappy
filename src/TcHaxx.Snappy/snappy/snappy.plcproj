@@ -19,7 +19,7 @@
     <Company>TcHaxx</Company>
     <Released>false</Released>
     <Title>snappy</Title>
-    <ProjectVersion>0.0.1.0</ProjectVersion>
+    <ProjectVersion>0.0.2.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory xmlns="">
         <Id>{9c7e50a7-dead-beef-897b-4cdbc169222d}</Id>
@@ -34,6 +34,16 @@
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
     <CompilerDefines>TCUNIT</CompilerDefines>
     <DefaultNamespace>tchaxx</DefaultNamespace>
+    <DeploymentEvents>
+      <Events>
+        <Event>
+          <CommandType>Execute</CommandType>
+          <DeploymentType>ActivateConfiguration</DeploymentType>
+          <Command1>cmd /c start TcHaxx.Snappy.CLI verify -l Debug</Command1>
+          <Command2 />
+        </Event>
+      </Events>
+    </DeploymentEvents>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_HESULT_AdsErr.TcTLEO">
