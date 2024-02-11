@@ -3,7 +3,7 @@
   "solution": "TcHaxx.Snappy.sln",
   "projects": [
     {
-      "name": "snappy",
+      "name": "TcHaxx.Snappy",
       "plcs": [
         {
           "version": "0.0.4.0",
