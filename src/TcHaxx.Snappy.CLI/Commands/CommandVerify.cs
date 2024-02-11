@@ -26,8 +26,9 @@ internal class CommandVerify : ICommandVerify
             service.Options = options;
         }
 
+        _Logger?.Information("Creating AdsSymbolicServer...");
         using var symbolicServer = _SymbolicServerFactory.CreateSymbolicServer(options.AdsPort, nameof(CommandVerify));
-
+        _Logger?.Information("Starting AdsSymbolicServer...");
         var adsRetVal = await symbolicServer.ConnectServerAndWaitAsync(new CancellationToken());
 
         return 0;

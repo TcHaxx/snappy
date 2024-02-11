@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System.Reflection;
+using CommandLine;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -7,12 +8,13 @@ using TcHaxx.Snappy.CLI;
 using TcHaxx.Snappy.CLI.Commands;
 using TcHaxx.Snappy.CLI.Logging;
 using TcHaxx.Snappy.Common.RPC;
-using TcHaxx.Snappy.Common.Verify;
 using TcHaxx.Snappy.TcADS;
 using TcHaxx.Snappy.Verifier;
 
 try
 {
+    Console.WriteLine(Helper.GetApplicationHeader(Assembly.GetExecutingAssembly()));
+
     using var host = BuildHost(args);
 
     var logger = host.Services.GetService<ILogger>();

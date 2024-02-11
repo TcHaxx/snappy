@@ -9,11 +9,13 @@ namespace TcHaxx.Snappy.TcADS;
 internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
 {
     private readonly ISymbolFactory _SymbolFactory;
+    private readonly ILogger? _Logger;
 
     internal SymbolicServer(ushort port, string portName, ISymbolFactory symbolFactory, ILogger? logger)
         : base(port, portName, logger)
     {
         _SymbolFactory = symbolFactory;
+        _Logger = logger;
     }
 
     /// <inheritdoc cref="AdsServer.ConnectServerAndWaitAsync(CancellationToken)"/>
@@ -50,8 +52,11 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
     /// </summary>
     protected override void OnConnected()
     {
+        _Logger?.LogInformation("Adding symbols ...");
         _SymbolFactory.AddSymbols(base.symbolFactory);
+        _Logger?.LogInformation("done.");
         base.OnConnected();
+        _Logger?.LogInformation("Waiting for RPC requests...");
     }
 
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
@@ -60,8 +65,10 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
         if (iDataType is null)
         {
             returnValue = null;
+            _Logger?.LogError("{OnRpcInvoke}: {IDataType} is null", nameof(OnRpcInvoke), nameof(IDataType));
             return AdsErrorCode.DeviceInvalidContext;
         }
+        _Logger?.LogInformation("{OnRpcInvoke}: Invoking method {IRpcMethod} of {IDataTypeFullName}", nameof(OnRpcInvoke), method, iDataType.FullName);
         return _SymbolFactory.InvokeRpcMethod(iDataType, values, out returnValue);
     }
 }

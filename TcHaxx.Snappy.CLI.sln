@@ -30,6 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\cicd.yml = .github\workflows\cicd.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Zeugwerk", ".Zeugwerk", "{13BFAF66-25FF-4F77-B648-CAB9A16951C8}"
+	ProjectSection(SolutionItems) = preProject
+		.Zeugwerk\config.json = .Zeugwerk\config.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +76,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C51D268A-94C5-4264-9D30-9A2753B9C872} = {9A6AE3E0-A679-453E-A11A-9DEC17B6B948}
 		{8F2C7052-0F34-4F1F-B9A5-50D5DC2AD989} = {C51D268A-94C5-4264-9D30-9A2753B9C872}
+		{13BFAF66-25FF-4F77-B648-CAB9A16951C8} = {9A6AE3E0-A679-453E-A11A-9DEC17B6B948}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5ABE814F-A307-4743-959F-809CDC419600}

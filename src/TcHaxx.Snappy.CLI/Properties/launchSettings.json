@@ -2,7 +2,7 @@
   "profiles": {
     "TcHaxx.Snappy.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "verify -l Debug -d D:\\densogiaichned\\snappy\\examples\\examples\\.snappy-verified"
+      "commandLineArgs": "verify -d D:\\densogiaichned\\snappy\\examples\\examples\\.snappy-verified"
     }
   }
 }
