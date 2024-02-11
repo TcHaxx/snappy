@@ -40,7 +40,7 @@ VAR_OUTPUT
 END_VAR
 
 VAR
-	stAdsStatus	: TcHaxx.ST_AdsStatus;
+	stAdsStatus	: TcHaxx_rplc.ST_AdsStatus;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetVerificationResult := S_PENDING;
@@ -88,7 +88,7 @@ VAR_INPUT CONSTANT
 END_VAR
 VAR
 	hr			: HRESULT;
-	stAdsStatus	: TcHaxx.ST_AdsStatus;
+	stAdsStatus	: TcHaxx_rplc.ST_AdsStatus;
 	
 	
 	sTestSuiteName : STRING(Param_TcHaxx_Snappy.cSnappyVerificationTestSuiteLength) := 'ATestSuiteName';

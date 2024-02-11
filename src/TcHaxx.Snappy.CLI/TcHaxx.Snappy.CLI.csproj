@@ -15,7 +15,7 @@
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
     <Copyright>Copyright (c) 2024 densogiaichned</Copyright>
     <Title>TwinCAT Snapshot Testing framework</Title>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackAsTool>True</PackAsTool>

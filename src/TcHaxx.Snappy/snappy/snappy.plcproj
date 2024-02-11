@@ -19,7 +19,7 @@
     <Company>TcHaxx</Company>
     <Released>false</Released>
     <Title>snappy</Title>
-    <ProjectVersion>0.0.2.0</ProjectVersion>
+    <ProjectVersion>0.0.3.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory xmlns="">
         <Id>{9c7e50a7-dead-beef-897b-4cdbc169222d}</Id>
@@ -33,13 +33,13 @@
     <Author>densogiaichned</Author>
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
     <CompilerDefines>TCUNIT</CompilerDefines>
-    <DefaultNamespace>tchaxx</DefaultNamespace>
+    <DefaultNamespace>TcHaxx_Snappy</DefaultNamespace>
     <DeploymentEvents>
       <Events>
         <Event>
-          <CommandType>Execute</CommandType>
+          <CommandType>Copy</CommandType>
           <DeploymentType>ActivateConfiguration</DeploymentType>
-          <Command1>cmd /c start TcHaxx.Snappy.CLI verify -l Debug</Command1>
+          <Command1 />
           <Command2 />
         </Event>
       </Events>
@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="POUs\FB_Snappy.TcPOU">
       <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="POUs\Helper\FAILED_AND_NOT_PENDING.TcPOU">
       <SubType>Code</SubType>
@@ -160,14 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="rplc">
-      <DefaultResolution>rplc, * (tchaxx)</DefaultResolution>
-      <Namespace>TcHaxx</Namespace>
-      <Parameters>
-        <Parameter ListName="PARAM_ARGS" xmlns="">
-          <Key>CMAXARGSBUFFER</Key>
-          <Value>65535</Value>
-        </Parameter>
-      </Parameters>
+      <DefaultResolution>rplc, * (TcHaxx)</DefaultResolution>
+      <Namespace>TcHaxx_rplc</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -195,11 +190,6 @@
     <None Include="snappy.tmc">
       <SubType>Content</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PlaceholderResolution Include="rplc">
-      <Resolution>rplc, * (tchaxx)</Resolution>
-    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

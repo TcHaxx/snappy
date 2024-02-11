@@ -6,6 +6,6 @@ namespace TcHaxx.Snappy.Common.Verify;
 public struct VerificationResult
 {
     public int HResult;
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constants.DEFAULT_STRING_PARAMETER_LENGTH)]
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constants.DEFAULT_VERIFICATION_RESULT_LENGTH)]
     public string Diff;
 }
