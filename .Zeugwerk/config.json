@@ -6,12 +6,12 @@
       "name": "snappy",
       "plcs": [
         {
-          "version": "0.0.1.0",
+          "version": "0.0.3.0",
           "name": "snappy",
           "type": "Library",
           "packages": [
             {
-              "version": "0.3.0.0",
+              "version": "0.3.2.0",
               "name": "rplc",
               "distributor-name": "tchaxx"
             },
