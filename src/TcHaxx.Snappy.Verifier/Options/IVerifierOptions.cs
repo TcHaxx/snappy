@@ -11,4 +11,9 @@ public interface IVerifierOptions
     /// Compact diff output, e.g. for TcUnit where max. ADS log string = 255.
     /// </summary>
     public bool CompactDiff { get; init; }
+
+    /// <summary>
+    /// Floating point precision for REAL/LREAL.
+    /// </summary>
+    public ushort FloatingPointPrecision { get; init; }
 }

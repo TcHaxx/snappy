@@ -65,6 +65,12 @@
     <PlaceholderReference Include="snappy">
       <DefaultResolution>snappy, * (TcHaxx)</DefaultResolution>
       <Namespace>TcHaxx_Snappy</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM_TCHAXX_SNAPPY">
+          <Key>CSNAPPYVERIFYAMSNETID</Key>
+          <Value>'10.1.44.157.1.1'</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>

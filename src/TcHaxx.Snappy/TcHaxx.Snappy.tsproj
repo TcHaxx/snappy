@@ -95,10 +95,6 @@
 					</Variant>
 					<Variant>
 						<Name>LIB</Name>
-						<Disable>0</Disable>
-						<Defines></Defines>
-					</Variant>
-					<Variant>
 						<Name>UNIT_TEST</Name>
 						<Disable>0</Disable>
 						<Defines/>

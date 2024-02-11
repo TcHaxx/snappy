@@ -3,6 +3,7 @@ using Serilog;
 using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.Common.RPC.Attributes;
 using TcHaxx.Snappy.Common.Verify;
+using TcHaxx.Snappy.Verifier.JsonConverter;
 using TcHaxx.Snappy.Verifier.Options;
 
 namespace TcHaxx.Snappy.Verifier;
@@ -40,6 +41,10 @@ public class VerifyService : IVerifyService
             settings.UseDirectory(directory);
             settings.DisableRequireUniquePrefix();
             settings.UseDiffPlex(VerifyTests.DiffPlex.OutputType.Compact);
+            settings.AddExtraSettings(_ =>
+            {
+                _.Converters.Add(new DoubleConverter(Options.FloatingPointPrecision));
+            });
             var iv = new InnerVerifier(Assembly.GetExecutingAssembly().Location, settings, testSuiteName, testName, null, new PathInfo());
             var result = iv.VerifyJson(jsonToVerify).Result;
 

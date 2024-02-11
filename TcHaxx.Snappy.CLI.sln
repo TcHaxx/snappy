@@ -17,9 +17,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{9A6AE3E0-A67
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.CLI.Installer", "src\TcHaxx.Snappy.CLI.Installer\TcHaxx.Snappy.CLI.Installer.csproj", "{5E60BFD2-A67C-482B-8446-950D3C9BA36A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.Common", "src\TcHaxx.Snappy.Common\TcHaxx.Snappy.Common.csproj", "{E544FDBB-BA02-4661-9BCB-C5791613964D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.Common", "src\TcHaxx.Snappy.Common\TcHaxx.Snappy.Common.csproj", "{E544FDBB-BA02-4661-9BCB-C5791613964D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.Verifier", "src\TcHaxx.Snappy.Verifier\TcHaxx.Snappy.Verifier.csproj", "{A364EF16-430E-4DC5-80D7-31B7C57AE641}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcHaxx.Snappy.Verifier", "src\TcHaxx.Snappy.Verifier\TcHaxx.Snappy.Verifier.csproj", "{A364EF16-430E-4DC5-80D7-31B7C57AE641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcHaxx.Snappy.Verifier.Tests", "src\TcHaxx.Snappy.Verifier.Tests\TcHaxx.Snappy.Verifier.Tests.csproj", "{923C90E9-E97F-4BB5-B971-401089649370}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{C51D268A-94C5-4264-9D30-9A2753B9C872}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8F2C7052-0F34-4F1F-B9A5-50D5DC2AD989}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\cicd.yml = .github\workflows\cicd.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +60,17 @@ Global
 		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A364EF16-430E-4DC5-80D7-31B7C57AE641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{923C90E9-E97F-4BB5-B971-401089649370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{923C90E9-E97F-4BB5-B971-401089649370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{923C90E9-E97F-4BB5-B971-401089649370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{923C90E9-E97F-4BB5-B971-401089649370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C51D268A-94C5-4264-9D30-9A2753B9C872} = {9A6AE3E0-A679-453E-A11A-9DEC17B6B948}
+		{8F2C7052-0F34-4F1F-B9A5-50D5DC2AD989} = {C51D268A-94C5-4264-9D30-9A2753B9C872}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5ABE814F-A307-4743-959F-809CDC419600}

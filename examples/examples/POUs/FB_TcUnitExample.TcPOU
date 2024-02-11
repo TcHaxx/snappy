@@ -24,7 +24,7 @@ hr := fbTcUnitAdapter.Verify(anyArg:= stActual);
 
 IF NOT PENDING(hr) THEN
 	TEST_FINISHED_NAMED('Test some stuff with TcHaxx.Snappy');
-END_IF;]]></ST>
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

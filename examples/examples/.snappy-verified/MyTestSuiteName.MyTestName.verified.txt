@@ -1,7 +1,7 @@
 ﻿{
   sString: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy,
   nNumber: 3735928559,
-  fFloat: -1.2345678,
+  fFloat: -1.23457,
   aBuffer: [
     1,
     2,

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TcHaxx.Snappy.Verifier;
+﻿namespace TcHaxx.Snappy.Verifier;
 
 public static class Constants
 {
@@ -17,4 +11,9 @@ public static class Constants
     /// Diff output as compact as possible.
     /// </summary>
     public const bool DEFAULT_OPTION_COMPACT_DIFF = true;
+
+    /// <summary>
+    /// Default floating point precision for REAL/LREAL.
+    /// </summary>
+    public const ushort DEFAULT_OPTION_FP_PRECISION = 5;
 }

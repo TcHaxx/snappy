@@ -9,13 +9,13 @@
     <LangVersion>Latest</LangVersion>
     <RepositoryUrl>https://github.com/TcHaxx/snappy</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>snapshot-testing; unit-test; twincat</PackageTags>
+    <PackageTags>snapshot-testing; test-framework; unit-test; twincat; beckhoff;</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/TcHaxx/snappy</PackageProjectUrl>
     <Description>A Snapshot Testing framework for TwinCAT 3</Description>
     <Copyright>Copyright (c) 2024 densogiaichned</Copyright>
     <Title>TwinCAT Snapshot Testing framework</Title>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackAsTool>True</PackAsTool>
