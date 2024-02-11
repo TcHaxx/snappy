@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_TcUnitWithoutSnappyExample" Id="{43b4abf0-a389-4bd6-9155-50172d18c287}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TcUnitWithoutSnappyExample EXTENDS FB_TestSuite
+VAR	
+	stActual		: ST_DemoDataType;
+	stActual2		: ST_DemoDataType;
+END_VAR
+VAR CONSTANT
+	cStringExpected : STRING := 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy';
+	cBufferExpected : ARRAY[0..15] OF BYTE := [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+TEST('Test some stuff without TcHaxx.Snappy');
+
+// ARRANGE
+
+// ACT
+stActual := F_CreateDemoData();
+
+// ASSERT
+AssertEquals_STRING(Expected:= cStringExpected,
+					Actual:= stActual.sString,
+					Message:= 'Field sString differs.');
+AssertEquals_UDINT(Expected:= 16#DEADBEEF,
+					Actual:= stActual.nNumber,
+					Message:= 'Field nNumber differs.');
+AssertEquals_REAL(Expected:= -1.23456789,
+					Actual:= stActual.fFloat,
+					Delta:= 0.00001,
+					Message:= 'Field fFloat differs.');
+AssertArrayEquals_BYTE(Expecteds:= cBufferExpected,
+						Actuals:= stActual.aBuffer,
+						Message:= 'Field aBuffer differs.');
+stActual2 := stActual;						
+stActual2.aBuffer[3]:= 55;
+AssertEquals(stActual2, stActual, 'Oh snap!');						
+TEST_FINISHED_NAMED('Test some stuff without TcHaxx.Snappy');]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

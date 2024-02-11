@@ -5,6 +5,7 @@
 PROGRAM PRG_TcUnit
 VAR
 	fbTcunitExample : FB_TcUnitExample;
+	fbNoSnappy		: FB_TcUnitWithoutSnappyExample;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -5,7 +5,7 @@
 			<Variant>
 				<Name>EXAMPLES</Name>
 				<Disable>0</Disable>
-				<Defines/>
+				<Defines></Defines>
 			</Variant>
 			<Variant>
 				<Name>LIB</Name>
@@ -14,7 +14,7 @@
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502080" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="..\..\examples\examples\examples.tmc" TmcHash="{E2F6A659-B1F9-2F24-31B0-69C562451188}">
+		<Instance Id="#x08502080" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="..\..\examples\examples\examples.tmc" TmcHash="{48A3FC13-FA74-F622-EB16-F0E26A79BE42}">
 			<Name>examples Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Contexts>

@@ -13,6 +13,37 @@ During the assertion phase, Snappy performs the following steps:
 This discrepancy could indicate either an unexpected change or the need to update the reference snapshot to reflect the new result
 4. The validated files can the be added to [source control](#source-control-received-and-verified-files).
 
+
+## Example using `TcUnit`
+```
+FUNCTION_BLOCK FB_TcUnitExample EXTENDS FB_TestSuite
+VAR
+	hr				: HRESULT;		
+	fbTcUnitAdapter : FB_TcUnitAdapter;
+	
+	stActual		: ST_DemoDataType;
+	{attribute 'analysis' := '-33'}
+	stResult		: ST_VerificationResult;
+END_VAR
+```
+```
+TEST('Test some stuff with TcHaxx.Snappy');
+
+// ARRANGE
+
+// ACT
+stActual := F_CreateDemoData();
+
+// ASSERT
+hr := fbTcUnitAdapter.Verify(anyArg:= stActual);
+
+IF NOT PENDING(hr) THEN
+	TEST_FINISHED_NAMED('Test some stuff with TcHaxx.Snappy');
+END_IF;
+```
+
+> Find more examples in the `examples` PLC project.
+
 ## Install
 
 Snappy consists of two parts:

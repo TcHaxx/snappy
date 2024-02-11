@@ -95,12 +95,16 @@
 					</Variant>
 					<Variant>
 						<Name>LIB</Name>
+						<Disable>0</Disable>
+						<Defines></Defines>
+					</Variant>
+					<Variant>
 						<Name>UNIT_TEST</Name>
 						<Disable>0</Disable>
 						<Defines/>
 					</Variant>
 				</ProjectVariant>
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{934AA734-D6F0-B942-FF86-A5DF414A8682}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{724D2834-43F6-6772-1E35-993D38D07869}">
 					<Name>snappy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

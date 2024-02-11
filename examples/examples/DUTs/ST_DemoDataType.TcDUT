@@ -5,7 +5,7 @@
 STRUCT
 	sString	: STRING;
 	nNumber : UDINT;
-	nFloat	: REAL;
+	fFloat	: REAL;
 	aBuffer : ARRAY[0..15] OF BYTE;
 END_STRUCT
 END_TYPE

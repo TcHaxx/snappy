@@ -9,7 +9,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[F_CreateDemoData.nFloat := -1.23456789;
+      <ST><![CDATA[F_CreateDemoData.fFloat := -1.23456789;
 F_CreateDemoData.nNumber := 16#DEADBEEF;
 F_CreateDemoData.sString := 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy';
 FOR i:= 0 TO SIZEOF(F_CreateDemoData.aBuffer) DO
