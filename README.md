@@ -20,6 +20,11 @@ Snappy consists of two parts:
   > See [How to manage .NET tools](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools)
 * and the TwinCAT library `snappy`.
 
+### Prerequisites
+
+* [rplc](https://github.com/TcHaxx/rplc) library is installed.
+* [Verify - Supported Tool](https://github.com/VerifyTests/DiffEngine?tab=readme-ov-file#supported-tools) is installed.
+
 ### TcHaxx.Snappy.CLI
 
 To install the CLI tool execute following command:
@@ -27,7 +32,7 @@ To install the CLI tool execute following command:
 dotnet tool install -g TcHaxx.Snappy.CLI
 ```
 #### Update
-To update to the latest verson from [Nuget](https://www.nuget.org/packages/TcHaxx.Snappy.CLI/), run:
+To update to the latest version from [Nuget](https://www.nuget.org/packages/TcHaxx.Snappy.CLI/), run:
 ```sh
 dotnet tool update -g  TcHaxx.Snappy.CLI
 ```
@@ -37,7 +42,7 @@ dotnet tool uninstall -g TcHaxx.Snappy.CLI
 ``` 
 
 ### snappy.library
-Download latest [releases](https://github.com/TcHaxx/snappy/releases), either `snappy.libary` and/or `snappy.compiled-library` and [install](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_plc_intro/4218300427.html).
+Download latest [releases](https://github.com/TcHaxx/snappy/releases), either `snappy.library` and/or `snappy.compiled-library` and [install](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_plc_intro/4218300427.html).
 
 ## Usage
 Before any tests are being run, `TcHaxx.Snappy.CLI` hast to be started, prior.
