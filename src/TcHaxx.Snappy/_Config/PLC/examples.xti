@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CNestedPlcProjDef" TcProjectVariant="LIB">
+	<Project Disabled="true" GUID="{AC2D361F-220F-4749-A24C-F7B161E323DC}" Name="examples" PrjFilePath="..\..\..\..\examples\examples\examples.plcproj" TmcFilePath="..\..\..\..\examples\examples\examples.tmc" ReloadTmc="true" AmsPort="853" FileArchiveSettings="#x000e" SymbolicMapping="true">
+		<ProjectVariant PvUseDisable="true" PvUseDefine="true">
+			<Variant>
+				<Name>EXAMPLES</Name>
+				<Disable>0</Disable>
+				<Defines></Defines>
+			</Variant>
+			<Variant>
+				<Name>LIB</Name>
+				<Name>UNIT_TEST</Name>
+				<Disable>1</Disable>
+				<Defines></Defines>
+			</Variant>
+		</ProjectVariant>
+		<Instance Id="#x08502080" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{E2F6A659-B1F9-2F24-31B0-69C562451188}">
+			<Name>examples Instance</Name>
+			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Contexts>
+				<Context>
+					<Id>0</Id>
+					<Name>PlcTaskExamples</Name>
+					<ManualConfig>
+						<OTCID>#x02010050</OTCID>
+					</ManualConfig>
+					<Priority>21</Priority>
+					<CycleTime>10000000</CycleTime>
+				</Context>
+			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="21" OTCID="#x08502081"/>
+			</TaskPouOids>
+		</Instance>
+	</Project>
+</TcSmItem>

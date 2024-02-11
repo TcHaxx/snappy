@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PRG_TcUnit" Id="{bc2d77bc-f8be-4d06-b9a5-5cd2e5ed9256}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'analysis' := '-33'}
+PROGRAM PRG_TcUnit
+VAR
+	fbTcunitExample : FB_TcUnitExample;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+TcUnit.RUN();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

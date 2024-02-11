@@ -39,13 +39,14 @@
 					<Name>PlcTask</Name>
 					<ProjectVariant PvUseDisable="true" PvUseParameter="true">
 						<Variant>
-							<Name>LIB</Name>
-							<Disable>0</Disable>
+							<Name>EXAMPLES</Name>
+							<Name>UNIT_TEST</Name>
+							<Disable>1</Disable>
 							<Parameters Priority="20" CycleTime="100000"/>
 						</Variant>
 						<Variant>
-							<Name>UNIT_TEST</Name>
-							<Disable>1</Disable>
+							<Name>LIB</Name>
+							<Disable>0</Disable>
 							<Parameters Priority="20" CycleTime="100000"/>
 						</Variant>
 					</ProjectVariant>
@@ -54,6 +55,7 @@
 					<Name>PlcTaskUnitTest</Name>
 					<ProjectVariant PvUseDisable="true" PvUseParameter="true">
 						<Variant>
+							<Name>EXAMPLES</Name>
 							<Name>LIB</Name>
 							<Disable>1</Disable>
 							<Parameters Priority="1" CycleTime="100000"/>
@@ -62,6 +64,22 @@
 							<Name>UNIT_TEST</Name>
 							<Disable>0</Disable>
 							<Parameters Priority="1" CycleTime="100000"/>
+						</Variant>
+					</ProjectVariant>
+				</Task>
+				<Task Id="5" Disabled="true" Priority="21" CycleTime="100000" AmsPort="352" AdtTasks="true">
+					<Name>PlcTaskExamples</Name>
+					<ProjectVariant PvUseDisable="true" PvUseParameter="true">
+						<Variant>
+							<Name>EXAMPLES</Name>
+							<Disable>0</Disable>
+							<Parameters Priority="21" CycleTime="100000"/>
+						</Variant>
+						<Variant>
+							<Name>LIB</Name>
+							<Name>UNIT_TEST</Name>
+							<Disable>1</Disable>
+							<Parameters Priority="21" CycleTime="100000"/>
 						</Variant>
 					</ProjectVariant>
 				</Task>
@@ -71,17 +89,18 @@
 			<Project GUID="{A888BB16-E4EA-40CD-ABDE-EC95D73B8395}" Name="snappy" PrjFilePath="snappy\snappy.plcproj" TmcFilePath="snappy\snappy.tmc" EnableImplicitDefines="true" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
 				<ProjectVariant PvUseDisable="true" PvUseDefine="true">
 					<Variant>
-						<Name>LIB</Name>
-						<Disable>0</Disable>
+						<Name>EXAMPLES</Name>
+						<Disable>1</Disable>
 						<Defines/>
 					</Variant>
 					<Variant>
+						<Name>LIB</Name>
 						<Name>UNIT_TEST</Name>
 						<Disable>0</Disable>
 						<Defines></Defines>
 					</Variant>
 				</ProjectVariant>
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{171809E6-AC6D-5676-0B43-94EAFE5565AE}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{934AA734-D6F0-B942-FF86-A5DF414A8682}">
 					<Name>snappy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
@@ -110,6 +129,7 @@
 					</TaskPouOids>
 				</Instance>
 			</Project>
+			<Project File="examples.xti"/>
 		</Plc>
 		<Variants SpecificLocalBootFolder="true">
 			<Variant Save="true">
@@ -117,6 +137,9 @@
 			</Variant>
 			<Variant>
 				<Name>UNIT_TEST</Name>
+			</Variant>
+			<Variant>
+				<Name>EXAMPLES</Name>
 			</Variant>
 		</Variants>
 	</Project>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PRG_Vanilla" Id="{1967bf09-dde8-4999-bd21-531da1370ddc}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_Vanilla
+VAR
+	fbExample	: FB_Snappy;
+		
+	eState		: (CONFIG, VERIFY, RESULT) := CONFIG;
+	bVerify		: BOOL := FALSE;
+	bBuildData  : BOOL := TRUE;
+	hr			: HRESULT;
+	stDemoDT	: ST_DemoDataType;
+	stResult	: ST_VerificationResult;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bBuildData THEN
+	bBuildData := FALSE;
+	stDemoDT := F_CreateDemoData();
+END_IF
+
+CASE eState OF
+	CONFIG:
+		// Configure snappy with defaults:
+		// - default JSON serializer (TC3_JsonXml)
+		// - default RPC proxy (TcHaxx.rplc)
+		// - no test framework, provide testsuite and test name
+		hr := fbExample.Configure().UseDefaults().WithoutTestFramework(sTestSuiteName:= 'MyTestSuiteName', sTestName:= 'MyTestName').Build();
+		IF SUCCEEDED(hr) THEN
+			eState := VERIFY;					
+		END_IF
+	VERIFY:		
+		hr := fbExample.Verify(anyArg:= stDemoDT);
+		IF NOT PENDING(hr) THEN
+			eState := RESULT;
+			bVerify := TRUE;
+			stResult := fbExample.stVerificationResult;
+		END_IF
+	RESULT:
+		IF NOT bVerify THEN
+			eState := CONFIG;
+		END_IF	
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

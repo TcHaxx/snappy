@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_TcUnitExample" Id="{2328aed7-3c8d-44a5-a37e-d87d39d21ab0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TcUnitExample EXTENDS FB_TestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	hr				: HRESULT;		
+	fbTcUnitAdapter : FB_TcUnitAdapter;
+	
+	stDemoDT		: ST_DemoDataType;
+	{attribute 'analysis' := '-33'}
+	stResult		: ST_VerificationResult;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+TEST('Test some stuff');
+
+// ARRANGE
+stDemoDT := F_CreateDemoData();
+
+// ACT
+
+// ASSERT
+hr := fbTcUnitAdapter.Verify(anyArg:= stDemoDT);
+
+IF NOT PENDING(hr) THEN
+	TEST_FINISHED_NAMED('Test some stuff');
+END_IF;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
