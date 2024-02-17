@@ -8,14 +8,14 @@ namespace TcHaxx.Snappy.TcADS;
 
 internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
 {
-    private readonly ISymbolFactory _SymbolFactory;
-    private readonly ILogger? _Logger;
+    private readonly ISymbolFactory _symbolFactory;
+    private readonly ILogger? _logger;
 
     internal SymbolicServer(ushort port, string portName, ISymbolFactory symbolFactory, ILogger? logger)
         : base(port, portName, logger)
     {
-        _SymbolFactory = symbolFactory;
-        _Logger = logger;
+        _symbolFactory = symbolFactory;
+        _logger = logger;
     }
 
     /// <inheritdoc cref="AdsServer.ConnectServerAndWaitAsync(CancellationToken)"/>
@@ -52,11 +52,11 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
     /// </summary>
     protected override void OnConnected()
     {
-        _Logger?.LogInformation("Adding symbols ...");
-        _SymbolFactory.AddSymbols(base.symbolFactory);
-        _Logger?.LogInformation("done.");
+        _logger?.LogInformation("Adding symbols ...");
+        _symbolFactory.AddSymbols(symbolFactory);
+        _logger?.LogInformation("done.");
         base.OnConnected();
-        _Logger?.LogInformation("Waiting for RPC requests...");
+        _logger?.LogInformation("Waiting for RPC requests...");
     }
 
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
@@ -65,10 +65,10 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
         if (iDataType is null)
         {
             returnValue = null;
-            _Logger?.LogError("{OnRpcInvoke}: {IDataType} is null", nameof(OnRpcInvoke), nameof(IDataType));
+            _logger?.LogError("{OnRpcInvoke}: {IDataType} is null", nameof(OnRpcInvoke), nameof(IDataType));
             return AdsErrorCode.DeviceInvalidContext;
         }
-        _Logger?.LogInformation("{OnRpcInvoke}: Invoking method {IRpcMethod} of {IDataTypeFullName}", nameof(OnRpcInvoke), method, iDataType.FullName);
-        return _SymbolFactory.InvokeRpcMethod(iDataType, values, out returnValue);
+        _logger?.LogInformation("{OnRpcInvoke}: Invoking method {IRpcMethod} of {IDataTypeFullName}", nameof(OnRpcInvoke), method, iDataType.FullName);
+        return _symbolFactory.InvokeRpcMethod(iDataType, values, out returnValue);
     }
 }

@@ -4,18 +4,13 @@ using TcHaxx.Snappy.TcADS.Symbols;
 
 namespace TcHaxx.Snappy.TcADS;
 
-public class SymbolicServerFactory : ISymbolicServerFactory
+public class SymbolicServerFactory(IRpcMethodDescriptor rpcMethodDescriptor, ILogger? logger) : ISymbolicServerFactory
 {
-    private readonly IRpcMethodDescriptor _RpcMethodDescriptor;
-    private readonly ILogger? _Logger;
+    private readonly IRpcMethodDescriptor _rpcMethodDescriptor = rpcMethodDescriptor;
+    private readonly ILogger? _logger = logger;
 
-    public SymbolicServerFactory(IRpcMethodDescriptor rpcMethodDescriptor, ILogger? logger)
-    {
-        _RpcMethodDescriptor = rpcMethodDescriptor;
-        _Logger = logger;
-    }
     public ISymbolicServer CreateSymbolicServer(ushort port, string portName)
     {
-        return new SymbolicServer(port, portName, new SymbolFactory(_RpcMethodDescriptor, _Logger), _Logger);
+        return new SymbolicServer(port, portName, new SymbolFactory(_rpcMethodDescriptor, _logger), _logger);
     }
 }

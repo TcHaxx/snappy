@@ -39,8 +39,7 @@ internal static class Helper
         var copyright = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright ?? Constants.DEFAULT_COPYRIGHT;
 
         var repoUrl = assembly.GetCustomAttributes<AssemblyMetadataAttribute>()
-                                .Where(x => x.Key.Equals("RepositoryUrl"))
-                                .FirstOrDefault()?.Value ?? string.Empty;
+                              .FirstOrDefault(x => x.Key.Equals("RepositoryUrl"))?.Value ?? string.Empty;
 
         var delimiter = new string(Constants.CLI_DELIMITER, Console.BufferWidth);
         sb.Append($"{delimiter}\n");

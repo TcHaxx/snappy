@@ -8,8 +8,9 @@ namespace TcHaxx.Snappy.Common.RPC.Attributes;
 [AttributeUsage(AttributeTargets.Parameter)]
 public class StringAttribute : Attribute
 {
-    public uint Length;
-    public StringEncoding Encoding;
+    public StringEncoding Encoding { get; private set; }
+
+    public uint Length { get; private set; }
 
     public StringAttribute(uint length, StringEncoding stringEncoding = StringEncoding.UTF8)
     {
@@ -30,6 +31,7 @@ public class StringAttribute : Attribute
         {
             StringEncoding.UNICODE => System.Text.Encoding.Unicode,
             StringEncoding.ASCII => System.Text.Encoding.ASCII,
+            StringEncoding.UTF8 => System.Text.Encoding.UTF8,
             _ => System.Text.Encoding.UTF8
         };
     }

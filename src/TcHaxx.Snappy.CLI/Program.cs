@@ -17,14 +17,12 @@ try
 
     using var host = BuildHost(args);
 
-    var logger = host.Services.GetService<ILogger>();
-
     return await Parser.Default.ParseArguments<InstallOptions, VerifyOptions>(args)
       .MapResult(
         async (InstallOptions options) => await host.Services.GetService<ICommandInstall>()!.RunAndReturnExitCode(options),
         async (VerifyOptions options) => await host.Services.GetService<ICommandVerify>()!.RunAndReturnExitCode(options),
         errs => Task.FromResult((int)ExitCodes.E_CLIOPTIONS)
-        ); ;
+        );
 }
 catch (Exception ex)
 {

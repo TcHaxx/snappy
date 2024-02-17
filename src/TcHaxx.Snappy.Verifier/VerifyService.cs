@@ -10,12 +10,12 @@ namespace TcHaxx.Snappy.Verifier;
 
 public class VerifyService : IVerifyService
 {
-    private readonly ILogger _Logger;
+    private readonly ILogger _logger;
 
     public VerifyService(IRpcMethodDescriptor rpcMethodDescriptor, ILogger logger)
     {
         rpcMethodDescriptor.Register(this);
-        _Logger = logger;
+        _logger = logger;
         Options = new DefaultOptions();
     }
 
@@ -46,13 +46,13 @@ public class VerifyService : IVerifyService
                 _.Converters.Add(new DoubleConverter(Options.FloatingPointPrecision));
             });
             var iv = new InnerVerifier(Assembly.GetExecutingAssembly().Location, settings, testSuiteName, testName, null, new PathInfo());
-            var result = iv.VerifyJson(jsonToVerify).Result;
+            _ = iv.VerifyJson(jsonToVerify).Result;
 
             return new VerificationResult { Diff = string.Empty, HResult = 0 };
         }
         catch (Exception ex)
         {
-            _Logger?.Fatal(ex, "Exception: {ExceptionMessage}", ex.Message);
+            _logger?.Fatal(ex, "Exception: {ExceptionMessage}", ex.Message);
 
             var diff = ex.InnerException?.Message ?? ex.Message;
             return Options.CompactDiff ? new VerificationResult { Diff = diff, HResult = ex.HResult }.ToCompactDiff() : new VerificationResult { Diff = diff, HResult = ex.HResult };

@@ -2,7 +2,7 @@
 
 namespace TcHaxx.Snappy.Common;
 
-public class Constants
+public static class Constants
 {
     public const int DEFAULT_STRING_PARAMETER_LENGTH = 128;
     public const int DEFAULT_TEST_NAMES_LENGTH = 256;

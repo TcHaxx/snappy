@@ -4,12 +4,7 @@
 /// Defines an alias name for a RPC method.
 /// </summary>
 [AttributeUsage(AttributeTargets.Method)]
-public class AliasAttribute : Attribute
+public class AliasAttribute(string aliasName) : Attribute
 {
-    public string AliasName;
-
-    public AliasAttribute(string aliasName)
-    {
-        AliasName = aliasName;
-    }
+    public string AliasName { get; private set; } = aliasName;
 }

@@ -7,8 +7,8 @@ public class DoubleConverterTests : VerifyBase
     public DoubleConverterTests()
         : base()
     {
-
     }
+
     [Theory]
     [InlineData(0, 0.0, -1.00001, 3.00000000000000007, 1234567.987654321)]
     [InlineData(1, 0.0, -1.00001, 3.00000000000000007, 1234567.987654321)]

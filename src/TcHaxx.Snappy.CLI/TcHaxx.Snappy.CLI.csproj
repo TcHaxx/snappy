@@ -2,11 +2,6 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>Nullable</WarningsAsErrors>
-    <LangVersion>Latest</LangVersion>
     <RepositoryUrl>https://github.com/TcHaxx/snappy</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>snapshot-testing; test-framework; unit-test; twincat; beckhoff;</PackageTags>
@@ -22,14 +17,6 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>densogiaichned</Authors>
     <Company>TcHaxx</Company>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
-    <WarningLevel>7</WarningLevel>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
-    <WarningLevel>7</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>

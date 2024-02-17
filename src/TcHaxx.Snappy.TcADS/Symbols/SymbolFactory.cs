@@ -14,15 +14,15 @@ namespace TcHaxx.Snappy.TcADS.Symbols;
 
 internal class SymbolFactory : ISymbolFactory
 {
-    private readonly IRpcMethodDescriptor _RpcMethodDescriptor;
-    private readonly ILogger? _Logger;
+    private readonly IRpcMethodDescriptor _rpcMethodDescriptor;
+    private readonly ILogger? _logger;
 
-    private Dictionary<IDataType, IVerifyMethod> _MappedStructTypeToRpcMethod = new();
+    private readonly Dictionary<IDataType, IVerifyMethod> _mappedStructTypeToRpcMethod = [];
 
     internal SymbolFactory(IRpcMethodDescriptor rpcMethodDescriptor, ILogger? logger)
     {
-        _RpcMethodDescriptor = rpcMethodDescriptor;
-        _Logger = logger;
+        _rpcMethodDescriptor = rpcMethodDescriptor;
+        _logger = logger;
     }
 
     public void AddSymbols(ServerSymbolFactory? serverSymbolFactory)
@@ -34,13 +34,13 @@ internal class SymbolFactory : ISymbolFactory
 
         uint idxGrp = 0x80000001;
         uint idxOffset = 0x10000000;
-        foreach (var rpcMethodDescription in _RpcMethodDescriptor.GetRpcMethodDescription())
+        foreach (var rpcMethodDescription in _rpcMethodDescriptor.GetRpcMethodDescription())
         {
             var paramsKvp = GetMethodParameter(rpcMethodDescription.Parameters);
             AddToServerSymbolFactory(serverSymbolFactory, paramsKvp);
 
             var retValKvp = GetMethodReturnValue(rpcMethodDescription.ReturnValue);
-            AddToServerSymbolFactory(serverSymbolFactory, new[] { retValKvp });
+            AddToServerSymbolFactory(serverSymbolFactory, [retValKvp]);
 
             var fullName = rpcMethodDescription.Method.ReflectedType?.FullName ?? rpcMethodDescription.Method.Name;
             DataArea dataArea = new DataArea($"DATA::{fullName}", idxGrp, idxOffset++, 0x10000);
@@ -54,19 +54,19 @@ internal class SymbolFactory : ISymbolFactory
             serverSymbolFactory.AddType(dtStructRpc);
             serverSymbolFactory.AddSymbol(fullName, dtStructRpc, dataArea);
 
-            _MappedStructTypeToRpcMethod.Add(dtStructRpc, rpcMethodDescription.RpcInvocableMethod);
+            _mappedStructTypeToRpcMethod.Add(dtStructRpc, rpcMethodDescription.RpcInvocableMethod);
         }
     }
 
     public AdsErrorCode InvokeRpcMethod(IDataType mappedType, object[] values, out object? returnValue)
     {
         returnValue = null;
-        if (!_MappedStructTypeToRpcMethod.ContainsKey(mappedType))
+        if (!_mappedStructTypeToRpcMethod.TryGetValue(mappedType, out var value))
         {
             return AdsErrorCode.DeviceServiceNotSupported;
         }
 
-        var rpcMethodToInvoke = _MappedStructTypeToRpcMethod[mappedType];
+        var rpcMethodToInvoke = value;
 
         if (values.Length != rpcMethodToInvoke.GetType().GetMethod(nameof(IVerifyMethod.Verify))!.GetParameters().Length)
         {
@@ -80,7 +80,7 @@ internal class SymbolFactory : ISymbolFactory
         return AdsErrorCode.NoError;
     }
 
-    private RpcMethod BuildRpcMethod(MethodInfo methodInfo, IEnumerable<KeyValuePair<ParameterInfo, IDataType>> paramsKvp, KeyValuePair<ParameterInfo, IDataType> retValKvp)
+    private static RpcMethod BuildRpcMethod(MethodInfo methodInfo, IEnumerable<KeyValuePair<ParameterInfo, IDataType>> paramsKvp, KeyValuePair<ParameterInfo, IDataType> retValKvp)
     {
         var nameOrAlias = methodInfo.GetCustomAttribute<AliasAttribute>()?.AliasName ?? methodInfo.Name;
         var rpc = new RpcMethod(nameOrAlias);
@@ -93,7 +93,7 @@ internal class SymbolFactory : ISymbolFactory
         return rpc;
     }
 
-    private void AddToServerSymbolFactory(ServerSymbolFactory serverSymbolFactory, IEnumerable<KeyValuePair<ParameterInfo, IDataType>> paramsKvp)
+    private static void AddToServerSymbolFactory(ServerSymbolFactory serverSymbolFactory, IEnumerable<KeyValuePair<ParameterInfo, IDataType>> paramsKvp)
     {
         _ = paramsKvp.Select(x => x.Value).Select(v => serverSymbolFactory.AddType((DataType)v)).ToArray();
     }
@@ -140,14 +140,18 @@ internal class SymbolFactory : ISymbolFactory
         bool isPrimitive = IsPrimitiveType(paramInfo.ParameterType);
         if (!isPrimitive)
         {
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
+#pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one 
             throw new ArgumentOutOfRangeException(nameof(paramInfo.ParameterType), "Expected only primitive types");
+#pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one 
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
         }
 
         var dt = new PrimitiveType(paramInfo.Name ?? "unknown", paramInfo.ParameterType);
         return new KeyValuePair<ParameterInfo, IDataType>(paramInfo, dt);
     }
 
-    private bool IsPrimitiveType(Type type)
+    private static bool IsPrimitiveType(Type type)
     {
         return type.IsPrimitive;
     }
@@ -157,7 +161,7 @@ internal class SymbolFactory : ISymbolFactory
         var stringAttribute = stringParameter.GetCustomAttribute<StringAttribute>();
         if (stringAttribute is null)
         {
-            _Logger?.LogWarning("No attribute for parameter {StringParameter} specified! Using default length {DefaultStringLength} and encoding {Encoding}",
+            _logger?.LogWarning("No attribute for parameter {StringParameter} specified! Using default length {DefaultStringLength} and encoding {Encoding}",
                 stringParameter.Name, Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH, Common.Constants.DEFAULT_STRING_ENCODING);
             return new StringType(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH, Common.Constants.DEFAULT_STRING_ENCODING);
         }
@@ -170,7 +174,7 @@ internal class SymbolFactory : ISymbolFactory
         var stringAttribute = stringField.GetCustomAttribute<MarshalAsAttribute>();
         if (stringAttribute is null)
         {
-            _Logger?.LogWarning("No attribute for parameter {StringParameter} specified! Using default length {DefaultStringLength} and encoding {Encoding}",
+            _logger?.LogWarning("No attribute for parameter {StringParameter} specified! Using default length {DefaultStringLength} and encoding {Encoding}",
                 stringField.Name, Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH, Common.Constants.DEFAULT_STRING_ENCODING);
             return new StringType(Common.Constants.DEFAULT_STRING_PARAMETER_LENGTH, Common.Constants.DEFAULT_STRING_ENCODING);
         }

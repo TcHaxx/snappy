@@ -3,7 +3,7 @@
 /// <summary>
 /// Exit codes for this application.
 /// </summary>
-internal enum ExitCodes : int
+internal enum ExitCodes
 {
     /// <summary>
     /// Exit code: No error.
