@@ -44,7 +44,7 @@
     </ItemGroup>
 
     <ItemGroup Condition="$(INCLUDE_TC_LIBRARIES)!=''">
-        <Content Include="../../.dist/snappy.library" Pack="true" PackagePath="content/.dist/snappy.library" />
+        <Content Include="../../.dist/**/snappy*.library" Pack="true" PackagePath="content/.dist/snappy.library" />
         <Content Include="../../.dist/rplc.library" Pack="true" PackagePath="content/.dist/rplc.library" />
     </ItemGroup>
 </Project>
