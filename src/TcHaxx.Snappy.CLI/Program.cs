@@ -7,6 +7,7 @@ using Serilog.Core;
 using TcHaxx.Snappy.CLI.CLI;
 using TcHaxx.Snappy.CLI.Commands;
 using TcHaxx.Snappy.CLI.Logging;
+using TcHaxx.Snappy.Common;
 using TcHaxx.Snappy.Common.RPC;
 using TcHaxx.Snappy.TcADS;
 using TcHaxx.Snappy.Verifier;
@@ -17,12 +18,13 @@ try
 
     using var host = BuildHost(args);
 
-    return await Parser.Default.ParseArguments<InstallOptions, VerifyOptions>(args)
+    var exitCode = await Parser.Default.ParseArguments<InstallOptions, VerifyOptions>(args)
       .MapResult(
         async (InstallOptions options) => await host.Services.GetService<ICommandInstall>()!.RunAndReturnExitCode(options),
         async (VerifyOptions options) => await host.Services.GetService<ICommandVerify>()!.RunAndReturnExitCode(options),
-        errs => Task.FromResult((int)ExitCodes.E_CLIOPTIONS)
-        );
+        errs => Task.FromResult(ExitCodes.E_CLIOPTIONS));
+
+    return (int)exitCode;
 }
 catch (Exception ex)
 {

@@ -1,5 +1,6 @@
 ﻿using Serilog;
 using TcHaxx.Snappy.CLI.CLI;
+using TcHaxx.Snappy.Common;
 using TcHaxx.Snappy.TcADS;
 using TcHaxx.Snappy.Verifier;
 
@@ -11,7 +12,7 @@ internal class CommandVerify(IEnumerable<IVerifyService> verifyServices, ISymbol
     private readonly ISymbolicServerFactory _symbolicServerFactory = symbolicServerFactory ?? throw new ArgumentNullException(nameof(symbolicServerFactory));
     private readonly ILogger? _logger = logger;
 
-    public async Task<int> RunAndReturnExitCode(VerifyOptions options)
+    public async Task<ExitCodes> RunAndReturnExitCode(VerifyOptions options)
     {
         foreach (var service in _verifyServices)
         {
@@ -23,6 +24,6 @@ internal class CommandVerify(IEnumerable<IVerifyService> verifyServices, ISymbol
         _logger?.Information("Starting AdsSymbolicServer...");
         var adsRetVal = await symbolicServer.ConnectServerAndWaitAsync(new CancellationToken());
 
-        return (int)adsRetVal;
+        return (ExitCodes)adsRetVal;
     }
 }

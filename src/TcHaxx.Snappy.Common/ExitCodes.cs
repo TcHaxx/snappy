@@ -1,9 +1,9 @@
-﻿namespace TcHaxx.Snappy.CLI.CLI;
+﻿namespace TcHaxx.Snappy.Common;
 
 /// <summary>
 /// Exit codes for this application.
 /// </summary>
-internal enum ExitCodes
+public enum ExitCodes
 {
     /// <summary>
     /// Exit code: No error.
@@ -18,6 +18,10 @@ internal enum ExitCodes
     /// <summary>
     /// Exit code: Parsing arguments and/or arguments missing/wrong.
     /// </summary>
-    E_CLIOPTIONS = 2
+    E_CLIOPTIONS = 2,
 
+    /// <summary>
+    /// Exit code: General error occured, see logs.
+    /// </summary>
+    E_ERROR = 3
 }
