@@ -58,7 +58,9 @@ jobs:
                   **/*.library
   
   cd-tchaxx-snappy-cli:
-    needs: ci-tchaxx-snappy-cli
+    needs:
+      - ci-tchaxx-snappy-cli
+      - ci-tchaxx-snappy-tc
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     name: CD - TcHaxx.Snappy.CLI
     runs-on: ubuntu-latest
