@@ -10,7 +10,7 @@
         <Description>A Snapshot Testing framework for TwinCAT 3</Description>
         <Copyright>Copyright (c) 2024 densogiaichned</Copyright>
         <Title>TwinCAT Snapshot Testing framework</Title>
-        <Version>0.0.5</Version>
+        <Version>0.0.6</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
         <PackAsTool>True</PackAsTool>
@@ -39,6 +39,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\TcHaxx.Snappy.CLI.Installer\TcHaxx.Snappy.CLI.Installer.csproj" />
         <ProjectReference Include="..\TcHaxx.Snappy.TcADS\TcHaxx.Snappy.TcADS.csproj" />
         <ProjectReference Include="..\TcHaxx.Snappy.Verifier\TcHaxx.Snappy.Verifier.csproj" />
     </ItemGroup>

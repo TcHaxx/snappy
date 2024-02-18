@@ -86,14 +86,12 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.solution }}
-      - name: Pack
-        env: 
-          INCLUDE_TC_LIBRARIES: true
-        run: dotnet pack -c Release --no-restore ${{ env.solution }}
       
       - name: Publish on version change
         id: publish_nuget
         uses: alirezanet/publish-nuget@v3.1.0
+        env: 
+          INCLUDE_TC_LIBRARIES: true
         with:
           PROJECT_FILE_PATH: ${{ env.csproj }}
           NUGET_KEY: ${{ secrets.TCHAXX_NUGET_API_KEY }}
