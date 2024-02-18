@@ -1,10 +1,9 @@
 ﻿using TcHaxx.Snappy.Common.Verify;
 using TcHaxx.Snappy.Verifier.Options;
 
-namespace TcHaxx.Snappy.Verifier
+namespace TcHaxx.Snappy.Verifier;
+
+public interface IVerifyService : IVerifyMethod
 {
-    public interface IVerifyService : IVerifyMethod
-    {
-        public IVerifierOptions Options { get; set; }
-    }
+    public IVerifierOptions Options { get; set; }
 }

@@ -32,8 +32,8 @@ internal class SymbolFactory : ISymbolFactory
             return;
         }
 
-        uint idxGrp = 0x80000001;
-        uint idxOffset = 0x10000000;
+        var idxGrp = 0x80000001u;
+        var idxOffset = 0x10000000u;
         foreach (var rpcMethodDescription in _rpcMethodDescriptor.GetRpcMethodDescription())
         {
             var paramsKvp = GetMethodParameter(rpcMethodDescription.Parameters);
@@ -43,16 +43,16 @@ internal class SymbolFactory : ISymbolFactory
             AddToServerSymbolFactory(serverSymbolFactory, [retValKvp]);
 
             var fullName = rpcMethodDescription.Method.ReflectedType?.FullName ?? rpcMethodDescription.Method.Name;
-            DataArea dataArea = new DataArea($"DATA::{fullName}", idxGrp, idxOffset++, 0x10000);
+            var dataArea = new DataArea($"DATA::{fullName}", idxGrp, idxOffset++, 0x10000);
 
-            serverSymbolFactory.AddDataArea(dataArea);
+            _ = serverSymbolFactory.AddDataArea(dataArea);
 
             var rpc = BuildRpcMethod(rpcMethodDescription.Method, paramsKvp, retValKvp);
 
-            StructType dtStructRpc = new StructType($"STRUCT::{fullName}");
-            dtStructRpc.AddMethod(rpc);
-            serverSymbolFactory.AddType(dtStructRpc);
-            serverSymbolFactory.AddSymbol(fullName, dtStructRpc, dataArea);
+            var dtStructRpc = new StructType($"STRUCT::{fullName}");
+            _ = dtStructRpc.AddMethod(rpc);
+            _ = serverSymbolFactory.AddType(dtStructRpc);
+            _ = serverSymbolFactory.AddSymbol(fullName, dtStructRpc, dataArea);
 
             _mappedStructTypeToRpcMethod.Add(dtStructRpc, rpcMethodDescription.RpcInvocableMethod);
         }
@@ -86,10 +86,10 @@ internal class SymbolFactory : ISymbolFactory
         var rpc = new RpcMethod(nameOrAlias);
         foreach (var (k, v) in paramsKvp)
         {
-            rpc.AddParameter(k.Name ?? "unknown", v, k.IsOut ? MethodParamFlags.Out : MethodParamFlags.In);
+            _ = rpc.AddParameter(k.Name ?? "unknown", v, k.IsOut ? MethodParamFlags.Out : MethodParamFlags.In);
         }
 
-        rpc.SetReturnType(retValKvp.Value);
+        _ = rpc.SetReturnType(retValKvp.Value);
         return rpc;
     }
 
@@ -113,12 +113,12 @@ internal class SymbolFactory : ISymbolFactory
             if (stringAttribute is not null && field.FieldType == typeof(string))
             {
                 var stringType = ToStringType(field);
-                structType.AddAligned(new Member(field.Name ?? "unknown", stringType));
+                _ = structType.AddAligned(new Member(field.Name ?? "unknown", stringType));
             }
             else
             {
                 var dt = new PrimitiveType(field.Name ?? "unknown", field.FieldType);
-                structType.AddAligned(new Member(field.Name ?? "unknown", dt));
+                _ = structType.AddAligned(new Member(field.Name ?? "unknown", dt));
             }
         }
         return new KeyValuePair<ParameterInfo, IDataType>(returnValue, structType);
@@ -137,7 +137,7 @@ internal class SymbolFactory : ISymbolFactory
             return new KeyValuePair<ParameterInfo, IDataType>(paramInfo, stringType);
         }
 
-        bool isPrimitive = IsPrimitiveType(paramInfo.ParameterType);
+        var isPrimitive = IsPrimitiveType(paramInfo.ParameterType);
         if (!isPrimitive)
         {
 #pragma warning disable CA2208 // Instantiate argument exceptions correctly

@@ -1,7 +1,7 @@
 ﻿using CommandLine;
 using Serilog.Events;
 
-namespace TcHaxx.Snappy.CLI;
+namespace TcHaxx.Snappy.CLI.CLI;
 
 public class BaseOptions
 {

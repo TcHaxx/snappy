@@ -25,6 +25,6 @@ public class DoubleConverterTests : VerifyBase
             _.Converters.Add(new DoubleConverter(precision));
         });
 
-        await Verify(values, settings).UseParameters(precision);
+        _ = await Verify(values, settings).UseParameters(precision);
     }
 }

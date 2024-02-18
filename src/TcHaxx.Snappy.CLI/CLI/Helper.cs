@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace TcHaxx.Snappy.CLI;
+namespace TcHaxx.Snappy.CLI.CLI;
 
 /// <summary>
 /// Some helper methods/functions and extension methods.
@@ -42,15 +42,15 @@ internal static class Helper
                               .FirstOrDefault(x => x.Key.Equals("RepositoryUrl"))?.Value ?? string.Empty;
 
         var delimiter = new string(Constants.CLI_DELIMITER, Console.BufferWidth);
-        sb.Append($"{delimiter}\n");
-        sb.Append($"{assembly.GetName().Name} V{version}".Center() + "\n");
-        sb.Append($"{copyright.Center()}\n");
+        _ = sb.Append($"{delimiter}\n");
+        _ = sb.Append($"{assembly.GetName().Name} V{version}".Center() + "\n");
+        _ = sb.Append($"{copyright.Center()}\n");
         if (!string.IsNullOrWhiteSpace(repoUrl))
         {
-            sb.Append($"{repoUrl.Center()}\n");
+            _ = sb.Append($"{repoUrl.Center()}\n");
         }
 
-        sb.Append($"{delimiter}\n");
+        _ = sb.Append($"{delimiter}\n");
 
         return sb.ToString();
     }

@@ -2,7 +2,7 @@
 using TcHaxx.Snappy.TcADS.Options;
 using TcHaxx.Snappy.Verifier.Options;
 
-namespace TcHaxx.Snappy.CLI;
+namespace TcHaxx.Snappy.CLI.CLI;
 
 [Verb("verify", false, HelpText = "Verify.")]
 public class VerifyOptions : BaseOptions, ITcAdsOptions, IVerifierOptions

@@ -1,4 +1,4 @@
-﻿namespace TcHaxx.Snappy.Tests;
+﻿namespace TcHaxx.Snappy.CLI.Tests;
 
 public class UnitTest1
 {

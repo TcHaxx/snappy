@@ -1,4 +1,4 @@
-﻿namespace TcHaxx.Snappy.CLI;
+﻿namespace TcHaxx.Snappy.CLI.CLI;
 
 internal static class Constants
 {

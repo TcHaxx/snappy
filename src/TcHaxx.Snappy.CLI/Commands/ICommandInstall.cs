@@ -1,4 +1,6 @@
-﻿namespace TcHaxx.Snappy.CLI.Commands;
+﻿using TcHaxx.Snappy.CLI.CLI;
+
+namespace TcHaxx.Snappy.CLI.Commands;
 
 internal interface ICommandInstall
 {

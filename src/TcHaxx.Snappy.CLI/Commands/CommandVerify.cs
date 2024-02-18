@@ -1,4 +1,5 @@
 ﻿using Serilog;
+using TcHaxx.Snappy.CLI.CLI;
 using TcHaxx.Snappy.TcADS;
 using TcHaxx.Snappy.Verifier;
 

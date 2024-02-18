@@ -4,7 +4,7 @@ namespace TcHaxx.Snappy.Common.RPC;
 
 public class RpcMethodDescriptor : IRpcMethodDescriptor
 {
-    readonly Queue<IVerifyMethod> _verifyMethods = new();
+    private readonly Queue<IVerifyMethod> _verifyMethods = new();
 
     public RpcMethodDescriptor()
     {

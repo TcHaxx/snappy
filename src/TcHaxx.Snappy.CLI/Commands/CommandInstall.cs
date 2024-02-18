@@ -1,4 +1,5 @@
 ﻿using Serilog;
+using TcHaxx.Snappy.CLI.CLI;
 
 namespace TcHaxx.Snappy.CLI.Commands;
 

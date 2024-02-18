@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Core;
-using TcHaxx.Snappy.CLI;
+using TcHaxx.Snappy.CLI.CLI;
 using TcHaxx.Snappy.CLI.Commands;
 using TcHaxx.Snappy.CLI.Logging;
 using TcHaxx.Snappy.Common.RPC;
