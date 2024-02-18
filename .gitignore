@@ -422,3 +422,5 @@ _Boot/
 _CompileInfo/
 _Libraries/
 _Repository/
+
+.dist/
