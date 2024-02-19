@@ -1,7 +1,7 @@
 [![CI/CD](https://github.com/TcHaxx/snappy/actions/workflows/cicd.yml/badge.svg)](https://github.com/TcHaxx/snappy/actions/workflows/cicd.yml)
 [![NuGet version (TcHaxx.Snappy.CLI)](https://img.shields.io/nuget/v/TcHaxx.Snappy.CLI.svg)](https://www.nuget.org/packages/TcHaxx.Snappy.CLI/)
 ---
-> 🚧 WIP
+
 # snappy
 Snappy is a Snapshot Testing framework, like [Verify](https://github.com/VerifyTests/Verify),  designed for TwinCAT 3.  
 
@@ -39,7 +39,7 @@ hr := fbTcUnitAdapter.Verify(anyArg:= stActual);
 
 IF NOT PENDING(hr) THEN
 	TEST_FINISHED_NAMED('Test some stuff with TcHaxx.Snappy');
-END_IF;
+END_IF
 ```
 
 > Find more examples in the `examples` PLC project.
@@ -53,7 +53,6 @@ Snappy consists of two parts:
 
 ### Prerequisites
 
-* [rplc](https://github.com/TcHaxx/rplc) library is installed.
 * [Verify - Supported Tool](https://github.com/VerifyTests/DiffEngine?tab=readme-ov-file#supported-tools) is installed.
 
 ### TcHaxx.Snappy.CLI
@@ -72,17 +71,41 @@ dotnet tool update -g  TcHaxx.Snappy.CLI
 dotnet tool uninstall -g TcHaxx.Snappy.CLI
 ``` 
 
-### snappy.library
-Download latest [releases](https://github.com/TcHaxx/snappy/releases), either `snappy.library` and/or `snappy.compiled-library` and [install](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_plc_intro/4218300427.html).
+### Run install command
+
+To install the required TwinCAT libraries, simply run the following command:
+```sh
+TcHaxx.Snappy.CLI install
+```
+This command will install all required dependencies:
+```
+************************************************************************************************************************
+                                               TcHaxx.Snappy.CLI V0.1.0.0
+                                           Copyright (c) 2024 densogiaichned
+                                            https://github.com/TcHaxx/snappy
+************************************************************************************************************************
+
+[00:00:01 INF] Using TwinCAT profile "C:\TwinCAT\3.1\Components\Plc\Profiles\TwinCAT PLC Control_Build_4024.55.profile"
+[00:00:01 INF] Installing TwinCAT libraries ...
+[00:00:20 INF] RepTool.exe: Repository Tool
+Copyright © 1994-2020 by 3S-Smart Software Solutions GmbH. All rights reserved.
+
+Arguments:  --profile='TwinCAT PLC Control_Build_4024.55' --installLibsRecursNoOverwrite "%USERPROFILE%\.dotnet\tools\.store\tchaxx.snappy.cli"
+
+Library installed: %USERPROFILE%\.dotnet\tools\.store\tchaxx.snappy.cli\0.1.0\tchaxx.snappy.cli\0.1.0\content\.dist\rplc.library
+Library installed: %USERPROFILE%\.dotnet\tools\.store\tchaxx.snappy.cli\0.1.0\tchaxx.snappy.cli\0.1.0\content\.dist\snappy.library
+```
 
 ## Usage
-Before any tests are being run, `TcHaxx.Snappy.CLI` hast to be started, prior.
+Before any tests are being run, `TcHaxx.Snappy.CLI` hast to be started, prior.  
 Run manually via [dotnet tools](#dotnet-tools) or [TwinCAT deployment](#twincat-3-plc-deployment).
 
 ### dotnet tools
+Run `snappy`-CLI with following command:
 ```sh
 TcHaxx.Snappy.Verify verify [OPTIONS]
 ```
+> See [Command verfiy](#command-verify) for more options.
 
 ### TwinCAT 3 PLC Deployment
 > See [Category Deployment](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_plc_intro/3260050187.html)
@@ -107,6 +130,39 @@ When dealing with source control, consider the following guidelines for handling
    - On the other hand, **commit** all files with the pattern `*.verified.*` to source control.
 
 > See [Verify/README](https://github.com/VerifyTests/Verify?tab=readme-ov-file#source-control-received-and-verified-files)
+
+### Commands and Options
+
+Snappy.CLI has following CLI commands and options.
+
+#### Command `install`
+
+This command installs all dependencies, such as [rplc.library](https://github.com/tchaxx/rplc) and of course `snappy.library`.
+```sh
+TcHaxx.Snappy.CLI install [OPTIONS]
+```
+Option  | Required | Default | Description  
+--- | --- | --- |  ---
+`--tc-profile` | `no` | `latest` | TwinCAT profile to use, e.g. `latest` or specific version `TwinCAT PLC Control_Build_4024.54`, defaults to `latest`.
+`--tool-path` | `no` | `%USERPROFILE%\.dotnet\tools\.store\tchaxx.snappy.cli` | Directory, where `TcHaxx.Snappy.CLI ` was installed, e.g. `dotnet tool install -g TcHaxx.Snappy.CLI`.
+ `-l`<br/>`--log-level` | `no` | `Information`| Minimum `LogEventLevel`, defaults to `Information`.
+`--help` | `no` | | Display help screen.
+`--version` | `no` | | Display version information.
+
+#### Command `verify`
+
+```sh
+TcHaxx.Snappy.CLI verify [OPTIONS]
+```
+Option  | Required | Default | Description  
+--- | --- | --- |  ---
+`-d`<br/>`--dir` | `no` | `./TcHaxx.Snappy.Verified` | Directory of verified snapshot files.
+`-c`<br/>`--compact-diff` | `no` | `true` | Diff output as compact as possible.
+`-p`<br/>`--port` | `no` | `25000` | AmsPort of the Server (snappy).
+`-f`<br/>`--fpp` | `no` | `5` | Floating point precision for `REAL`/`LREAL` values.
+ `-l`<br/>`--log-level` | `no` | `Information`| Minimum `LogEventLevel`, defaults to `Information`.
+`--help` | `no` | | Display help screen.
+`--version` | `no` | | Display version information.
 
 # Acknowledgments
 

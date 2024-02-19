@@ -19,7 +19,7 @@
     <Company>TcHaxx</Company>
     <Released>false</Released>
     <Title>snappy</Title>
-    <ProjectVersion>0.0.4.0</ProjectVersion>
+    <ProjectVersion>0.1.0.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory xmlns="">
         <Id>{9c7e50a7-dead-beef-897b-4cdbc169222d}</Id>
