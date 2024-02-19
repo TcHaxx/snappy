@@ -8,7 +8,7 @@ public class InstallerService : IInstallerService
     public async Task<ExitCodes> Install(IInstallerOptions options, ILogger? logger)
     {
 
-        var tcProfile = TcProfile.GetTwinCatProfile(options, logger);
+        var tcProfile = TwincatProfileFactory.GetTwinCatProfile(options, logger);
         if (tcProfile is null)
         {
             return ExitCodes.E_ERROR;
