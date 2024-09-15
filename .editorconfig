@@ -18,6 +18,9 @@ charset = utf-8-bom
 # .NET Coding Conventions     #
 ###############################
 [*.{cs,vb}]
+dotnet_diagnostic.IDE0058.severity = none
+dotnet_diagnostic.IDE0059.severity = none
+
 dotnet_analyzer_diagnostic.category-Style.severity = error
 # Organize usings
 dotnet_sort_system_directives_first = true
