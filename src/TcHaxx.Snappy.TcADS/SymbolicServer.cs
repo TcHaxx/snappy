@@ -61,6 +61,36 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
 
     protected override AdsErrorCode OnRpcInvoke(IInterfaceInstance structInstance, IRpcMethod method, object[] values, out object? returnValue)
     {
+        returnValue = null;
+        var retVal = OnRpcInvokeProxy(structInstance, method, values, out returnValue);
+
+        if (retVal != AdsErrorCode.NoError)
+        {
+            // Note:
+            //      Due to a bug (?) in ADS.Net, all parameter values and the returnValue must not be NULL!
+            //      Otherwise, it will throw an exception during marshalling, hence the client will only receive error 0x1
+            returnValue = 0;
+            PresetParameterValues(ref values);
+        }
+
+        return retVal;
+    }
+
+    private static void PresetParameterValues(ref object[] parameterValues)
+    {
+        for (var i = 0; i < parameterValues.Length; i++)
+        {
+            if (parameterValues[i] is not null)
+            {
+                continue;
+            }
+
+            parameterValues[i] = 0;
+        }
+    }
+
+    private AdsErrorCode OnRpcInvokeProxy(IInterfaceInstance structInstance, IRpcMethod method, object[] parameterValues, out object? returnValue)
+    {
         var iDataType = structInstance.DataType;
         if (iDataType is null)
         {
@@ -68,7 +98,8 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
             _logger?.LogError("{OnRpcInvoke}: {IDataType} is null", nameof(OnRpcInvoke), nameof(IDataType));
             return AdsErrorCode.DeviceInvalidContext;
         }
+
         _logger?.LogInformation("{OnRpcInvoke}: Invoking method {IRpcMethod} of {IDataTypeFullName}", nameof(OnRpcInvoke), method, iDataType.FullName);
-        return _symbolFactory.InvokeRpcMethod(iDataType, values, out returnValue);
+        return _symbolFactory.InvokeRpcMethod(structInstance, method, parameterValues, out returnValue);
     }
 }

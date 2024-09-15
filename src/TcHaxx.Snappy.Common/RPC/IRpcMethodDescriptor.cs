@@ -1,6 +1,4 @@
-﻿using TcHaxx.Snappy.Common.Verify;
-
-namespace TcHaxx.Snappy.Common.RPC;
+﻿namespace TcHaxx.Snappy.Common.RPC;
 
 /// <summary>
 /// Describes an descriptor for RPC methods.
@@ -14,8 +12,8 @@ public interface IRpcMethodDescriptor
     public IEnumerable<RpcMethodDescription> GetRpcMethodDescription();
 
     /// <summary>
-    /// Registers a <see cref="IVerifyMethod"/> implementation with <see cref="IRpcMethodDescriptor"/>.
+    /// Registers a <see cref="IRpcMethodMarker"/> implementation with <see cref="IRpcMethodDescriptor"/>.
     /// </summary>
-    /// <param name="rpcVerifyMethod"></param>
-    public void Register(IVerifyMethod rpcVerifyMethod);
+    /// <param name="rpcMethod"></param>
+    public void Register(IRpcMethodMarker rpcMethod);
 }

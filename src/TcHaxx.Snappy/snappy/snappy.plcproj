@@ -19,7 +19,7 @@
     <Company>TcHaxx</Company>
     <Released>false</Released>
     <Title>snappy</Title>
-    <ProjectVersion>0.1.0.0</ProjectVersion>
+    <ProjectVersion>0.2.0.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory xmlns="">
         <Id>{9c7e50a7-dead-beef-897b-4cdbc169222d}</Id>
@@ -142,6 +142,9 @@
     <Compile Include="TESTs\snappy\FB_Snappy_Tests.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Version\Global_Version.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
@@ -156,6 +159,7 @@
     <Folder Include="TESTs" />
     <Folder Include="TESTs\snappy" />
     <Folder Include="TESTs\Serializer" />
+    <Folder Include="Version" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

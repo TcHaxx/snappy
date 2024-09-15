@@ -119,15 +119,15 @@ Activate Configuration | Execute | `cmd /c start TcHaxx.Snappy.CLI verify -d \"%
 ## Source control: Received and Verified files
 When dealing with source control, consider the following guidelines for handling **Received** and **Verified** files:
 
-1. **Exclusion**:
+1. **Exclude files**:
    - Exclude all files with the pattern `*.received.*` from source control.
    - To achieve this, add the following line to your `.gitignore` file:
      ```
      *.received.*
      ```
 
-2. **Commitment**:
-   - On the other hand, **commit** all files with the pattern `*.verified.*` to source control.
+2. **Commit files**:
+   - **Commit** all files with the pattern `*.verified.*` to source control.
 
 > See [Verify/README](https://github.com/VerifyTests/Verify?tab=readme-ov-file#source-control-received-and-verified-files)
 
@@ -170,3 +170,4 @@ Option  | Required | Default | Description
 * [CommandLineParser](https://github.com/commandlineparser/commandline) - A command line parsing library for .NET applications.
 * [Verify](https://github.com/VerifyTests/Verify) - A library used for snapshot testing.
 * [Serilog](https://github.com/serilog/serilog) - A logging library for .NET applications.
+* [TF6000_ADS_DOTNET_V5_Samples](https://github.com/Beckhoff/TF6000_ADS_DOTNET_V5_Samples) - Sample code for the Version 6.X series of the TwinCAT ADS .NET Packages
