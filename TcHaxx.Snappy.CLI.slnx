@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/env/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/env/.github/" />
+  <Folder Name="/env/.github/workflows/">
+    <File Path=".github/workflows/cicd.yml" />
+  </Folder>
+  <Folder Name="/env/.Zeugwerk/">
+    <File Path=".Zeugwerk/config.json" />
+  </Folder>
+  <Project Path="src/TcHaxx.Snappy.CLI.Installer/TcHaxx.Snappy.CLI.Installer.csproj" />
+  <Project Path="src/TcHaxx.Snappy.CLI/TcHaxx.Snappy.CLI.csproj" />
+  <Project Path="src/TcHaxx.Snappy.Common/TcHaxx.Snappy.Common.csproj" />
+  <Project Path="src/TcHaxx.Snappy.TcADS/TcHaxx.Snappy.TcADS.csproj" />
+  <Project Path="src/TcHaxx.Snappy.Verifier.Tests/TcHaxx.Snappy.Verifier.Tests.csproj" />
+  <Project Path="src/TcHaxx.Snappy.Verifier/TcHaxx.Snappy.Verifier.csproj" />
+  <Project Path="tests/TcHaxx.Snappy.Tests/TcHaxx.Snappy.CLI.Tests.csproj" />
+</Solution>

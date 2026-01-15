@@ -1,4 +1,5 @@
 ﻿namespace TcHaxx.Snappy.CLI.Installer.Options;
+
 internal class DefaultOptions : IInstallerOptions
 {
     ///<inheritdoc/> 

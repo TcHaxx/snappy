@@ -12,7 +12,7 @@ internal class SymbolicServer : AdsSymbolicServer, ISymbolicServer
     private readonly ILogger? _logger;
 
     internal SymbolicServer(ushort port, string portName, ISymbolFactory symbolFactory, ILogger? logger)
-        : base(port, portName, logger)
+        : base(port, portName, TcADS.LoggerFactory.From(logger))
     {
         _symbolFactory = symbolFactory;
         _logger = logger;

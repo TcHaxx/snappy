@@ -3,18 +3,19 @@ using Serilog;
 using TcHaxx.Snappy.Common;
 
 namespace TcHaxx.Snappy.CLI.Installer;
+
 internal static class RepToolProcess
 {
     internal static async Task<ExitCodes> RunRepToolAsync(TwincatProfile tcProfile, DirectoryInfo sourceDirectory, ILogger? logger)
     {
-        var tcDir = RegistryHelper.GetTwincatInstallDirectory();
-        if (string.IsNullOrWhiteSpace(tcDir))
+        var regToolDir = tcProfile.GetRegToolDir();
+        if (!regToolDir.Exists)
         {
-            logger?.Error("Couldn't read TwinCAT installation directory from Registry.");
+            logger?.Error("Directory {RegToolDirectory} doesn't exist.", regToolDir);
             return ExitCodes.E_ERROR;
         }
 
-        var repToolExe = Path.Join(tcDir, Constants.TC31_REPTOOL_EXE);
+        var repToolExe = Path.Join(regToolDir.FullName, Constants.TC31_REPTOOL_EXE);
         if (!File.Exists(repToolExe))
         {
             throw new FileNotFoundException("RepTool.exe doesn't exist.", repToolExe);

@@ -3,6 +3,7 @@ using TcHaxx.Snappy.CLI.Installer.Options;
 using TcHaxx.Snappy.Common;
 
 namespace TcHaxx.Snappy.CLI.Installer;
+
 public class InstallerService : IInstallerService
 {
     public async Task<ExitCodes> Install(IInstallerOptions options, ILogger? logger)

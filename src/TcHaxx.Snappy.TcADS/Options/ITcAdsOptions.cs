@@ -2,5 +2,5 @@
 
 public interface ITcAdsOptions
 {
-    public ushort AdsPort { get; init; }
+    ushort AdsPort { get; init; }
 }

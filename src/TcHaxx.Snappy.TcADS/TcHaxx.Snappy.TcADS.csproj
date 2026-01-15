@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup/>
+  <PropertyGroup />
 
   <ItemGroup>
-    <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="6.1.154" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="7.0.132" />
   </ItemGroup>
 
   <ItemGroup>

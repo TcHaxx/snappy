@@ -5,5 +5,5 @@ namespace TcHaxx.Snappy.Verifier;
 
 public interface IVerifyService : IVerifyMethod
 {
-    public IVerifierOptions Options { get; set; }
+    IVerifierOptions Options { get; set; }
 }

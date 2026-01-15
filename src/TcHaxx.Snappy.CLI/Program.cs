@@ -28,9 +28,9 @@ try
 }
 catch (Exception ex)
 {
-    Console.Error.WriteLine("❌ Unhandled exception!");
-    Console.Error.WriteLine(ex.Message);
-    Console.Error.WriteLine(ex.StackTrace);
+    await Console.Error.WriteLineAsync("❌ Unhandled exception!");
+    await Console.Error.WriteLineAsync(ex.Message);
+    await Console.Error.WriteLineAsync(ex.StackTrace);
     return (int)ExitCodes.E_EXCEPTION;
 }
 

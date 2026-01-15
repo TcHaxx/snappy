@@ -15,20 +15,20 @@ on:
 
 env:
   dotnet_versions: |
-                    6.0.x
                     8.0.x
+                    10.0.x
 
 jobs:
   ci-tchaxx-snappy-cli:
     name: CI - TcHaxx.Snappy.CLI
     runs-on: ubuntu-latest
     env:
-      solution: ./TcHaxx.Snappy.CLI.sln
+      solution: ./TcHaxx.Snappy.CLI.slnx
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{env.dotnet_versions}}
       - name: Restore dependencies
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build TcHaxx.Snappy
         uses: Zeugwerk/zkbuild-action@1.0.0
         with:
@@ -67,12 +67,12 @@ jobs:
     permissions:
       contents: write
     env:
-      solution: ./TcHaxx.Snappy.CLI.sln
+      solution: ./TcHaxx.Snappy.CLI.slnx
       csproj: ./src/TcHaxx.Snappy.CLI/TcHaxx.Snappy.CLI.csproj
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ env.dotnet_versions }}
 
