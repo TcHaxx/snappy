@@ -16,7 +16,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Verify.xunit" Version="31.9.4" />
+        <PackageReference Include="Verify.xunit" Version="[31.7.1]" />
     </ItemGroup>
 
     <ItemGroup>
