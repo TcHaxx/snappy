@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using CommandLine;
+using CommandLine.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -16,7 +17,8 @@ try
 {
     Console.WriteLine(Helper.GetApplicationHeader(Assembly.GetExecutingAssembly()));
 
-    using var host = BuildHost(args);
+    var baseOptions = BaseOptionsParser(args);
+    using var host = BuildHost(args, baseOptions);
 
     var exitCode = await Parser.Default.ParseArguments<InstallOptions, VerifyOptions>(args)
       .MapResult(
@@ -34,19 +36,9 @@ catch (Exception ex)
     return (int)ExitCodes.E_EXCEPTION;
 }
 
-static IHost BuildHost(string[] args)
+static IHost BuildHost(string[] args, BaseOptions options)
 {
-    var baseOptionsParser = new Parser(with =>
-    {
-        with.EnableDashDash = true;
-        with.AutoHelp = true;
-        with.AutoVersion = true;
-        with.CaseInsensitiveEnumValues = true;
-        with.IgnoreUnknownArguments = true;
-    });
-    var baseOptions = baseOptionsParser.ParseArguments<BaseOptions>(args);
-
-    var logLevelSwitch = new LoggingLevelSwitch(baseOptions.Value.LogEventLevel);
+    var logLevelSwitch = new LoggingLevelSwitch(options.LogEventLevel);
     var host = new HostBuilder()
         .ConfigureDefaults(args)
         .ConfigureServices(services => services
@@ -64,4 +56,31 @@ static IHost BuildHost(string[] args)
                 .MinimumLevel.ControlledBy(logLevelSwitch))
         .Build();
     return host;
+}
+
+static BaseOptions BaseOptionsParser(string[] args)
+{
+    BaseOptions? options = null;
+    var baseOptionsParser = new Parser(with =>
+    {
+        with.EnableDashDash = true;
+        with.AutoHelp = true;
+        with.AutoVersion = true;
+        with.CaseInsensitiveEnumValues = true;
+        with.IgnoreUnknownArguments = true;
+    });
+    var parserResults = baseOptionsParser.ParseArguments<BaseOptions>(args);
+    parserResults
+        .WithParsed(o => options = o)
+        .WithNotParsed(err =>
+        {
+            var helpText = HelpText.AutoBuild(
+                parserResults,
+                h => h,
+                e => e,
+                verbsIndex: true);
+            Console.Error.WriteLine(helpText);
+        });
+
+    return options ?? new BaseOptions();
 }
