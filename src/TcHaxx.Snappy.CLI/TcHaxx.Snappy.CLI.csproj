@@ -8,9 +8,9 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageProjectUrl>https://github.com/TcHaxx/snappy</PackageProjectUrl>
         <Description>A Snapshot Testing framework for TwinCAT 3</Description>
-        <Copyright>Copyright (c) 2024-2025 densogiaichned</Copyright>
+        <Copyright>Copyright (c) 2024-2026 densogiaichned</Copyright>
         <Title>TwinCAT Snapshot Testing framework</Title>
-        <Version>0.3.1</Version>
+        <Version>0.3.2</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
         <PackAsTool>True</PackAsTool>

@@ -41,7 +41,7 @@ internal static class Helper
         var repoUrl = assembly.GetCustomAttributes<AssemblyMetadataAttribute>()
                               .FirstOrDefault(x => x.Key.Equals("RepositoryUrl"))?.Value ?? string.Empty;
 
-        var delimiter = new string(Constants.CLI_DELIMITER, Console.BufferWidth);
+        var delimiter = new string(Constants.CLI_DELIMITER, ConsoleBufferWidth());
         _ = sb.Append($"{delimiter}\n");
         _ = sb.Append($"{assembly.GetName().Name} V{version}".Center() + "\n");
         _ = sb.Append($"{copyright.Center()}\n");
@@ -53,5 +53,23 @@ internal static class Helper
         _ = sb.Append($"{delimiter}\n");
 
         return sb.ToString();
+    }
+
+    internal static bool IsHeadless()
+    {
+        var isHeadless = Console.IsOutputRedirected || Console.IsInputRedirected || Console.IsErrorRedirected;
+        return isHeadless;
+    }
+
+    private static int ConsoleBufferWidth()
+    {
+        try
+        {
+            return IsHeadless() ? Constants.DEFAULT_BUFFER_WIDTH : Console.BufferWidth;
+        }
+        catch
+        {
+            return Constants.DEFAULT_BUFFER_WIDTH;
+        }
     }
 }

@@ -6,7 +6,7 @@
       "name": "TcHaxx.Snappy",
       "plcs": [
         {
-          "version": "0.3.1.0",
+          "version": "0.3.2.0",
           "name": "snappy",
           "distributor-name": "TcHaxx",
           "type": "Library",
