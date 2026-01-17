@@ -20,7 +20,7 @@ internal static class Helper
         {
             return string.Empty;
         }
-        var width = Console.BufferWidth;
+        var width = ConsoleBufferWidth();
         return @this.PadLeft(((width - @this.Length) / 2)
                               + @this.Length)
                               .PadRight(width);
