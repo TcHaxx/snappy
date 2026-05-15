@@ -3,7 +3,7 @@
   <PropertyGroup />
 
   <ItemGroup>
-    <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="7.0.132" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="7.0.172" />
   </ItemGroup>
 
   <ItemGroup>
