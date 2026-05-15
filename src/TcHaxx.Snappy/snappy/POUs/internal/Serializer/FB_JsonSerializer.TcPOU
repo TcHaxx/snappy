@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
   <POU Name="FB_JsonSerializer" Id="{403a942c-72df-482c-961a-a83189084480}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
 FUNCTION_BLOCK INTERNAL FINAL FB_JsonSerializer IMPLEMENTS I_Serializer

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
   <POU Name="FB_Snappy" Id="{fab0c229-8c37-418d-9cd2-a63405d9a539}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call' := 'do not call this POU directly'}
 FUNCTION_BLOCK FINAL FB_Snappy IMPLEMENTS I_SnappySetup, I_SnappySetupConfigBuild, I_SnappyVerify
@@ -21,7 +21,8 @@ END_VAR]]></Declaration>
     </Implementation>
     <Folder Name="ITFs" Id="{f11ae277-eee9-4f23-b5ea-8337294c20e3}" />
     <Method Name="Build" Id="{695770de-f3f3-4ad9-9233-3e949aed9190}" FolderPath="ITFs\">
-      <Declaration><![CDATA[METHOD Build : HRESULT
+      <Declaration><![CDATA[{attribute 'estimated-stack-usage' := '4096'}
+METHOD Build : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Build := itfConfig.Build();
@@ -36,7 +37,8 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Configure" Id="{aed1d2aa-f88b-4f94-ab82-85cd02d987ed}" FolderPath="ITFs\">
-      <Declaration><![CDATA[METHOD Configure : I_SnappySetupDefaultsOrRpc
+      <Declaration><![CDATA[{attribute 'estimated-stack-usage' := '4096'}
+METHOD Configure : I_SnappySetupDefaultsOrRpc
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Configure := THIS^.itfConfig.Configure();]]></ST>

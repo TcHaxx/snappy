@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
   <Itf Name="I_SnappySetupConfigTestFrameWork" Id="{7d911619-4bba-4a11-8679-3e81ddc87c9b}">
     <Declaration><![CDATA[INTERFACE I_SnappySetupConfigTestFrameWork
 ]]></Declaration>

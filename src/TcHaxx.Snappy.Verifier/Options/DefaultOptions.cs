@@ -8,4 +8,7 @@ internal class DefaultOptions : IVerifierOptions
     public bool CompactDiff { get; init; } = Constants.DEFAULT_OPTION_COMPACT_DIFF;
     ///<inheritdoc/> 
     public ushort FloatingPointPrecision { get; init; } = Constants.DEFAULT_OPTION_FP_PRECISION;
+
+    ///<inheritdoc/> 
+    public bool AutoVerify { get; init; } = Constants.DEFAULT_OPTION_AUTO_VERIFY;
 }

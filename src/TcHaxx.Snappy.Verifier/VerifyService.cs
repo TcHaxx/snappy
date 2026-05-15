@@ -38,6 +38,11 @@ public class VerifyService : IVerifyService
             var directory = Path.IsPathRooted(Options.VerifyDirectory) ? Options.VerifyDirectory
                 : Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, Options.VerifyDirectory);
 
+            if (Options.AutoVerify)
+            {
+                settings.AutoVerify(includeBuildServer: false);
+            }
+
             settings.UseDirectory(directory);
             settings.DisableRequireUniquePrefix();
             settings.UseDiffPlex(VerifyTests.DiffPlex.OutputType.Compact);

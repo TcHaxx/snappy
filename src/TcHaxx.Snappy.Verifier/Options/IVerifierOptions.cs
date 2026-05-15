@@ -16,4 +16,9 @@ public interface IVerifierOptions
     /// Floating point precision for REAL/LREAL.
     /// </summary>
     ushort FloatingPointPrecision { get; init; }
+
+    /// <summary>
+    /// Auto-accept any changes.
+    /// </summary>
+    bool AutoVerify { get; init; }
 }

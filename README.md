@@ -145,7 +145,7 @@ Option  | Required | Default | Description
 --- | --- | --- |  ---
 `--tc-profile` | `no` | `latest` | TwinCAT profile to use, e.g. `latest` or specific version `TwinCAT PLC Control_Build_4024.54`, defaults to `latest`.
 `--tool-path` | `no` | `%USERPROFILE%\.dotnet\tools\.store\tchaxx.snappy.cli` | Directory, where `TcHaxx.Snappy.CLI ` was installed, e.g. `dotnet tool install -g TcHaxx.Snappy.CLI`.
- `-l`<br/>`--log-level` | `no` | `Information`| Minimum `LogEventLevel`, defaults to `Information`.
+`-l`<br/>`--log-level` | `no` | `Information`| Minimum `LogEventLevel`, defaults to `Information`.
 `--help` | `no` | | Display help screen.
 `--version` | `no` | | Display version information.
 
@@ -160,6 +160,7 @@ Option  | Required | Default | Description
 `-c`<br/>`--compact-diff` | `no` | `true` | Diff output as compact as possible.
 `-p`<br/>`--port` | `no` | `25000` | AmsPort of the Server (snappy).
 `-f`<br/>`--fpp` | `no` | `5` | Floating point precision for `REAL`/`LREAL` values.
+`-a`<br/>`--auto-verify` | `no` | Auto-accept any changes.
  `-l`<br/>`--log-level` | `no` | `Information`| Minimum `LogEventLevel`, defaults to `Information`.
 `--help` | `no` | | Display help screen.
 `--version` | `no` | | Display version information.

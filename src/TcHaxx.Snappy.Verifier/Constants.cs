@@ -16,4 +16,9 @@ public static class Constants
     /// Default floating point precision for REAL/LREAL.
     /// </summary>
     public const ushort DEFAULT_OPTION_FP_PRECISION = 5;
+
+    /// <summary>
+    /// Default no auto-accept any changes.
+    /// </summary>
+    public const bool DEFAULT_OPTION_AUTO_VERIFY = false;
 }

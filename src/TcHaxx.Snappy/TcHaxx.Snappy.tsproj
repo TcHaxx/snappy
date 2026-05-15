@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" TcProjectVariant="LIB">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.23" TcProjectVariant="LIB">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{142ADFE1-9DE6-4C65-88D1-3B0EAEEE116E}" Namespace="TcHaxx" PersistentType="true">ST_Snappy_TestDatatype</Name>
@@ -32,7 +32,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{33EAC63E-19FA-4E75-A4EB-E8C86BCF4658}" TargetNetId="41.254.34.42.1.1" Target64Bit="true" ShowHideConfigurations="#x7">
+	<Project ProjectGUID="{33EAC63E-19FA-4E75-A4EB-E8C86BCF4658}" TargetNetId="41.254.34.42.1.1" ShowHideConfigurations="#x7">
 		<System>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
@@ -104,7 +104,7 @@
 						<Defines/>
 					</Variant>
 				</ProjectVariant>
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="snappy\snappy.tmc" TmcHash="{724D2834-43F6-6772-1E35-993D38D07869}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{41F936B0-6410-4D0B-C7A4-12A0AB75B3EC}" TmcPath="snappy\snappy.tmc">
 					<Name>snappy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

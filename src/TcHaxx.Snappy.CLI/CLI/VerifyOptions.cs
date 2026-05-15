@@ -22,4 +22,8 @@ public class VerifyOptions : BaseOptions, ITcAdsOptions, IVerifierOptions
     /// <inheritdoc/>
     [Option('f', "fpp", Default = Verifier.Constants.DEFAULT_OPTION_FP_PRECISION, Required = false, HelpText = "Floating point precision for REAL/LREAL value.")]
     public ushort FloatingPointPrecision { get; init; }
+
+    /// <inheritdoc/>
+    [Option('a', "auto-verify", Default = Verifier.Constants.DEFAULT_OPTION_AUTO_VERIFY, Required = false, HelpText = "Auto-accept any changes.")]
+    public bool AutoVerify { get; init; }
 }

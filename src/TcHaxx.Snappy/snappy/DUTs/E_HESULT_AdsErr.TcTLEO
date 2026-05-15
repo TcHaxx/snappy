@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
   <EnumerationTextList Name="E_HESULT_AdsErr" Id="{b04bf851-5b9e-4948-a5dc-53f5178e2761}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
@@ -19,8 +19,33 @@ END_TYPE
         <o xml:space="preserve" t="TextListEnumerationTextListObject">
           <l n="TextList" t="ArrayList" cet="TextListRow">
             <o>
-              <v n="TextID">"16#98110000 + 16#F"</v>
-              <v n="TextDefault">""</v>
+              <v n="TextID">"ERR_INTERNAL"</v>
+              <v n="TextDefault">"UDINT_TO_DINT((16#98110000 + 16#1))"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ERR_TARGETPORTNOTFOUND"</v>
+              <v n="TextDefault">"UDINT_TO_DINT((16#98110000 + 16#6))"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ERR_TARGETMACHINENOTFOUND"</v>
+              <v n="TextDefault">"UDINT_TO_DINT((16#98110000 + 16#7))"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ERR_PORTNOTCONNECTED"</v>
+              <v n="TextDefault">"UDINT_TO_DINT((16#98110000 + 16#D))"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ERR_INVALIDAMSLENGTH"</v>
+              <v n="TextDefault">"UDINT_TO_DINT((16#98110000 + 16#E))"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ERR_INVALIDAMSNETID"</v>
+              <v n="TextDefault">"UDINT_TO_DINT((16#98110000 + 16#F))"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

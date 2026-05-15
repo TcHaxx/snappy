@@ -19,6 +19,11 @@ internal class CommandVerify(IEnumerable<IVerifyService> verifyServices, ISymbol
             service.Options = options;
         }
 
+        if (options.AutoVerify)
+        {
+            _logger?.Warning("AutoVerify is enabled. This will automatically approve new snapshots.");
+        }
+
         _logger?.Information("Creating AdsSymbolicServer...");
         using var symbolicServer = _symbolicServerFactory.CreateSymbolicServer(options.AdsPort, nameof(CommandVerify));
         _logger?.Information("Starting AdsSymbolicServer...");
